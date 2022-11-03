@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7486574924039431482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7486574924039431460}
+  - component: {fileID: 7486574924039431483}
+  m_Layer: 0
+  m_Name: MapPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7486574924039431460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486574924039431482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.34860104, y: -1.8265647, z: -10.793998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7486574924039431483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486574924039431482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3342e05bbb2cac4458025292fb509c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  T: {fileID: 8093752283196560891, guid: 84caeeda4f865cd47ba997de11e50432, type: 3}
+  B: {fileID: 7896740368645665772, guid: 628959f3d8405054fb1e1f1fd5aaff58, type: 3}
+  L: {fileID: 2372360395186206140, guid: 0bff2a73c81fd5b47adc03618e7c5483, type: 3}
+  R: {fileID: 7627082350458588285, guid: 8e0d2e745f83972478107638bcfbe7fe, type: 3}
+  TB: {fileID: 6849083531189939933, guid: e0af8b8e80f770d4b90383a6ba56851d, type: 3}
+  LR: {fileID: 8168598862172353199, guid: 08527507460759c48af07f7a968e1408, type: 3}
+  TL: {fileID: 5035256273292225765, guid: edbfd5fb44b413848bc70f650ec623e5, type: 3}
+  TR: {fileID: 3574296348356116104, guid: c4789ba71ffc19746b31cc1c4775350a, type: 3}
+  BL: {fileID: 3763393246776514015, guid: 9676d788589ed084d8f58e8bbe4a571a, type: 3}
+  BR: {fileID: 3309573590985393866, guid: cd924f935df0da84290681302e6519a6, type: 3}
+  TBL: {fileID: 4759142890966470641, guid: f034ee247501ee6409f844db6d7d7465, type: 3}
+  TLR: {fileID: 2215633025831184819, guid: c84aa1c968ef88a45b5f85baa63f60f4, type: 3}
+  TBR: {fileID: 4848554339168961280, guid: 1caa4bdaba3a0504f8d2e9ab470116d9, type: 3}
+  BLR: {fileID: 7022382948674840459, guid: 24e77cadc39cfa34dbc13a0b12412a57, type: 3}
+  TBLR: {fileID: 2043240804856173167, guid: 96265f8c56378f640b54fb01bb1b294a, type: 3}
+  up: 0
+  down: 0
+  left: 0
+  right: 0
