@@ -272,12 +272,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160125cf8cc85794b9c39382a3758ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoomID: 0
   hasEntered: 0
   Door: {fileID: 8256679440996128414, guid: 8711af9738d769440b8a84d10e6307ae, type: 3}
   T: {fileID: 0}
   B: {fileID: 436351272037383679}
   L: {fileID: 0}
   R: {fileID: 3465866771731586894}
+  BLRuined: {fileID: 7304894776403974009, guid: e42b6a6f5a4d1e1478b9827e4ea8eb16, type: 3}
+  TBLRCenterHole: {fileID: 159900336446515706, guid: fd359a46a8b706a43bc7770133ab6da2, type: 3}
+  TLRRuined: {fileID: 7995304588705676564, guid: 4b33a9f0d3a77f84ab85be86065da8de, type: 3}
+  TRRuined: {fileID: 42168896116947617, guid: 22b6948ee6d92e443b5d634849841063, type: 3}
+  TBRuined: {fileID: 2961839192423947012, guid: 0ed54240ecd46044a8ccfe0822ede15c, type: 3}
+  LRRuined: {fileID: 5553011130380039868, guid: c4fa59a16afa7f447badbda9072629ef, type: 3}
 --- !u!1 &3465866771731586894
 GameObject:
   m_ObjectHideFlags: 0

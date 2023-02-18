@@ -16,7 +16,6 @@ public class GridController : MonoBehaviour
     public List<Vector2> availablePoints = new List<Vector2>();
     public bool hasSpawned = false;
 
-
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player" && hasSpawned == false)

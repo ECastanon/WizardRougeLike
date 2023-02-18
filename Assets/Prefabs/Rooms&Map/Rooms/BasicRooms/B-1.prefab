@@ -3525,6 +3525,12 @@ MonoBehaviour:
   B: {fileID: 2213040179087329227}
   L: {fileID: 0}
   R: {fileID: 0}
+  BLRuined: {fileID: 7304894776403974009, guid: e42b6a6f5a4d1e1478b9827e4ea8eb16, type: 3}
+  TBLRCenterHole: {fileID: 159900336446515706, guid: fd359a46a8b706a43bc7770133ab6da2, type: 3}
+  TLRRuined: {fileID: 7995304588705676564, guid: 4b33a9f0d3a77f84ab85be86065da8de, type: 3}
+  TRRuined: {fileID: 42168896116947617, guid: 22b6948ee6d92e443b5d634849841063, type: 3}
+  TBRuined: {fileID: 2961839192423947012, guid: 0ed54240ecd46044a8ccfe0822ede15c, type: 3}
+  LRRuined: {fileID: 5553011130380039868, guid: c4fa59a16afa7f447badbda9072629ef, type: 3}
 --- !u!1 &8344552494675265324
 GameObject:
   m_ObjectHideFlags: 0

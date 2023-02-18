@@ -246,6 +246,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rb: {fileID: 5882615111896241023}
+  dashPower: 24
+  dashCD: 3
+  dashCounter: 3
 --- !u!114 &-9014456900191869369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +264,7 @@ MonoBehaviour:
   MaxHp: 5
   hp: 0
   hit: 0
+  healthbar: {fileID: 0}
   invincibility: 0
   weaponType: 0
   manaStaff: {fileID: 21300000, guid: d33779cf09167f0448d6b98f4f681e0b, type: 3}
@@ -268,6 +272,7 @@ MonoBehaviour:
   earthStaff: {fileID: 0}
   waterStaff: {fileID: 0}
   windStaff: {fileID: 0}
+  DamageSFX: {fileID: 0}
 --- !u!114 &-1575778739023272563
 MonoBehaviour:
   m_ObjectHideFlags: 0

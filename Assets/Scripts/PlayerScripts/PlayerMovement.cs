@@ -10,10 +10,17 @@ public class PlayerMovement : MonoBehaviour
     Vector3 mousePos;
     private bool flip = false;
 
+    [Header("DashData")]
+    public float dashPower = 24f;
+    public float dashCD = 3f;
+    public float dashCounter = 3f;
+
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        Dash();
     }
 
     void FixedUpdate()
@@ -42,4 +49,18 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if(dashCounter >= dashCD)
+            {
+                dashCounter = 0; 
+                rb.MovePosition(rb.position + (movement * dashPower * Time.fixedDeltaTime));
+
+            }
+        }
+        if (dashCounter <= dashCD) { dashCounter = dashCounter + Time.fixedDeltaTime; }
+
+    }
 }

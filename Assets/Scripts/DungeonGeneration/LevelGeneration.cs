@@ -269,6 +269,7 @@ public class LevelGeneration : MonoBehaviour
         List<GameObject> PotentialLadderRooms = new List<GameObject>();
         Debug.Log("Attempting to create ladder");
         Debug.Log("Items in room list: " + roomTypes.Count);
+
         for (int i = 0; i < roomTypes.Count; i++)
         {
             if (roomTypes[i].gameObject.tag == "EndRoom" || roomTypes[i].gameObject.tag == "EndRoomB" || roomTypes[i].gameObject.tag == "EndRoomL" || roomTypes[i].gameObject.tag == "EndRoomR")
