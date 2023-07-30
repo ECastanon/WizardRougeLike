@@ -257,6 +257,7 @@ public class LevelGeneration : MonoBehaviour
             drawPos.x *= .8f; //.8f
             drawPos.y *= .6f; //.6f
             MapPrefabSelector miniMapper = Object.Instantiate(roomTemplate, drawPos, Quaternion.identity).GetComponent<MapPrefabSelector>();
+            miniMapper.isMini = true;
             miniMapper.up = room.doorTop;
             miniMapper.down = room.doorBot;
             miniMapper.left = room.doorLeft;

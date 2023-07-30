@@ -3706,7 +3706,7 @@ GameObject:
   - component: {fileID: 409599336196308839}
   m_Layer: 0
   m_Name: LR-Ruined
-  m_TagString: Untagged
+  m_TagString: Rooms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3831,6 +3831,7 @@ MonoBehaviour:
   TLRRuined: {fileID: 7995304588705676564, guid: 4b33a9f0d3a77f84ab85be86065da8de, type: 3}
   TRRuined: {fileID: 42168896116947617, guid: 22b6948ee6d92e443b5d634849841063, type: 3}
   TBRuined: {fileID: 2961839192423947012, guid: 0ed54240ecd46044a8ccfe0822ede15c, type: 3}
+  LRRuined: {fileID: 0}
 --- !u!1 &5657796137155383555
 GameObject:
   m_ObjectHideFlags: 0

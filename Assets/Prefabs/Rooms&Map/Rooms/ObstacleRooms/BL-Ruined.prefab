@@ -2091,7 +2091,7 @@ GameObject:
   - component: {fileID: 7699718578142261255}
   m_Layer: 0
   m_Name: BL-Ruined
-  m_TagString: Untagged
+  m_TagString: Rooms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2211,6 +2211,12 @@ MonoBehaviour:
   B: {fileID: 3916738755820201824}
   L: {fileID: 2187640554770306223}
   R: {fileID: 0}
+  BLRuined: {fileID: 0}
+  TBLRCenterHole: {fileID: 0}
+  TLRRuined: {fileID: 0}
+  TRRuined: {fileID: 0}
+  TBRuined: {fileID: 0}
+  LRRuined: {fileID: 0}
 --- !u!1 &7687828942780214893
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,14 +7,22 @@ public class MapPrefabSelector : MonoBehaviour
     public GameObject T, B, L, R,
                       TB, LR, TL, TR, BL, BR,
                       TBL, TLR, TBR, BLR, TBLR;
+    public GameObject BLRuined, TBLRCenterHole, TLRRuined, TRRuined, TBRuined, LRRuined;
+
     public bool up, down, left, right;
+    public bool isMini = false;
+
+    private float ruinRate = 0.5f;
 
     void Create(GameObject roomType)
     {
         Instantiate(roomType, transform.position, Quaternion.identity);
     }
+    //Decides on the type of room to be created based on doors
     void PickRoom()
     {
+        float swap = Random.Range(0.0f, 1.0f);
+
         if (up)
         {
             if (down)
@@ -23,33 +31,38 @@ public class MapPrefabSelector : MonoBehaviour
                 {
                     if (left)
                     {
-                        Create(TBLR);
+                        if (swap < ruinRate && isMini == false) { Create(TBLRCenterHole); } else { Create(TBLR); }
                     }
                     else
                     {
                         Create(TBR);
                     }
-                } else if (left)
+                }
+                else if (left)
                 {
                     Create(TBL);
                 }
                 else
                 {
-                    Create(TB);
+                    if (swap < ruinRate && isMini == false) { Create(TBRuined); } else { Create(TB); }
                 }
-            } else
+            }
+            else
             {
                 if (right)
                 {
                     if (left)
                     {
-                        Create(TLR);
+                        if (swap < ruinRate && isMini == false) { Create(TLRRuined); } else { Create(TLR); }
+
                     }
                     else
                     {
-                        Create(TR);
+                        if (swap < ruinRate && isMini == false) { Create(TRRuined); } else { Create(TR); }
+
                     }
-                } else if (left)
+                }
+                else if (left)
                 {
                     Create(TL);
                 }
@@ -72,9 +85,10 @@ public class MapPrefabSelector : MonoBehaviour
                 {
                     Create(BR);
                 }
-            } else if (left)
+            }
+            else if (left)
             {
-                Create(BL);
+                if (swap < ruinRate && isMini == false) { Create(BLRuined); } else { Create(BL); }
             }
             else
             {
@@ -86,7 +100,7 @@ public class MapPrefabSelector : MonoBehaviour
         {
             if (left)
             {
-                Create(LR);
+                if (swap < ruinRate && isMini == false) { Create(LRRuined); } else { Create(LR); }
             }
             else
             {
@@ -98,6 +112,7 @@ public class MapPrefabSelector : MonoBehaviour
             Create(L);
         }
     }
+
     void Start()
     {
         PickRoom();

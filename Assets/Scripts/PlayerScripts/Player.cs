@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private IEnumerator hitstate;
 
     public Image healthbar;
+    public Text hpcount;
 
     //Player Immunities
     public float invincibility; // Player's invincibility after being hit
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         hp = MaxHp;
+        hpcount.text = hp.ToString() + "/" + MaxHp.ToString();
         GetWeaponType();
     }
 
@@ -81,6 +83,7 @@ public class Player : MonoBehaviour
             invinTimer = invincibility;
             hp -= amount;
             healthbar.fillAmount = hp / MaxHp;
+            hpcount.text = hp.ToString() + "/" + MaxHp.ToString();
             if (hp <= 0)
             {
                 Debug.Log("You Lose");

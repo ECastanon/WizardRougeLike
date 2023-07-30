@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4164805295268726713}
   m_Layer: 0
   m_Name: TBLR-CenterHole
-  m_TagString: Untagged
+  m_TagString: Rooms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,6 +135,12 @@ MonoBehaviour:
   B: {fileID: 7858147571052639389}
   L: {fileID: 8669182005566825116}
   R: {fileID: 7381796938350140912}
+  BLRuined: {fileID: 0}
+  TBLRCenterHole: {fileID: 0}
+  TLRRuined: {fileID: 0}
+  TRRuined: {fileID: 0}
+  TBRuined: {fileID: 0}
+  LRRuined: {fileID: 0}
 --- !u!1 &462536049337646062
 GameObject:
   m_ObjectHideFlags: 0

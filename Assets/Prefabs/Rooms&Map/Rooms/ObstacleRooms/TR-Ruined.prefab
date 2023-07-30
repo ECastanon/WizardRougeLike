@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1062893315515441134}
   m_Layer: 0
   m_Name: TR-Ruined
-  m_TagString: Untagged
+  m_TagString: Rooms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,6 +136,12 @@ MonoBehaviour:
   B: {fileID: 0}
   L: {fileID: 0}
   R: {fileID: 2902717585712653244}
+  BLRuined: {fileID: 0}
+  TBLRCenterHole: {fileID: 0}
+  TLRRuined: {fileID: 0}
+  TRRuined: {fileID: 0}
+  TBRuined: {fileID: 0}
+  LRRuined: {fileID: 0}
 --- !u!1 &659121881525083730
 GameObject:
   m_ObjectHideFlags: 0

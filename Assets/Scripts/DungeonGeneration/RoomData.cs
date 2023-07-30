@@ -17,8 +17,6 @@ public class RoomData : MonoBehaviour
         AddList();
         SetID();
         CheckIfLast();
-        RoomSwap();
-
     }
     //Sets the room as a parent of "Dungeon Generator"
     void FixParent()
@@ -113,45 +111,5 @@ public class RoomData : MonoBehaviour
         RoomID = dg.GetComponent<LevelGeneration>().setID;
         RoomID = RoomID - dg.GetComponent<LevelGeneration>().numberOfRooms;
         dg.GetComponent<LevelGeneration>().setID++;
-    }
-    //Changes Room
-    void RoomSwap()
-    {
-        if(this.gameObject.name == "BL-1(Clone)")
-        {
-            GameObject newRoom = Instantiate(BLRuined, this.gameObject.transform.position, Quaternion.identity);
-            newRoom.gameObject.GetComponent<RoomData>().RoomID = this.RoomID;
-            this.gameObject.SetActive(false);
-        }
-        if (this.gameObject.name == "TBLR-1(Clone)")
-        {
-            GameObject newRoom = Instantiate(TBLRCenterHole, this.gameObject.transform.position, Quaternion.identity);
-            newRoom.gameObject.GetComponent<RoomData>().RoomID = this.RoomID;
-            this.gameObject.SetActive(false);
-        }
-        if (this.gameObject.name == "TLR-1(Clone)")
-        {
-            GameObject newRoom = Instantiate(TLRRuined, this.gameObject.transform.position, Quaternion.identity);
-            newRoom.gameObject.GetComponent<RoomData>().RoomID = this.RoomID;
-            this.gameObject.SetActive(false);
-        }
-        if (this.gameObject.name == "TR-1(Clone)")
-        {
-            GameObject newRoom = Instantiate(TRRuined, this.gameObject.transform.position, Quaternion.identity);
-            newRoom.gameObject.GetComponent<RoomData>().RoomID = this.RoomID;
-            this.gameObject.SetActive(false);
-        }
-        if (this.gameObject.name == "TB-1(Clone)")
-        {
-            GameObject newRoom = Instantiate(TBRuined, this.gameObject.transform.position, Quaternion.identity);
-            newRoom.gameObject.GetComponent<RoomData>().RoomID = this.RoomID;
-            this.gameObject.SetActive(false);
-        }
-        if (this.gameObject.name == "LR-1(Clone)")
-        {
-            GameObject newRoom = Instantiate(LRRuined, this.gameObject.transform.position, Quaternion.identity);
-            newRoom.gameObject.GetComponent<RoomData>().RoomID = this.RoomID;
-            this.gameObject.SetActive(false);
-        }
     }
 }
