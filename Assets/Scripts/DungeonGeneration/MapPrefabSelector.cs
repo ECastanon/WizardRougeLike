@@ -8,16 +8,20 @@ public class MapPrefabSelector : MonoBehaviour
                       TB, LR, TL, TR, BL, BR,
                       TBL, TLR, TBR, BLR, TBLR;
     public GameObject BLRuined, TBLRCenterHole, TLRRuined, TRRuined, TBRuined, LRRuined;
+    public GameObject B_Healing;
 
     public bool up, down, left, right;
     public bool isMini = false;
 
+    //Rate at which a ruined room will appear
     private float ruinRate = 0.5f;
+    private float healRate = 0.5f;
 
     void Create(GameObject roomType)
     {
         Instantiate(roomType, transform.position, Quaternion.identity);
     }
+
     //Decides on the type of room to be created based on doors
     void PickRoom()
     {
@@ -31,7 +35,7 @@ public class MapPrefabSelector : MonoBehaviour
                 {
                     if (left)
                     {
-                        if (swap < ruinRate && isMini == false) { Create(TBLRCenterHole); } else { Create(TBLR); }
+                        if (swap <= ruinRate && isMini == false) { Create(TBLRCenterHole); } else { Create(TBLR); }
                     }
                     else
                     {
@@ -44,7 +48,7 @@ public class MapPrefabSelector : MonoBehaviour
                 }
                 else
                 {
-                    if (swap < ruinRate && isMini == false) { Create(TBRuined); } else { Create(TB); }
+                    if (swap <= ruinRate && isMini == false) { Create(TBRuined); } else { Create(TB); }
                 }
             }
             else
@@ -53,12 +57,12 @@ public class MapPrefabSelector : MonoBehaviour
                 {
                     if (left)
                     {
-                        if (swap < ruinRate && isMini == false) { Create(TLRRuined); } else { Create(TLR); }
+                        if (swap <= ruinRate && isMini == false) { Create(TLRRuined); } else { Create(TLR); }
 
                     }
                     else
                     {
-                        if (swap < ruinRate && isMini == false) { Create(TRRuined); } else { Create(TR); }
+                        if (swap <= ruinRate && isMini == false) { Create(TRRuined); } else { Create(TR); }
 
                     }
                 }
@@ -88,11 +92,13 @@ public class MapPrefabSelector : MonoBehaviour
             }
             else if (left)
             {
-                if (swap < ruinRate && isMini == false) { Create(BLRuined); } else { Create(BL); }
+                if (swap <= ruinRate && isMini == false) { Create(BLRuined); } else { Create(BL); }
             }
             else
             {
-                Create(B);
+                //Create(B);
+                if (swap <= ruinRate && isMini == false) { Create(BLRuined); }
+                Create(B_Healing);
             }
             return;
         }
@@ -100,7 +106,7 @@ public class MapPrefabSelector : MonoBehaviour
         {
             if (left)
             {
-                if (swap < ruinRate && isMini == false) { Create(LRRuined); } else { Create(LR); }
+                if (swap <= ruinRate && isMini == false) { Create(LRRuined); } else { Create(LR); }
             }
             else
             {

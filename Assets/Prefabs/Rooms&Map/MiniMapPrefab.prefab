@@ -58,12 +58,13 @@ MonoBehaviour:
   TBR: {fileID: 1866796558829496138, guid: 1bf2557d0ef1d584eaddc6ef5a488f69, type: 3}
   BLR: {fileID: 8352829469518719123, guid: c112eb237531fb744b51545837313322, type: 3}
   TBLR: {fileID: 279804694512267410, guid: 66f5d7e9c2463f04284995e1522af74e, type: 3}
-  BLRuined: {fileID: 7304894776403974009, guid: e42b6a6f5a4d1e1478b9827e4ea8eb16, type: 3}
-  TBLRCenterHole: {fileID: 159900336446515706, guid: fd359a46a8b706a43bc7770133ab6da2, type: 3}
-  TLRRuined: {fileID: 7995304588705676564, guid: 4b33a9f0d3a77f84ab85be86065da8de, type: 3}
-  TRRuined: {fileID: 42168896116947617, guid: 22b6948ee6d92e443b5d634849841063, type: 3}
-  TBRuined: {fileID: 2961839192423947012, guid: 0ed54240ecd46044a8ccfe0822ede15c, type: 3}
-  LRRuined: {fileID: 5553011130380039868, guid: c4fa59a16afa7f447badbda9072629ef, type: 3}
+  BLRuined: {fileID: 4213828848177340791, guid: 7975ca30baf7cbd43a4d3c08a9bd5020, type: 3}
+  TBLRCenterHole: {fileID: 279804694512267410, guid: 66f5d7e9c2463f04284995e1522af74e, type: 3}
+  TLRRuined: {fileID: 8729947019857694085, guid: ec57ddc200523694aa5f386ea7a6990e, type: 3}
+  TRRuined: {fileID: 7973427352528861444, guid: a743446269873b745bbb93853d57243a, type: 3}
+  TBRuined: {fileID: 4134572602008035191, guid: f155ebc2171e28d4f894ddeaf4c4d8b2, type: 3}
+  LRRuined: {fileID: 6942265455924255941, guid: a7beec7f57c366242aea16b1a6bb54e3, type: 3}
+  B_Healing: {fileID: 8025170098058284718, guid: 1522e61f086d46242b97ff4f2538404d, type: 3}
   up: 0
   down: 0
   left: 0

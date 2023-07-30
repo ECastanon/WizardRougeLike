@@ -64,7 +64,9 @@ MonoBehaviour:
   TRRuined: {fileID: 42168896116947617, guid: 22b6948ee6d92e443b5d634849841063, type: 3}
   TBRuined: {fileID: 2961839192423947012, guid: 0ed54240ecd46044a8ccfe0822ede15c, type: 3}
   LRRuined: {fileID: 5553011130380039868, guid: c4fa59a16afa7f447badbda9072629ef, type: 3}
+  B_Healing: {fileID: 5802906018913037122, guid: 62706d7109d627347a7ff2de8a25f132, type: 3}
   up: 0
   down: 0
   left: 0
   right: 0
+  isMini: 0

@@ -82,8 +82,7 @@ public class Player : MonoBehaviour
             DamageSFX.Play();
             invinTimer = invincibility;
             hp -= amount;
-            healthbar.fillAmount = hp / MaxHp;
-            hpcount.text = hp.ToString() + "/" + MaxHp.ToString();
+            UpdateHPBar();
             if (hp <= 0)
             {
                 Debug.Log("You Lose");
@@ -92,5 +91,11 @@ public class Player : MonoBehaviour
         {
             Debug.Log("IMMUNE!!!");
         }
+    }
+
+    public void UpdateHPBar()
+    {
+        healthbar.fillAmount = hp / MaxHp;
+        hpcount.text = hp.ToString() + "/" + MaxHp.ToString();
     }
 }
