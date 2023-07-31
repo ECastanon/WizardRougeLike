@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
         //GameObject deathIns = (GameObject)Instantiate(enemyDeathEffect, transform.position, transform.rotation);
         //Destroy(deathIns, 1.5f);
         enemyManager.GetComponent<EnemyCounter>().enemyCount--;
+        enemyManager.GetComponent<EnemyCounter>().OpenDoors();
         gameObject.SetActive(false);
     }
 }

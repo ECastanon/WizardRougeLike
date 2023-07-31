@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class EnemyCounter : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject RelicMenu;
 
     public List<GameObject> Doors = new List<GameObject>();
-
     public int enemyCount;
 
-    void OpenDoors()
+    public void OpenDoors()
     {
         if(enemyCount <= 0)
         {
@@ -21,11 +20,8 @@ public class EnemyCounter : MonoBehaviour
             }
             //Open Doors
             enemyCount = 0;
-        }
-    }
 
-    void Update()
-    {
-        OpenDoors();
+            RelicMenu.GetComponent<RelicPanel>().SlideInMenu();
+        }
     }
 }
