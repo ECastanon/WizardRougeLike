@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 mousePos;
     private bool flip = false;
+
+    public Image dashBar;
 
     [Header("DashData")]
     [SerializeField] private TrailRenderer trailRenderer;
@@ -28,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         trailRenderer.emitting = false;
+        dashTime = dashCD;
     }
 
     void Update()
@@ -40,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
         if(dashTime < dashCD)
         {
             dashTime += Time.deltaTime;
+
+            dashBar.fillAmount = dashTime / dashCD;
         }
     }
 
