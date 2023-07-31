@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public Text hpcount;
 
     //Player Immunities
+    public bool dodging;
     public float invincibility; // Player's invincibility after being hit
     float invinTimer; //Player's current invincibility
     //Player Weapons
@@ -46,7 +47,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(invinTimer > 0)
+        dodging = GetComponent<PlayerMovement>().isDashing;
+
+        if (invinTimer > 0)
         {
             invinTimer -= Time.deltaTime;
         }
@@ -77,7 +80,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if(invinTimer <= 0)
+        if (invinTimer <= 0 && !dodging)
         {
             DamageSFX.Play();
             invinTimer = invincibility;

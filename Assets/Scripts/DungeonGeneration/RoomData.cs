@@ -9,7 +9,6 @@ public class RoomData : MonoBehaviour
 
     [HideInInspector]
     public GameObject Door, T, B, L, R;
-    public GameObject BLRuined, TBLRCenterHole, TLRRuined, TRRuined, TBRuined, LRRuined;
 
     void Start()
     {

@@ -15,7 +15,7 @@ public class MapPrefabSelector : MonoBehaviour
 
     //Rate at which a ruined room will appear
     private float ruinRate = 0.5f;
-    private float healRate = 0.5f;
+    private float healRate = 0.33f;
 
     void Create(GameObject roomType)
     {
@@ -96,9 +96,7 @@ public class MapPrefabSelector : MonoBehaviour
             }
             else
             {
-                //Create(B);
-                if (swap <= ruinRate && isMini == false) { Create(BLRuined); }
-                Create(B_Healing);
+                if (swap <= healRate && isMini == false) { Create(B_Healing); } else { Create(B); }
             }
             return;
         }
