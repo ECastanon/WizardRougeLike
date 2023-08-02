@@ -124,8 +124,7 @@ public class RelicPanel : MonoBehaviour
             }
         }
 
-        Debug.Log("RC" + temp + " = " + rand);
-        Debug.Log("My rarity is: " + rarity);
+        Debug.Log("RC" + temp + " = " + rand + " AND my rarity is: " + rarity);
     }
 
     private void ChangeRCBorderColor(GameObject rc, string rarity)
