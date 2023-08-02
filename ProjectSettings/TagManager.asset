@@ -23,6 +23,8 @@ TagManager:
   - LadderRoomR
   - EnemyManager
   - Door
+  - RelicMenu
+  - HealingRoom
   layers:
   - Default
   - TransparentFX

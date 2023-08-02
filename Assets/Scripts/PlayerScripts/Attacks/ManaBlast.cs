@@ -46,7 +46,7 @@ public class ManaBlast : MonoBehaviour, IPooledObject
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log("Attack has collided with the Enemy");
+            //Debug.Log("Attack has collided with the Enemy");
             Enemy enemy = col.GetComponent<Enemy>();
             enemy.TakeDamage(damage);
         }

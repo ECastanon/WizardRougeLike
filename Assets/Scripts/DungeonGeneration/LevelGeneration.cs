@@ -268,8 +268,8 @@ public class LevelGeneration : MonoBehaviour
     public void SetLadders()
     {
         List<GameObject> PotentialLadderRooms = new List<GameObject>();
-        Debug.Log("Attempting to create ladder");
-        Debug.Log("Items in room list: " + roomTypes.Count);
+        //Debug.Log("Attempting to create ladder");
+        //Debug.Log("Items in room list: " + roomTypes.Count);
 
         for (int i = 0; i < roomTypes.Count; i++)
         {

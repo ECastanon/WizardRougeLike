@@ -45,7 +45,7 @@ public class Arrow : MonoBehaviour, IPooledObject
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("Attack has collided with the Player");
+            //Debug.Log("Attack has collided with the Player");
             Player player = col.GetComponent<Player>();
             player.TakeDamage(damage);
             gameObject.SetActive(false); //Disables objects to be reused

@@ -30,7 +30,7 @@ public class RoomMiniData : MonoBehaviour
     }
     public void EnableMapPiece()
     {
-        Debug.Log("EnableMapPiece");
+        //Debug.Log("EnableMapPiece");
         this.GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
     }
     void AddList()

@@ -7,7 +7,8 @@ public class RoomData : MonoBehaviour
     public int RoomID;
     public bool hasEntered = false;
 
-    [HideInInspector]
+    public string roomTyp;
+
     public GameObject Door, T, B, L, R;
 
     void Start()
@@ -70,8 +71,6 @@ public class RoomData : MonoBehaviour
                 GameObject rmt = dg.GetComponent<LevelGeneration>().roomMiniTypes[i];
                 if (rmt.GetComponent<RoomMiniData>().RoomIDMini == RoomID)
                 {
-                    Debug.Log("4");
-
                     rmt.GetComponent<RoomMiniData>().EnableMapPiece();
                 }
             }
@@ -90,6 +89,11 @@ public class RoomData : MonoBehaviour
                 rmt.GetComponent<RoomMiniData>().playerInside = true;
             }
         }
+
+        //Passes current Room Type to Relic Panel
+        GameObject relicMenu = GameObject.FindGameObjectWithTag("RelicMenu");
+        GetRoomType();
+        relicMenu.GetComponent<RelicPanel>().roomType = roomTyp;
     }
     public void PlayerLeave()
     {
@@ -110,5 +114,12 @@ public class RoomData : MonoBehaviour
         RoomID = dg.GetComponent<LevelGeneration>().setID;
         RoomID = RoomID - dg.GetComponent<LevelGeneration>().numberOfRooms;
         dg.GetComponent<LevelGeneration>().setID++;
+    }
+    //Gets the room type
+    void GetRoomType()
+    {
+        Transform roomCenter = this.transform.Find("RoomCenter");
+        roomTyp = roomCenter.tag.ToString();
+        Debug.Log("RoomType: " + roomTyp);
     }
 }

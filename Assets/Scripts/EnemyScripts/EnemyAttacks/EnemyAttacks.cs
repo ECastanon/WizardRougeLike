@@ -28,7 +28,7 @@ public class EnemyAttacks : MonoBehaviour
             if (timer1 >= attackTimer1)
             {
                 timer1 = 0;
-                Debug.Log("Attack Type 1");
+                //Debug.Log("Attack Type 1");
                 animator.SetBool("isAiming", true);
                 enemyMove.isAiming = true;
             }
