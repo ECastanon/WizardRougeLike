@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class RelicPanel : MonoBehaviour
 {
@@ -12,21 +12,22 @@ public class RelicPanel : MonoBehaviour
     public GameObject relicCard3;
     //Used to change RC info based on its item
     //Name
-    public GameObject rctitle1;
-    public GameObject rctitle2;
-    public GameObject rctitle3;
+    public TextMeshProUGUI rctitle1;
+    public TextMeshProUGUI rctitle2;
+    public TextMeshProUGUI rctitle3;
     //Sprite
     public GameObject rcsprite1;
     public GameObject rcsprite2;
     public GameObject rcsprite3;
     //Description
-    public GameObject rcdesc1;
-    public GameObject rcdesc2;
-    public GameObject rcdesc3;
+    public TextMeshProUGUI rcdesc1;
+    public TextMeshProUGUI rcdesc2;
+    public TextMeshProUGUI rcdesc3;
 
     private int temp = 1;
 
     private bool inView = false;
+    private string rarity = "";
 
     public string roomType;
 
@@ -53,9 +54,9 @@ public class RelicPanel : MonoBehaviour
     //Called In EnemyCounter
     public void SlideInMenu()
     {
-        GenerateRelic(relicCard1);
-        GenerateRelic(relicCard2);
-        GenerateRelic(relicCard3);
+        GenerateRelic(relicCard1, rctitle1, rcsprite1, rcdesc1);
+        GenerateRelic(relicCard2, rctitle2, rcsprite2, rcdesc2);
+        GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3);
 
         if (!inView)
         {
@@ -75,59 +76,45 @@ public class RelicPanel : MonoBehaviour
         }
     }
 
-    public void GenerateRelic(GameObject rc)
+    public void GenerateRelic(GameObject rc, TextMeshProUGUI rcTitle, GameObject rcSprite, TextMeshProUGUI rcDesc)
     {
         float rand = Random.Range(0.0f, 1.0f);
         temp += 1;
-        string rarity = "";
 
         if (roomType == "Basic" || roomType == "Untagged")
         {
             if (rand <= .05f) //5%
             {
-                //Create an Super Relic
+                //Super Relic
                 rarity = "Super";
-                ChangeRCBorderColor(rc, rarity);
             }
             else if (.05f < rand && rand <= .20f) //15%
             {
-                //Create a Rare Relic
+                //Rare Relic
                 rarity = "Rare";
-                ChangeRCBorderColor(rc, rarity);
+
             }
             else if (.20f < rand && rand <= .50f) //30%
             {
-                //Create a Uncommon Relic
+                //Uncommon Relic
                 rarity = "Uncommon";
-                ChangeRCBorderColor(rc, rarity);
-            }
-            else if (.50f > rand) //50%
-            {
-                //Create a Common Relic
-                rarity = "Common";
-                ChangeRCBorderColor(rc, rarity);
-            }
-        }
-        if (roomType == "TreasureRoom")
-        {
-            if(rand >= .8f) //20%
-            {
-                //Create an Ultra Relic
-                rarity = "Ultra";
-                ChangeRCBorderColor(rc, rarity);
-            }
-            else //80%
-            {
-                //Create a Super Relic
-                rarity = "Super";
-                ChangeRCBorderColor(rc, rarity);
-            }
-        }
 
-        Debug.Log("RC" + temp + " = " + rand + " AND my rarity is: " + rarity);
+            }
+            else if (.50f < rand) //50%
+            {
+                //Common Relic
+                Debug.Log("test");
+                rarity = "Common";
+            }
+        }
+        Debug.Log("RC" + (temp-1) + " = " + rand + " AND my rarity is: " + rarity);
+
+        //Creation of the Relic
+        ChangeRCBorderColor(rc);
+        GetRC(rc, rcTitle, rcSprite, rcDesc);
     }
 
-    private void ChangeRCBorderColor(GameObject rc, string rarity)
+    private void ChangeRCBorderColor(GameObject rc)
     {
         GameObject border;
         switch (rarity)
@@ -175,15 +162,22 @@ public class RelicPanel : MonoBehaviour
                 break;
         }
     }
-    private void GetRC(GameObject rc, string rarity)
+    private void GetRC(GameObject rc, TextMeshProUGUI rcTitle, GameObject rcSprite, TextMeshProUGUI rcDesc)
     {
         //Returns 0-99
         //int rand = Random.Range(0, 100);
-        int rand = Random.Range(0, 4);
+        Debug.Log(rarity);
         switch (rarity)
         {
             case "Common":
-                //
+                int rand = Random.Range(0, 4);
+                //EtherealStone
+                if(rand >= 0)
+                {
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Ethereal Stone";
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases dash distance by 1.5x";
+                    Debug.Log("TitleChanged");
+                }
                 break;
             case "Uncommon":
                 //

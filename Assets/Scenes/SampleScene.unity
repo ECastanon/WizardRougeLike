@@ -1748,15 +1748,15 @@ MonoBehaviour:
   relicCard1: {fileID: 6730200134289473316}
   relicCard2: {fileID: 1598952342}
   relicCard3: {fileID: 1354735316}
-  rctitle1: {fileID: 37745422}
-  rctitle2: {fileID: 647783531}
-  rctitle3: {fileID: 1744910824}
+  rctitle1: {fileID: 37745424}
+  rctitle2: {fileID: 647783533}
+  rctitle3: {fileID: 1744910826}
   rcsprite1: {fileID: 1730792844}
   rcsprite2: {fileID: 1562036878}
   rcsprite3: {fileID: 652046856}
-  rcdesc1: {fileID: 2138048040}
-  rcdesc2: {fileID: 1076193414}
-  rcdesc3: {fileID: 197320792}
+  rcdesc1: {fileID: 2138048042}
+  rcdesc2: {fileID: 1076193416}
+  rcdesc3: {fileID: 197320794}
   roomType: 
   etherealStone: {fileID: 7375853845284283385, guid: 804b8b1e15f928a48ac97cdadc63fd1f, type: 3}
   etherealShockPendant: {fileID: 2159314309436852629, guid: f67e33d4a47e7e246bebf2c3d3fa00e6, type: 3}
