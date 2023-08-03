@@ -24,17 +24,18 @@ public class RelicPanel : MonoBehaviour
     public TextMeshProUGUI rcdesc2;
     public TextMeshProUGUI rcdesc3;
 
-    private int temp = 1;
-
     private bool inView = false;
+
+    //RC values
+    public GameObject spriteContainer;
+    private SpriteRenderer newSprite;
+    private int RCNum = 1;
+    private int rcRand;
     private string rarity = "";
+    private string descValue1 = "";
+    private string descValue2 = "";
 
     public string roomType;
-
-    [Header("Uncommon")]
-    public GameObject etherealStone; //Increases dash distance by 1.5x
-    public GameObject etherealShockPendant; //Damages enemies dodged into
-    public GameObject soulJar; //Increases maxHP by 1 for every 5 enemies defeated
 
     [Header("Super")]
     public GameObject vampireTooth; //30% chance to gain 1 hp from defeating an enemy
@@ -79,7 +80,7 @@ public class RelicPanel : MonoBehaviour
     public void GenerateRelic(GameObject rc, TextMeshProUGUI rcTitle, GameObject rcSprite, TextMeshProUGUI rcDesc)
     {
         float rand = Random.Range(0.0f, 1.0f);
-        temp += 1;
+        RCNum += 1;
 
         if (roomType == "Basic" || roomType == "Untagged")
         {
@@ -103,11 +104,10 @@ public class RelicPanel : MonoBehaviour
             else if (.50f < rand) //50%
             {
                 //Common Relic
-                Debug.Log("test");
                 rarity = "Common";
             }
         }
-        Debug.Log("RC" + (temp-1) + " = " + rand + " AND my rarity is: " + rarity);
+        Debug.Log("RC" + (RCNum-1) + " = " + rand + " AND my rarity is: " + rarity);
 
         //Creation of the Relic
         ChangeRCBorderColor(rc);
@@ -166,27 +166,109 @@ public class RelicPanel : MonoBehaviour
     {
         //Returns 0-99
         //int rand = Random.Range(0, 100);
+
+        //"<color=#50C878>This is green!</color>"
+
+        //Positive values use Emerald Green - #50C878
+        //Negative values used Scarlet - #FF2400
         Debug.Log(rarity);
         switch (rarity)
         {
             case "Common":
-                int rand = Random.Range(0, 4);
+                rcRand = Random.Range(0, 3);
                 //EtherealStone
-                if(rand >= 0)
+                if(rcRand == 0)
                 {
+                    descValue1 = "<color=#50C878>1.5x</color>";
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Ethereal Stone";
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases dash distance by 1.5x";
-                    Debug.Log("TitleChanged");
+                    newSprite = spriteContainer.transform.Find("EtherealStone").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases dash distance by " + descValue1;
+                }
+                //EtherealShockPendant
+                if (rcRand == 1)
+                {
+                    descValue1 = "<color=#50C878>1</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Ethereal Shock Pendant";
+                    newSprite = spriteContainer.transform.Find("EtherealShockPendant").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Damages enemies dodged into by " + descValue1;
+                }
+                //SoulJar
+                if (rcRand == 2)
+                {
+                    descValue1 = "<color=#50C878>1</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Soul Jar";
+                    newSprite = spriteContainer.transform.Find("SoulJar").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases maxHP by " + descValue1 + " for every 5 enemies defeated";
                 }
                 break;
             case "Uncommon":
-                //
+                //Augur'sTalisman - Shortens negative status effects by 15%
+                //CosmoRing - Reduces Strong attacks CD by 5% per item complete
+                //Monocle - Additional 5% EXP gain from defeating enemies
+                rcRand = Random.Range(0, 3);
+                //Augur'sTalisman
+                if (rcRand == 0)
+                {
+                    descValue1 = "<color=#50C878>15%</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Augur's Talisman";
+                    newSprite = spriteContainer.transform.Find("Augur'sTalisman").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Shortens negative status effects by " + descValue1;
+                }
+                //CosmoRing
+                if (rcRand == 1)
+                {
+                    descValue1 = "<color=#50C878>5%</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Cosmo Ring";
+                    newSprite = spriteContainer.transform.Find("CosmoRing").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Reduces strong attack Cooldowns by " + descValue1;
+                }
+                //Monocle
+                if (rcRand == 2)
+                {
+                    descValue1 = "<color=#50C878>5%</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Monocle";
+                    newSprite = spriteContainer.transform.Find("Monocle").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increase EXP gain by " + descValue1;
+                }
                 break;
             case "Rare":
                 //
                 break;
             case "Super":
-                //
+                rcRand = Random.Range(0, 3);
+                //VampireTooth
+                if (rcRand == 0)
+                {
+                    descValue1 = "<color=#50C878>1</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Vampire Tooth";
+                    newSprite = spriteContainer.transform.Find("VampireTooth").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "30% chance to recover HP by " + descValue1 + " after defeating an enemy";
+                }
+                //MedalofValor
+                if (rcRand == 1)
+                {
+                    descValue1 = "<color=#50C878>2</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Medal of Valor";
+                    newSprite = spriteContainer.transform.Find("MedalofValor").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Recover " + descValue1 + " HP after clearing a room";
+                }
+                //ScrollofMight
+                if (rcRand == 2)
+                {
+                    descValue1 = "<color=#50C878>+1</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Scroll of Might";
+                    newSprite = spriteContainer.transform.Find("ScrollofMight").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increase all weapon damage by " + descValue1;
+                }
                 break;
             case "Ultra":
                 //
