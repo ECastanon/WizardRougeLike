@@ -35,17 +35,8 @@ public class RelicPanel : MonoBehaviour
     private string descValue1 = "";
     private string descValue2 = "";
 
+    [HideInInspector]
     public string roomType;
-
-    [Header("Super")]
-    public GameObject vampireTooth; //30% chance to gain 1 hp from defeating an enemy
-    public GameObject medalofValor; //Heals 1hp after completing a room
-    public GameObject scrollofMight; //Increases all weapon damages by +1
-
-    [Header("Ultra")]
-    public GameObject holyEmbrace; //Protects from the first attack in every new room
-    public GameObject AncientSigil; //Reduces all weapon CDs by 30%
-    public GameObject chargeStone; //Gain an additional charge on your strong attack
 
     void Start()
     {
@@ -75,6 +66,17 @@ public class RelicPanel : MonoBehaviour
             inView = false;
             Time.timeScale = 1f;
         }
+    }
+
+    //Button for rerolling the given relics
+    public void ReRoll()
+    {
+
+    }
+    //Button for deleting a relic for the rest of the run
+    public void Eliminate()
+    {
+
     }
 
     public void GenerateRelic(GameObject rc, TextMeshProUGUI rcTitle, GameObject rcSprite, TextMeshProUGUI rcDesc)
@@ -179,7 +181,7 @@ public class RelicPanel : MonoBehaviour
                 //EtherealStone
                 if(rcRand == 0)
                 {
-                    descValue1 = "<color=#50C878>1.5x</color>";
+                    descValue1 = "<color=#50C878>10%</color>";
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Ethereal Stone";
                     newSprite = spriteContainer.transform.Find("EtherealStone").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
@@ -205,9 +207,6 @@ public class RelicPanel : MonoBehaviour
                 }
                 break;
             case "Uncommon":
-                //Augur'sTalisman - Shortens negative status effects by 15%
-                //CosmoRing - Reduces Strong attacks CD by 5% per item complete
-                //Monocle - Additional 5% EXP gain from defeating enemies
                 rcRand = Random.Range(0, 3);
                 //Augur'sTalisman
                 if (rcRand == 0)
@@ -238,7 +237,34 @@ public class RelicPanel : MonoBehaviour
                 }
                 break;
             case "Rare":
-                //
+                rcRand = Random.Range(0, 3);
+                //GrowthSerum
+                if (rcRand == 0)
+                {
+                    descValue1 = "<color=#50C878>10%</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Growth Serum";
+                    newSprite = spriteContainer.transform.Find("GrowthSerum").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases spell size by " + descValue1;
+                }
+                //HermesSandals
+                if (rcRand == 1)
+                {
+                    descValue1 = "<color=#50C878>25%</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Hermes Sandals";
+                    newSprite = spriteContainer.transform.Find("HermesSandals").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increase movement speed by " + descValue1;
+                }
+                //EtherealCloak
+                if (rcRand == 2)
+                {
+                    descValue1 = "<color=#50C878>15%</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Ethereal Cloak";
+                    newSprite = spriteContainer.transform.Find("EtherealCloak").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Reduce dash cooldown by " + descValue1;
+                }
                 break;
             case "Super":
                 rcRand = Random.Range(0, 3);
@@ -271,9 +297,38 @@ public class RelicPanel : MonoBehaviour
                 }
                 break;
             case "Ultra":
-                //
+                rcRand = Random.Range(0, 3);
+                //AncientSigil
+                if (rcRand == 0)
+                {
+                    descValue1 = "<color=#50C878>30%</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Ancient Sigil";
+                    newSprite = spriteContainer.transform.Find("AncientSigil").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Reduces all weapon cooldowns by ";
+                }
+                //ChargeStone
+                if (rcRand == 1)
+                {
+                    descValue1 = "<color=#50C878>2</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Charge Stone";
+                    newSprite = spriteContainer.transform.Find("ChargeStone").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "After casting an attack, immediately cast it again";
+                }
+                //HolyEmbrace
+                if (rcRand == 2)
+                {
+                    descValue1 = "<color=#50C878>+1</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Holy Embrace";
+                    newSprite = spriteContainer.transform.Find("HolyEmbrace").gameObject.GetComponent<SpriteRenderer>();
+                    rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Negates damage the first time you enter a room";
+                }
                 break;
             case "Sacred":
+                //
+                //
                 //
                 break;
             default:

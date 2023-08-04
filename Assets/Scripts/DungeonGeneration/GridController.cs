@@ -58,8 +58,11 @@ public class GridController : MonoBehaviour
             }
         }
         //Activate Entities On Player Entry
-        GetComponent<ObjectRoomSpawner>().InitializeObjectSpawning();
-        GetComponent<RoomData>().SetDoors();
+        if (GetComponent<ObjectRoomSpawner>() != null)
+        {
+            GetComponent<ObjectRoomSpawner>().InitializeObjectSpawning();
+            GetComponent<RoomData>().SetDoors();
+        }
         //Enable mirrored minimap room
     }
 }

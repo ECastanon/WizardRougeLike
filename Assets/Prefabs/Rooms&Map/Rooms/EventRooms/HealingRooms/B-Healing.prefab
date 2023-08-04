@@ -4234,7 +4234,6 @@ GameObject:
   - component: {fileID: 8065723408952726019}
   - component: {fileID: 1245243307990888514}
   - component: {fileID: 7186250597926517907}
-  - component: {fileID: 5143663535869384129}
   - component: {fileID: 6896573802095781977}
   - component: {fileID: 397164004142851258}
   m_Layer: 0
@@ -4298,20 +4297,6 @@ MonoBehaviour:
   gridTile: {fileID: 1398264117147146093, guid: 6c60883922184074c888f8116f50f084, type: 3}
   availablePoints: []
   hasSpawned: 0
---- !u!114 &5143663535869384129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5802906018913037122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76e3a1ad461b003419cdb92478a554e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grid: {fileID: 7186250597926517907}
-  spawnerData: []
 --- !u!61 &6896573802095781977
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4352,6 +4337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomID: 0
   hasEntered: 0
+  roomTyp: 
   Door: {fileID: 8256679440996128414, guid: 8711af9738d769440b8a84d10e6307ae, type: 3}
   T: {fileID: 0}
   B: {fileID: 2569452643902545765}
