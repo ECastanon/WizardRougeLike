@@ -18,7 +18,7 @@ public class FountainHealing : MonoBehaviour
     {
         if (playerIn = true && Input.GetKeyDown("e") && used == false)
         {
-            player.GetComponent<Player>().hp = player.GetComponent<Player>().MaxHp;
+            player.GetComponent<Player>().hp = player.GetComponent<Player>().currentMaxHP;
             Debug.Log("Im healed!");
             player.GetComponent<Player>().UpdateHPBar();
             used = true;

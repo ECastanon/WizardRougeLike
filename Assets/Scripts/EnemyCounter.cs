@@ -7,11 +7,20 @@ public class EnemyCounter : MonoBehaviour
     public GameObject RelicMenu;
 
     public List<GameObject> Doors = new List<GameObject>();
-    public int enemyCount;
+    public List<GameObject> Enemies = new List<GameObject>();
+
+    private GameObject gameManager;
+    private GameObject player;
+
+    public void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     public void OpenDoors()
     {
-        if(enemyCount <= 0)
+        if(Enemies.Count <= 0)
         {
             //Get Doors
             for (int i = 0; i < Doors.Count; i++)
@@ -19,9 +28,20 @@ public class EnemyCounter : MonoBehaviour
                 Doors[i].SetActive(false);
             }
             //Open Doors
-            enemyCount = 0;
 
-            RelicMenu.GetComponent<RelicPanel>().SlideInMenu();
+            //ONLY USED IF THE MEDAL OF VALOR IS ACTIVE
+            if (gameManager.GetComponent<RelicEffects>().moValor > 0)
+            {
+                if(player.GetComponent<Player>().hp + (gameManager.GetComponent<GameManager>().healBy - 1) < player.GetComponent<Player>().currentMaxHP)
+                {
+                    player.GetComponent<Player>().hp += gameManager.GetComponent<GameManager>().healBy;
+                } else
+                {
+                    player.GetComponent<Player>().hp = player.GetComponent<Player>().currentMaxHP;
+                }
+                player.GetComponent<Player>().UpdateHPBar();
+            }
+                RelicMenu.GetComponent<RelicPanel>().SlideInMenu();
         }
     }
 }

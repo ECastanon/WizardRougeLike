@@ -11,8 +11,14 @@ public class RoomData : MonoBehaviour
 
     public GameObject Door, T, B, L, R;
 
+    private GameObject gameManager;
+    private GameObject player;
+
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        player = GameObject.FindGameObjectWithTag("Player");
+
         FixParent();
         AddList();
         SetID();
@@ -64,16 +70,6 @@ public class RoomData : MonoBehaviour
                 ObjectPooler.Instance.SpawnFromPool("Door", new Vector2(R.transform.position.x - 0.5f, R.transform.position.y), Quaternion.Euler(0, 0, 90));
             }
             hasEntered = true;
-
-            GameObject dg = GameObject.FindGameObjectWithTag("Rooms");
-            for (int i = 0; i < dg.GetComponent<LevelGeneration>().roomMiniTypes.Count; i++)
-            {
-                GameObject rmt = dg.GetComponent<LevelGeneration>().roomMiniTypes[i];
-                if (rmt.GetComponent<RoomMiniData>().RoomIDMini == RoomID)
-                {
-                    rmt.GetComponent<RoomMiniData>().EnableMapPiece();
-                }
-            }
         }
     }
     //Sets up the related MiniMap Piece
@@ -87,6 +83,7 @@ public class RoomData : MonoBehaviour
             if (rmt.GetComponent<RoomMiniData>().RoomIDMini == RoomID)
             {
                 rmt.GetComponent<RoomMiniData>().playerInside = true;
+                rmt.GetComponent<RoomMiniData>().EnableMapPiece();
             }
         }
 
@@ -94,6 +91,12 @@ public class RoomData : MonoBehaviour
         GameObject relicMenu = GameObject.FindGameObjectWithTag("RelicMenu");
         GetRoomType();
         relicMenu.GetComponent<RelicPanel>().roomType = roomTyp;
+
+        //ONLY USED IF THE HOLY EMBRACE IS ACTIVE
+        if (gameManager.GetComponent<RelicEffects>().hEmbrace > 0)
+        {
+            player.GetComponent<Player>().holyEmbrace = true;
+        }
     }
     public void PlayerLeave()
     {

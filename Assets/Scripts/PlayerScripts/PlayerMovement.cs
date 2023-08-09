@@ -6,13 +6,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public float currentMoveSpeed;
     public Rigidbody2D rb;
 
     Vector2 movement;
     Vector2 moveDirection;
 
     Vector3 mousePos;
-    private bool flip = false;
+    public bool flip = false;
 
     public Image dashBar;
 
@@ -22,8 +23,10 @@ public class PlayerMovement : MonoBehaviour
     public bool isDashing;
     //How much force is applied
     public float dashPower = 40f;
+    public float currentDashPower;
     //Dash Cooldowns
     public float dashCD = 2f;
+    public float currentDashCD;
     public float dashTime;
     //How long the dash lasts
     public float dashDuration = .1f;
@@ -32,6 +35,10 @@ public class PlayerMovement : MonoBehaviour
     {
         trailRenderer.emitting = false;
         dashTime = dashCD;
+
+        currentMoveSpeed = moveSpeed;
+        currentDashPower = dashPower;
+        currentDashCD = dashCD;
     }
 
     void Update()
@@ -47,6 +54,11 @@ public class PlayerMovement : MonoBehaviour
 
             dashBar.fillAmount = dashTime / dashCD;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) && canDash && dashTime >= dashCD)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     void FixedUpdate()
@@ -58,13 +70,8 @@ public class PlayerMovement : MonoBehaviour
         Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         FaceMouse();
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDash && dashTime >= dashCD)
-        {
-            StartCoroutine(Dash());
-        }
-
         //Movement
-        rb.MovePosition(rb.position + (movement * moveSpeed * Time.fixedDeltaTime));
+        rb.MovePosition(rb.position + (movement * currentMoveSpeed * Time.fixedDeltaTime));
     }
 
     void FaceMouse()
@@ -91,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
 
         //Adds force to the direction of the arrows keys being held
-        rb.velocity = new Vector2(moveDirection.x * dashPower, moveDirection.y * dashPower);
+        rb.velocity = new Vector2(moveDirection.x * currentDashPower, moveDirection.y * currentDashPower);
         //rb.AddForce(movement * dashPower, ForceMode2D.Impulse);
 
         trailRenderer.emitting = true;

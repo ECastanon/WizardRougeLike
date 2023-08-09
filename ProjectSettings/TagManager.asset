@@ -25,6 +25,7 @@ TagManager:
   - Door
   - RelicMenu
   - HealingRoom
+  - GameManager
   layers:
   - Default
   - TransparentFX

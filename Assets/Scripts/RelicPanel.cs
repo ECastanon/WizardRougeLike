@@ -5,6 +5,8 @@ public class RelicPanel : MonoBehaviour
 {
     private Animator anim;
 
+    public GameObject gameMaster;
+
     [Header("RelicCardData")]
     //Used to change border color based on rarity
     public GameObject relicCard1;
@@ -34,6 +36,9 @@ public class RelicPanel : MonoBehaviour
     private string rarity = "";
     private string descValue1 = "";
     private string descValue2 = "";
+    private string RCItem1 = "";
+    private string RCItem2 = "";
+    private string RCItem3 = "";
 
     [HideInInspector]
     public string roomType;
@@ -57,8 +62,7 @@ public class RelicPanel : MonoBehaviour
             Time.timeScale = 0f;
         }
     }
-
-    public void SlideOutMenu()
+    private void SlideOutMenu()
     {
         if (inView)
         {
@@ -66,6 +70,22 @@ public class RelicPanel : MonoBehaviour
             inView = false;
             Time.timeScale = 1f;
         }
+    }
+
+    public void SelectRC1()
+    {
+        SlideOutMenu();
+        gameMaster.GetComponent<RelicEffects>().ApplyRC(RCItem1);
+    }
+    public void SelectRC2()
+    {
+        SlideOutMenu();
+        gameMaster.GetComponent<RelicEffects>().ApplyRC(RCItem2);
+    }
+    public void SelectRC3()
+    {
+        SlideOutMenu();
+        gameMaster.GetComponent<RelicEffects>().ApplyRC(RCItem3);
     }
 
     //Button for rerolling the given relics
@@ -187,14 +207,14 @@ public class RelicPanel : MonoBehaviour
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
                     rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases dash distance by " + descValue1;
                 }
-                //EtherealShockPendant
+                //ShockPendant
                 if (rcRand == 1)
                 {
-                    descValue1 = "<color=#50C878>1</color>";
-                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Ethereal Shock Pendant";
+                    descValue1 = "<color=#50C878>5</color>";
+                    rcTitle.GetComponent<TextMeshProUGUI>().text = "Shock Pendant";
                     newSprite = spriteContainer.transform.Find("EtherealShockPendant").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Damages enemies dodged into by " + descValue1;
+                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Creates a bolt of lightning that deals " + descValue1 + " damage to a random enemy";
                 }
                 //SoulJar
                 if (rcRand == 2)
@@ -250,7 +270,7 @@ public class RelicPanel : MonoBehaviour
                 //HermesSandals
                 if (rcRand == 1)
                 {
-                    descValue1 = "<color=#50C878>25%</color>";
+                    descValue1 = "<color=#50C878>15%</color>";
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Hermes Sandals";
                     newSprite = spriteContainer.transform.Find("HermesSandals").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
@@ -335,5 +355,9 @@ public class RelicPanel : MonoBehaviour
                 Debug.Log("Improper Card!");
                 break;
         }
+
+        if (rc == relicCard1) { RCItem1 = rcTitle.text; }
+        if (rc == relicCard2) { RCItem2 = rcTitle.text; }
+        if (rc == relicCard3) { RCItem3 = rcTitle.text; }
     }
 }

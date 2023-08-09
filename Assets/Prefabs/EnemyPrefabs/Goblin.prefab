@@ -192,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 30
   health: 0
-  experience: 20
+  experience: 115
   enemyDeathEffect: {fileID: 0}
   healthbar: {fileID: 0}
 --- !u!114 &2794048014238389968

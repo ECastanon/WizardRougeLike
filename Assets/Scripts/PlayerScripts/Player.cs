@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     //Player data
     public float MaxHp;
+    public float currentMaxHP;
     public float hp;
     public bool hit = false;
     Color oldColor;
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
 
     //Player Immunities
     public bool dodging;
+    public bool holyEmbrace = false;
     public float invincibility; // Player's invincibility after being hit
     float invinTimer; //Player's current invincibility
     //Player Weapons
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     public Sprite earthStaff;
     public Sprite waterStaff;
     public Sprite windStaff;
+    public GameObject manacircle;
 
     [Header("SFX")]
     public AudioSource DamageSFX;
@@ -40,6 +43,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        currentMaxHP = MaxHp;
         hp = MaxHp;
         hpcount.text = hp.ToString() + "/" + MaxHp.ToString();
         GetWeaponType();
@@ -82,13 +86,22 @@ public class Player : MonoBehaviour
     {
         if (invinTimer <= 0 && !dodging)
         {
-            DamageSFX.Play();
-            invinTimer = invincibility;
-            hp -= amount;
-            UpdateHPBar();
-            if (hp <= 0)
+            if (!holyEmbrace)
             {
-                Debug.Log("You Lose");
+                DamageSFX.Play();
+                invinTimer = invincibility;
+                hp -= amount;
+                UpdateHPBar();
+                if (hp <= 0)
+                {
+                    Debug.Log("You Lose");
+                }
+            } else
+            {
+                //Play deflection sound
+                //disable holyembrace
+                holyEmbrace = false;
+                Debug.Log("Holy Embrace!");
             }
         } else if(invinTimer > 0)
         {
@@ -98,7 +111,18 @@ public class Player : MonoBehaviour
 
     public void UpdateHPBar()
     {
-        healthbar.fillAmount = hp / MaxHp;
-        hpcount.text = hp.ToString() + "/" + MaxHp.ToString();
+        healthbar.fillAmount = hp / currentMaxHP;
+        hpcount.text = hp.ToString() + "/" + currentMaxHP.ToString();
+    }
+
+    public void EnableSP()
+    {
+        gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(true);
+    }
+
+    public void EnableManaCircle()
+    {
+        manacircle.GetComponent<ManaCircle>().Enable();
+        manacircle.transform.position = transform.position;
     }
 }

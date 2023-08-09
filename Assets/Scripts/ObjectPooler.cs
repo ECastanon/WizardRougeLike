@@ -41,6 +41,7 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
+    //May need additional parameters to allow for changes to activated objects
     public GameObject SpawnFromPool (string tag, Vector2 position, Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag))

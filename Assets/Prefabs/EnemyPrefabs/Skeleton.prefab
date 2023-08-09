@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 20
   health: 0
-  experience: 20
+  experience: 100
   enemyDeathEffect: {fileID: 0}
   healthbar: {fileID: 0}
 --- !u!114 &5798200069524871025
@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  curspeed: 0
   range: 6
   inRange: 0
   isAiming: 0

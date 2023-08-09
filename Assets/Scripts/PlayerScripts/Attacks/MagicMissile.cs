@@ -13,6 +13,7 @@ public class MagicMissile : MonoBehaviour, IPooledObject
     public float timer; //Time until the bullet is deactivated
 
     public int damage;
+    public int damageMod = 0;
 
     public void OnObjectSpawn()
     {
@@ -48,7 +49,7 @@ public class MagicMissile : MonoBehaviour, IPooledObject
         {
             //Debug.Log("Attack has collided with the Enemy");
             Enemy enemy = col.GetComponent<Enemy>();
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage + damageMod);
         }
     }
 }

@@ -119,6 +119,7 @@ public class MapPrefabSelector : MonoBehaviour
 
     void Start()
     {
+        healRate = 1f;
         PickRoom();
         Destroy(this.gameObject);
     }

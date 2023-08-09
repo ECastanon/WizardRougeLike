@@ -61,7 +61,10 @@ public class GridController : MonoBehaviour
         if (GetComponent<ObjectRoomSpawner>() != null)
         {
             GetComponent<ObjectRoomSpawner>().InitializeObjectSpawning();
-            GetComponent<RoomData>().SetDoors();
+            if (GetComponent<ObjectRoomSpawner>().spawnerData.Length > 0)
+            {
+                GetComponent<RoomData>().SetDoors();
+            }
         }
         //Enable mirrored minimap room
     }

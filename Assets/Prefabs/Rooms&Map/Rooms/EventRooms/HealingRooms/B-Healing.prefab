@@ -4236,6 +4236,7 @@ GameObject:
   - component: {fileID: 7186250597926517907}
   - component: {fileID: 6896573802095781977}
   - component: {fileID: 397164004142851258}
+  - component: {fileID: -3693052917461711204}
   m_Layer: 0
   m_Name: B-Healing
   m_TagString: EndRoomB
@@ -4343,6 +4344,20 @@ MonoBehaviour:
   B: {fileID: 2569452643902545765}
   L: {fileID: 0}
   R: {fileID: 0}
+--- !u!114 &-3693052917461711204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5802906018913037122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e3a1ad461b003419cdb92478a554e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 7186250597926517907}
+  spawnerData: []
 --- !u!1 &6080443865071223211
 GameObject:
   m_ObjectHideFlags: 0
