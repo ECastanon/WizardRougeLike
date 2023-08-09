@@ -8,6 +8,7 @@ public class MagicMissile : MonoBehaviour, IPooledObject
     public float spd;
     Vector2 moveDirection;
     Rigidbody2D rb;
+    private GameObject player;
 
     public int timeAlive;
     public float timer; //Time until the bullet is deactivated
@@ -15,11 +16,18 @@ public class MagicMissile : MonoBehaviour, IPooledObject
     public int damage;
     public int damageMod = 0;
 
+    Vector3 v3 = new Vector3(.75f, .75f, 1.0f);
+
     public void OnObjectSpawn()
     {
         rb = GetComponent<Rigidbody2D>();
         ResetTimer();
         FaceMouse();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        damageMod = player.GetComponent<Player>().damageMod;
+
+        GetSize();
     }
 
     void Update()
@@ -43,13 +51,27 @@ public class MagicMissile : MonoBehaviour, IPooledObject
         timer += Time.deltaTime;
         if (timer >= timeAlive) gameObject.SetActive(false); //Disables bullets to be reused
     }
+    private void GetSize()
+    {
+        int gsCount = player.GetComponent<Player>().GrowthSerum;
+        float newScale = 1 + (0.1f * gsCount);
+        transform.localScale = Vector3.Scale(v3, new Vector3(newScale, newScale, 1f));
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Enemy")
         {
-            //Debug.Log("Attack has collided with the Enemy");
             Enemy enemy = col.GetComponent<Enemy>();
-            enemy.TakeDamage(damage + damageMod);
+
+            int newDamage = (damage + damageMod);
+            if (player.GetComponent<StaffAttacks>().ManaCircle)
+            {
+                enemy.TakeDamage(player.GetComponent<Player>().mcBoost * newDamage);
+            }
+            else
+            {
+                enemy.TakeDamage(newDamage);
+            }
         }
     }
 }

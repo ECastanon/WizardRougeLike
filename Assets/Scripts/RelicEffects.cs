@@ -79,7 +79,8 @@ public class RelicEffects : MonoBehaviour
                 break;
             case "Growth Serum":
                 //====================
-                //ADD ABILITY
+                gSerum += 1;
+                player.GetComponent<Player>().GrowthSerum += 1;
                 //====================
                 break;
             case "Hermes Sandals":
@@ -96,7 +97,8 @@ public class RelicEffects : MonoBehaviour
                 break;
             case "Scroll of Might":
                 //====================
-                //ADD ABILITY
+                soMight += 1;
+                player.GetComponent<Player>().damageMod += 1;
                 //====================
                 break;
             case "Vampire Tooth":

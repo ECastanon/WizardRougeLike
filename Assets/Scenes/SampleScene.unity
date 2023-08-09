@@ -2702,6 +2702,7 @@ GameObject:
   - component: {fileID: 767823137}
   - component: {fileID: 767823136}
   - component: {fileID: 767823138}
+  - component: {fileID: 767823139}
   m_Layer: 0
   m_Name: ManaCircle
   m_TagString: Untagged
@@ -2788,6 +2789,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabled: 0
   opacity: 0
+--- !u!58 &767823139
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767823135}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4.8
 --- !u!1 &805681704
 GameObject:
   m_ObjectHideFlags: 0
@@ -7198,7 +7215,10 @@ MonoBehaviour:
   earthStaff: {fileID: 0}
   waterStaff: {fileID: 0}
   windStaff: {fileID: 0}
+  GrowthSerum: 0
   manacircle: {fileID: 767823135}
+  mcBoost: 1.5
+  damageMod: 0
   DamageSFX: {fileID: 556546957}
 --- !u!1 &1051794254382856215
 GameObject:

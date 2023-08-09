@@ -33,7 +33,7 @@ public class ManaCircle : MonoBehaviour
         opacity = 1f;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player" && enabled)
         {
@@ -42,7 +42,7 @@ public class ManaCircle : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player" && enabled)
+        if (col.gameObject.tag == "Player")
         {
             player.GetComponent<StaffAttacks>().ManaCircle = false;
         }

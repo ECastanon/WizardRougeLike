@@ -35,7 +35,11 @@ public class Player : MonoBehaviour
     public Sprite earthStaff;
     public Sprite waterStaff;
     public Sprite windStaff;
+    [Header("Modifiers")]
+    public int GrowthSerum;
     public GameObject manacircle;
+    public float mcBoost = 1.5f;
+    public int damageMod;
 
     [Header("SFX")]
     public AudioSource DamageSFX;
