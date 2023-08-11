@@ -2166,6 +2166,8 @@ MonoBehaviour:
     spawnerData: {fileID: 11400000, guid: b616310b6d33cbf4fa76462de768ac5d, type: 2}
   - name: Goblin
     spawnerData: {fileID: 11400000, guid: 960b8d4235bfaae4aab99ef9b03e5ef2, type: 2}
+  - name: GhostLantern
+    spawnerData: {fileID: 11400000, guid: 7c6b10fd976c91a47ba75ac420c064ff, type: 2}
 --- !u!61 &5684046584477591834
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2206,17 +2208,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomID: 0
   hasEntered: 0
+  roomTyp: 
   Door: {fileID: 8256679440996128414, guid: 8711af9738d769440b8a84d10e6307ae, type: 3}
   T: {fileID: 0}
   B: {fileID: 3916738755820201824}
   L: {fileID: 2187640554770306223}
   R: {fileID: 0}
-  BLRuined: {fileID: 0}
-  TBLRCenterHole: {fileID: 0}
-  TLRRuined: {fileID: 0}
-  TRRuined: {fileID: 0}
-  TBRuined: {fileID: 0}
-  LRRuined: {fileID: 0}
 --- !u!1 &7687828942780214893
 GameObject:
   m_ObjectHideFlags: 0

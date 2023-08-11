@@ -14,6 +14,7 @@ public class EnemyAttacks : MonoBehaviour
     [Header("Attacks")]
     public bool isProjectile;
     public GameObject attackType1;
+    public string ProjectileName;
 
     void Start()
     {
@@ -22,7 +23,7 @@ public class EnemyAttacks : MonoBehaviour
 
     void Update()
     {
-        if(enemyMove.inRange == true)
+        if (enemyMove.inRange == true)
         {
             timer1 += Time.deltaTime;
             if (timer1 >= attackTimer1)
@@ -33,7 +34,7 @@ public class EnemyAttacks : MonoBehaviour
                 enemyMove.isAiming = true;
             }
         }
-        if(enemyMove.inRange == false)
+        if (enemyMove.inRange == false)
         {
             timer1 = 0;
         }
@@ -47,12 +48,23 @@ public class EnemyAttacks : MonoBehaviour
     {
         if (isProjectile == true)
         {
-            ObjectPooler.Instance.SpawnFromPool("Arrow", attackPoint.transform.position, transform.rotation);
-        }
-        if(isProjectile == false)
-        {
-            
-        }
-    }
+            switch (ProjectileName)
+            {
+                case "Arrow":
+                    ObjectPooler.Instance.SpawnFromPool("Arrow", attackPoint.transform.position, transform.rotation);
+                    break;
+                case "GhostLanternAttack":
+                    ObjectPooler.Instance.SpawnFromPool("GhostLanternAttack", attackPoint.transform.position, transform.rotation);
+                    break;
+                default:
+                    Debug.Log("Invalid Enemy Projectile Name");
+                    break;
+            }
+            if (isProjectile == false)
+            {
 
+            }
+        }
+
+    }
 }

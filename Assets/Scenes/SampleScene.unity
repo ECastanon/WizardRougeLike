@@ -4022,9 +4022,9 @@ MonoBehaviour:
   - tag: Door
     prefab: {fileID: 8256679440996128414, guid: 8711af9738d769440b8a84d10e6307ae, type: 3}
     size: 8
-  - tag: CircleOfMana
-    prefab: {fileID: 8256679440996128414, guid: 8711af9738d769440b8a84d10e6307ae, type: 3}
-    size: 1
+  - tag: GhostLanternAttack
+    prefab: {fileID: 6765711180581769118, guid: 5cdd375a0f34a4b49b8b540ccb2260a0, type: 3}
+    size: 5
 --- !u!4 &1027779993
 Transform:
   m_ObjectHideFlags: 0

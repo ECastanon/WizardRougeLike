@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb91a7d16a692cc4e8738b368753c283, type: 3}
+  m_Name: GhostLanternSpawner
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 5459821568654983518, guid: 81465ab00a5e3e24aa4c79518865968f, type: 3}
+  minSpawn: 0
+  maxSpawn: 1

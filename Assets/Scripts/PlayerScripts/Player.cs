@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
                 UpdateHPBar();
                 if (hp <= 0)
                 {
-                    Debug.Log("You Lose");
+                    //Debug.Log("You Lose");
                 }
             } else
             {

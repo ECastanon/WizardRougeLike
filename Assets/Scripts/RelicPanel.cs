@@ -193,7 +193,6 @@ public class RelicPanel : MonoBehaviour
 
         //Positive values use Emerald Green - #50C878
         //Negative values used Scarlet - #FF2400
-        Debug.Log(rarity);
         switch (rarity)
         {
             case "Common":

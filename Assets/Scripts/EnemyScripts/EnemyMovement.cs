@@ -12,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
     private float distanceToPlayer;
 
     Vector3 movement;
+    public float enemyScale = 1;
     private bool flip = false;
 
     private GameObject player;
@@ -59,12 +60,12 @@ public class EnemyMovement : MonoBehaviour
     {
         if (movement.x < transform.position.x && flip == false)
         {
-            transform.localScale = new Vector2(-1, 1);
+            transform.localScale = new Vector2(-enemyScale, enemyScale);
             flip = true;
         }
         if (movement.x >= transform.position.x && flip == true)
         {
-            transform.localScale = new Vector2(1, 1);
+            transform.localScale = new Vector2(enemyScale, enemyScale);
             flip = false;
         }
     }

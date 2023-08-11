@@ -10,7 +10,7 @@ public class MeleeHit : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("Attack has collided with the Player");
+            //Debug.Log("Attack has collided with the Player");
             Player player = col.GetComponent<Player>();
             player.TakeDamage(damage);
         }
