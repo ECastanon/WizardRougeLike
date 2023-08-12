@@ -21,22 +21,22 @@ public class CameraFollow : MonoBehaviour
     {
         if(player.transform.position.y > highScreenBounds.y) //Move up
         {
-            Debug.Log("MoveCamera");
+            //Debug.Log("MoveCamera");
             ScrollCamera(1);
         }
         if (player.transform.position.y < lowScreenBounds.y) //Move down
         {
-            Debug.Log("MoveCamera");
+            //Debug.Log("MoveCamera");
             ScrollCamera(2);
         }
         if (player.transform.position.x > highScreenBounds.x) //Move left
         {
-            Debug.Log("MoveCamera");
+            //Debug.Log("MoveCamera");
             ScrollCamera(3);
         }
         if (player.transform.position.x < lowScreenBounds.x) //Move right
         {
-            Debug.Log("MoveCamera");
+            //Debug.Log("MoveCamera");
             ScrollCamera(4);
         }
     }

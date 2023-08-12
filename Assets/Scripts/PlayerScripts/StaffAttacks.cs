@@ -22,6 +22,7 @@ public class StaffAttacks : MonoBehaviour
     public float timerCharge = 0;
 
     public Image strongBar;
+    public Image chargeBar;
 
     private float chargeStoneDelay = .25f;
 
@@ -48,6 +49,7 @@ public class StaffAttacks : MonoBehaviour
             ManaStaff();
 
             strongBar.fillAmount = timerStrong / cooldownStrongCur;
+            chargeBar.fillAmount = timerCharge / cooldownChargeCur;
         }
     }
 
