@@ -40,8 +40,13 @@ public class RelicPanel : MonoBehaviour
     private string RCItem2 = "";
     private string RCItem3 = "";
 
+    [Header("Reroll and Eliminate")]
+    public TextMeshProUGUI rerollText;
+    public int rerollCount;
+
     [HideInInspector]
     public string roomType;
+    
 
     void Start()
     {
@@ -51,6 +56,8 @@ public class RelicPanel : MonoBehaviour
     //Called In EnemyCounter
     public void SlideInMenu()
     {
+        rerollText.GetComponent<TextMeshProUGUI>().text = "Reroll (" + rerollCount + ")";
+
         GenerateRelic(relicCard1, rctitle1, rcsprite1, rcdesc1);
         GenerateRelic(relicCard2, rctitle2, rcsprite2, rcdesc2);
         GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3);
@@ -91,7 +98,15 @@ public class RelicPanel : MonoBehaviour
     //Button for rerolling the given relics
     public void ReRoll()
     {
+        if(rerollCount > 0)
+        {
+            GenerateRelic(relicCard1, rctitle1, rcsprite1, rcdesc1);
+            GenerateRelic(relicCard2, rctitle2, rcsprite2, rcdesc2);
+            GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3);
 
+            rerollCount--;
+            rerollText.GetComponent<TextMeshProUGUI>().text = "Reroll (" + rerollCount + ")";
+        }
     }
     //Button for deleting a relic for the rest of the run
     public void Eliminate()

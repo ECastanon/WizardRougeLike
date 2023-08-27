@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
@@ -7,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float startHealth;
     public float health;
     public int experience;
+    private Color oldColor;
 
     public GameObject enemyDeathEffect;
 
@@ -25,16 +28,35 @@ public class Enemy : MonoBehaviour
 
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         player = GameObject.FindGameObjectWithTag("Player");
+
+        oldColor = gameObject.GetComponent<Renderer>().material.color;
     }
 
     public void TakeDamage(float amount)
     {
+        StartCoroutine(FlashOnHit());
+
         health -= amount;
         //healthbar.fillAmount = health / startHealth;
         if (health <= 0)
         {
             Die();
         }
+    }
+    
+    private IEnumerator FlashOnHit()
+    {
+        float flashspeed = 0f;
+        float flashLength = .02f;
+        while(flashspeed <= flashLength)
+        {
+            gameObject.GetComponent<Renderer>().material.color = oldColor;
+            yield return new WaitForSeconds(flashLength - flashspeed);
+            gameObject.GetComponent<Renderer>().material.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            yield return new WaitForSeconds(flashLength - flashspeed);
+            flashspeed += Time.deltaTime;
+        }
+        gameObject.GetComponent<Renderer>().material.color = oldColor;
     }
 
     void RewardEXP()
@@ -43,12 +65,8 @@ public class Enemy : MonoBehaviour
         gameManager.GetComponent<GameManager>().earnedEXP += (int)(experience + (experience * (gameManager.GetComponent<RelicEffects>().Monocle * .05f)));
     }
 
-    void Die()
+    void VampireTooth()
     {
-        enemyManager.GetComponent<EnemyCounter>().Enemies.Remove(this.gameObject);
-        enemyManager.GetComponent<EnemyCounter>().OpenDoors();
-
-        //ONLY USED IF THE VAMPIRE TOOTH IS ACTIVE
         if (gameManager.GetComponent<RelicEffects>().vTooth > 0)
         {
             float rand = Random.Range(0f, 1f);
@@ -64,8 +82,9 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-
-        //ONLY USED IF THE SOUL JAR IS ACTIVE
+    }
+    void SoulJar()
+    {
         if (gameManager.GetComponent<RelicEffects>().sJar > 0)
         {
             gameManager.GetComponent<GameManager>().EnemyKillsforSoulJar++;
@@ -77,6 +96,18 @@ public class Enemy : MonoBehaviour
                 player.GetComponent<Player>().UpdateHPBar();
             }
         }
+    }
+
+    void Die()
+    {
+        gameObject.GetComponent<Renderer>().material.color = oldColor;
+        enemyManager.GetComponent<EnemyCounter>().Enemies.Remove(this.gameObject);
+        enemyManager.GetComponent<EnemyCounter>().OpenDoors();
+
+        //ONLY USED IF THE VAMPIRE TOOTH IS ACTIVE
+        VampireTooth();
+        //ONLY USED IF THE SOUL JAR IS ACTIVE
+        SoulJar();
 
         RewardEXP();
 

@@ -140,6 +140,7 @@ MonoBehaviour:
   range: 6
   inRange: 0
   isAiming: 0
+  enemyScale: 1
   animator: {fileID: 5798200069524871028}
 --- !u!114 &-6429323270681002927
 MonoBehaviour:
