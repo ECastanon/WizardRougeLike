@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     public GameObject manacircle;
     public float mcBoost = 1.5f;
     public int damageMod;
+    public int soMightDamage;
 
     [Header("SFX")]
     public AudioSource DamageSFX;

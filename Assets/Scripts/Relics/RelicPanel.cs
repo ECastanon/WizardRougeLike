@@ -249,7 +249,7 @@ public class RelicPanel : MonoBehaviour
                 //ShockPendant
                 if (rcRand == 1)
                 {
-                    float Value1 = 5 + ((gameManager.GetComponent<RelicEffects>().esPendantLvl-1) * 2);
+                    float Value1 = 5 + (gameManager.GetComponent<RelicEffects>().esPendantLvl * 2);
                     if(gameManager.GetComponent<RelicEffects>().esPendantLvl == 0){Value1 = 5;}
                     descValue1 = "<color=#50C878>" + Value1 + "</color>";
                     
@@ -295,6 +295,9 @@ public class RelicPanel : MonoBehaviour
                 //Augur'sTalisman
                 if (rcRand == 0)
                 {
+                    //===========================
+                    //Update When Effect is added
+                    //===========================
                     descValue1 = "<color=#50C878>15%</color>";
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Augur's Talisman";
                     newSprite = spriteContainer.transform.Find("Augur'sTalisman").gameObject.GetComponent<SpriteRenderer>();
@@ -304,20 +307,44 @@ public class RelicPanel : MonoBehaviour
                 //CosmoRing
                 if (rcRand == 1)
                 {
-                    descValue1 = "<color=#50C878>5%</color>";
+                    float Value1 = 10 * (gameManager.GetComponent<RelicEffects>().cRingLvl + 1);
+                    descValue1 = "<color=#50C878>" + Value1 + "%</color>";
+
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Cosmo Ring";
                     newSprite = spriteContainer.transform.Find("CosmoRing").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Reduces strong attack Cooldowns by " + descValue1;
+
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().cRingLvl) - (gameManager.GetComponent<RelicEffects>().cRing-1);
+                    if(gameManager.GetComponent<RelicEffects>().cRing == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Reduces strong attack Cooldowns by " + descValue1;
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 //Monocle
                 if (rcRand == 2)
                 {
-                    descValue1 = "<color=#50C878>5%</color>";
+                    float Value1 = 5 * (gameManager.GetComponent<RelicEffects>().MonocleLvl + 1);
+                    descValue1 = "<color=#50C878>" + Value1 + "%</color>";
+
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Monocle";
                     newSprite = spriteContainer.transform.Find("Monocle").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increase EXP gain by " + descValue1;
+
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().MonocleLvl) - (gameManager.GetComponent<RelicEffects>().Monocle-1);
+                    if(gameManager.GetComponent<RelicEffects>().Monocle == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Increase EXP gain by " + descValue1;
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 break;
             case "Rare":
@@ -325,29 +352,65 @@ public class RelicPanel : MonoBehaviour
                 //GrowthSerum
                 if (rcRand == 0)
                 {
-                    descValue1 = "<color=#50C878>10%</color>";
+                    float Value1 = 10 * (gameManager.GetComponent<RelicEffects>().gSerumLvl + 1);
+                    descValue1 = "<color=#50C878>" + Value1 + "%</color>";
+
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Growth Serum";
                     newSprite = spriteContainer.transform.Find("GrowthSerum").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases spell size by " + descValue1;
+
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().gSerumLvl) - (gameManager.GetComponent<RelicEffects>().gSerum-1);
+                    if(gameManager.GetComponent<RelicEffects>().gSerum == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases spell size by " + descValue1;
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 //HermesSandals
                 if (rcRand == 1)
                 {
-                    descValue1 = "<color=#50C878>15%</color>";
+                    float Value1 = 15 * (gameManager.GetComponent<RelicEffects>().hSandalsLvl + 1);
+                    descValue1 = "<color=#50C878>" + Value1 + "%</color>";
+
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Hermes Sandals";
                     newSprite = spriteContainer.transform.Find("HermesSandals").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increase movement speed by " + descValue1;
+
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().hSandalsLvl) - (gameManager.GetComponent<RelicEffects>().hSandals-1);
+                    if(gameManager.GetComponent<RelicEffects>().hSandals == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Increase movement speed by " + descValue1;
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 //EtherealCloak
                 if (rcRand == 2)
                 {
-                    descValue1 = "<color=#50C878>15%</color>";
+                    float Value1 = 15 * (gameManager.GetComponent<RelicEffects>().eCloakLvl + 1);
+                    descValue1 = "<color=#50C878>" + Value1 + "%</color>";
+
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Ethereal Cloak";
                     newSprite = spriteContainer.transform.Find("EtherealCloak").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Reduce dash cooldown by " + descValue1;
+
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().eCloakLvl) - (gameManager.GetComponent<RelicEffects>().eCloak-1);
+                    if(gameManager.GetComponent<RelicEffects>().eCloak == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Reduce dash cooldown by " + descValue1;
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 break;
             case "Super":
@@ -355,29 +418,65 @@ public class RelicPanel : MonoBehaviour
                 //VampireTooth
                 if (rcRand == 0)
                 {
-                    descValue1 = "<color=#50C878>1</color>";
+                    float Value1 = 1 * (gameManager.GetComponent<RelicEffects>().vToothLvl + 1);
+                    descValue1 = "<color=#50C878>" + Value1 + "%</color>";
+
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Vampire Tooth";
                     newSprite = spriteContainer.transform.Find("VampireTooth").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "30% chance to recover HP by " + descValue1 + " after defeating an enemy";
+
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().vToothLvl) - (gameManager.GetComponent<RelicEffects>().vTooth-1);
+                    if(gameManager.GetComponent<RelicEffects>().vTooth == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "30% chance to recover HP by " + descValue1 + " after defeating an enemy";
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 //MedalofValor
                 if (rcRand == 1)
                 {
-                    descValue1 = "<color=#50C878>2</color>";
+                    float Value1 = 2 * (gameManager.GetComponent<RelicEffects>().moValorLvl + 1);
+                    descValue1 = "<color=#50C878>" + Value1 + "%</color>";
+
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Medal of Valor";
                     newSprite = spriteContainer.transform.Find("MedalofValor").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Recover " + descValue1 + " HP after clearing a room";
+
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().moValorLvl) - (gameManager.GetComponent<RelicEffects>().moValor-1);
+                    if(gameManager.GetComponent<RelicEffects>().moValor == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Recover " + descValue1 + " HP after clearing a room";
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 //ScrollofMight
                 if (rcRand == 2)
                 {
-                    descValue1 = "<color=#50C878>+1</color>";
+                    float Value1 = 1 * (gameManager.GetComponent<RelicEffects>().moValorLvl + 1);
+                    descValue1 = "<color=#50C878>+" + Value1 + "%</color>";
+
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Scroll of Might";
                     newSprite = spriteContainer.transform.Find("ScrollofMight").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increase all weapon damage by " + descValue1;
+
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().moValorLvl) - (gameManager.GetComponent<RelicEffects>().moValor-1);
+                    if(gameManager.GetComponent<RelicEffects>().moValor == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Increase all weapon damage by " + descValue1;
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 break;
             case "Ultra":
@@ -385,6 +484,9 @@ public class RelicPanel : MonoBehaviour
                 //AncientSigil
                 if (rcRand == 0)
                 {
+                    //===========================
+                    //Update When Effect is added
+                    //===========================
                     descValue1 = "<color=#50C878>30%</color>";
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Ancient Sigil";
                     newSprite = spriteContainer.transform.Find("AncientSigil").gameObject.GetComponent<SpriteRenderer>();
@@ -394,6 +496,9 @@ public class RelicPanel : MonoBehaviour
                 //ChargeStone
                 if (rcRand == 1)
                 {
+                    //===========================
+                    //Update When Effect is added
+                    //===========================
                     descValue1 = "<color=#50C878>2</color>";
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Charge Stone";
                     newSprite = spriteContainer.transform.Find("ChargeStone").gameObject.GetComponent<SpriteRenderer>();
@@ -403,6 +508,9 @@ public class RelicPanel : MonoBehaviour
                 //HolyEmbrace
                 if (rcRand == 2)
                 {
+                    //===========================
+                    //Update When Effect is added
+                    //===========================
                     descValue1 = "<color=#50C878>+1</color>";
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Holy Embrace";
                     newSprite = spriteContainer.transform.Find("HolyEmbrace").gameObject.GetComponent<SpriteRenderer>();

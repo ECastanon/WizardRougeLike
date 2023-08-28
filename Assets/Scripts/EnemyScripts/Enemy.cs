@@ -63,20 +63,19 @@ public class Enemy : MonoBehaviour
 
     void RewardEXP()
     {
-        //ADDS 5% ADDITIONAL EXP FOR EACH MONOCLE
-        gameManager.GetComponent<GameManager>().earnedEXP += (int)(experience + (experience * (gameManager.GetComponent<RelicEffects>().Monocle * .05f)));
+        //ADDS 5% ADDITIONAL EXP FOR EACH MONOCLE LEVEL
+        gameManager.GetComponent<GameManager>().earnedEXP += (int)(experience + (experience * (gameManager.GetComponent<RelicEffects>().MonocleLvl * .05f)));
     }
-
     void VampireTooth()
     {
-        if (gameManager.GetComponent<RelicEffects>().vTooth > 0)
+        if (gameManager.GetComponent<RelicEffects>().vToothLvl > 0)
         {
             float rand = Random.Range(0f, 1f);
             if (rand < .30)
             {
-                if (player.GetComponent<Player>().hp + (gameManager.GetComponent<GameManager>().toothHeal) < player.GetComponent<Player>().currentMaxHP)
+                if (player.GetComponent<Player>().hp + gameManager.GetComponent<RelicEffects>().vToothLvl < player.GetComponent<Player>().currentMaxHP)
                 {
-                    player.GetComponent<Player>().hp += gameManager.GetComponent<GameManager>().toothHeal;
+                    player.GetComponent<Player>().hp += gameManager.GetComponent<RelicEffects>().vToothLvl;
                 }
                 else
                 {

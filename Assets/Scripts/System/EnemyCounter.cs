@@ -30,11 +30,11 @@ public class EnemyCounter : MonoBehaviour
             //Open Doors
 
             //ONLY USED IF THE MEDAL OF VALOR IS ACTIVE
-            if (gameManager.GetComponent<RelicEffects>().moValor > 0)
+            if (gameManager.GetComponent<RelicEffects>().moValorLvl > 0)
             {
-                if(player.GetComponent<Player>().hp + (gameManager.GetComponent<GameManager>().healBy - 1) < player.GetComponent<Player>().currentMaxHP)
+                if(player.GetComponent<Player>().hp + ((gameManager.GetComponent<RelicEffects>().moValorLvl * 2) - 1) < player.GetComponent<Player>().currentMaxHP)
                 {
-                    player.GetComponent<Player>().hp += gameManager.GetComponent<GameManager>().healBy;
+                    player.GetComponent<Player>().hp += (gameManager.GetComponent<RelicEffects>().moValorLvl * 2);
                 } else
                 {
                     player.GetComponent<Player>().hp = player.GetComponent<Player>().currentMaxHP;

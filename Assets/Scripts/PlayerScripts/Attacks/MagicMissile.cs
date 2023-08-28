@@ -15,6 +15,7 @@ public class MagicMissile : MonoBehaviour, IPooledObject
 
     public int damage;
     public int damageMod = 0;
+    public int soMightDamage = 0;
 
     Vector3 v3 = new Vector3(.75f, .75f, 1.0f);
 
@@ -26,6 +27,7 @@ public class MagicMissile : MonoBehaviour, IPooledObject
 
         player = GameObject.FindGameObjectWithTag("Player");
         damageMod = player.GetComponent<Player>().damageMod;
+        soMightDamage = player.GetComponent<Player>().soMightDamage;
 
         GetSize();
     }
@@ -63,7 +65,7 @@ public class MagicMissile : MonoBehaviour, IPooledObject
         {
             Enemy enemy = col.GetComponent<Enemy>();
 
-            int newDamage = (damage + damageMod);
+            int newDamage = (damage + damageMod + soMightDamage);
             if (player.GetComponent<StaffAttacks>().ManaCircle)
             {
                 enemy.TakeDamage(player.GetComponent<Player>().mcBoost * newDamage);
