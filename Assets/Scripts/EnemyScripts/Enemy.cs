@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
+    private float hpFromSoulJars = 0;
+
     [Header("Enemy Data")]
     public float startHealth;
     public float health;
@@ -34,13 +36,13 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        StartCoroutine(FlashOnHit());
-
         health -= amount;
         //healthbar.fillAmount = health / startHealth;
         if (health <= 0)
         {
             Die();
+        } else {
+            StartCoroutine(FlashOnHit());
         }
     }
     
@@ -85,17 +87,25 @@ public class Enemy : MonoBehaviour
     }
     void SoulJar()
     {
-        if (gameManager.GetComponent<RelicEffects>().sJar > 0)
+        if(gameManager.GetComponent<RelicEffects>().oldSJLevel != gameManager.GetComponent<RelicEffects>().sJarLvl){LevelSoulJar();}
+
+        if (gameManager.GetComponent<RelicEffects>().sJarLvl > 0)
         {
             gameManager.GetComponent<GameManager>().EnemyKillsforSoulJar++;
             if (gameManager.GetComponent<GameManager>().EnemyKillsforSoulJar % 5 == 0)
             {
                 gameManager.GetComponent<GameManager>().soulJarStacks++;
-                player.GetComponent<Player>().currentMaxHP = player.GetComponent<Player>().MaxHp + gameManager.GetComponent<GameManager>().soulJarStacks;
-                player.GetComponent<Player>().hp++;
+                player.GetComponent<Player>().currentMaxHP = player.GetComponent<Player>().MaxHp + hpFromSoulJars + (gameManager.GetComponent<GameManager>().soulJarStacks * gameManager.GetComponent<RelicEffects>().sJarLvl);
+                player.GetComponent<Player>().hp = player.GetComponent<Player>().hp + gameManager.GetComponent<RelicEffects>().sJarLvl;
                 player.GetComponent<Player>().UpdateHPBar();
             }
         }
+    }
+    void LevelSoulJar()
+    {
+        gameManager.GetComponent<GameManager>().EnemyKillsforSoulJar = gameManager.GetComponent<GameManager>().EnemyKillsforSoulJar % 5;
+        hpFromSoulJars = player.GetComponent<Player>().currentMaxHP - player.GetComponent<Player>().MaxHp;
+        gameManager.GetComponent<GameManager>().soulJarStacks = 0;
     }
 
     void Die()

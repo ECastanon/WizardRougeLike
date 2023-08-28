@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public bool flip = false;
 
     public Image dashBar;
+    private GameObject gameManager;
 
     [Header("DashData")]
     [SerializeField] private TrailRenderer trailRenderer;
@@ -33,12 +34,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+
         trailRenderer.emitting = false;
         dashTime = dashCD;
 
         currentMoveSpeed = moveSpeed;
         currentDashPower = dashPower;
         currentDashCD = dashCD;
+        
     }
 
     void Update()
@@ -92,10 +96,19 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void EStone()
+    {
+        if (gameManager.GetComponent<RelicEffects>().eStoneLvl > 0)
+        {
+            currentDashPower = dashPower + (dashPower * (gameManager.GetComponent<RelicEffects>().eStoneLvl * .1f));
+        }
+    }
+
     private IEnumerator Dash()
     {
         canDash = false;
         isDashing = true;
+        EStone();
 
         //Adds force to the direction of the arrows keys being held
         rb.velocity = new Vector2(moveDirection.x * currentDashPower, moveDirection.y * currentDashPower);

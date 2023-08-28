@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private GameObject gameManager;
 
     //Player data
     public float MaxHp;
@@ -47,6 +48,8 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+
         currentMaxHP = MaxHp;
         hp = MaxHp;
         hpcount.text = hp.ToString() + "/" + MaxHp.ToString();
@@ -121,7 +124,16 @@ public class Player : MonoBehaviour
 
     public void EnableSP()
     {
-        gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(true);
+        if(!gameObject.transform.GetChild(2).GetChild(0).gameObject.activeSelf)
+        {
+            gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(true);
+        }
+
+        gameObject.transform.GetChild(2).GetChild(0).gameObject.GetComponent<ShockPendant>().damage = 5 + ((gameManager.GetComponent<RelicEffects>().esPendantLvl-1) * 2);
+        if(gameManager.GetComponent<RelicEffects>().esPendantLvl == 0)
+        {
+            gameObject.transform.GetChild(2).GetChild(0).gameObject.GetComponent<ShockPendant>().damage = 5;
+        }
     }
 
     public void EnableManaCircle()

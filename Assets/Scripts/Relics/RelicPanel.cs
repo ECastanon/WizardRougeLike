@@ -4,7 +4,7 @@ using TMPro;
 public class RelicPanel : MonoBehaviour
 {
     private Animator anim;
-
+    private GameObject gameManager;
     public GameObject gameMaster;
 
     [Header("RelicCardData")]
@@ -46,11 +46,11 @@ public class RelicPanel : MonoBehaviour
 
     [HideInInspector]
     public string roomType;
-    
 
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
     }
 
     //Called In EnemyCounter
@@ -58,9 +58,7 @@ public class RelicPanel : MonoBehaviour
     {
         rerollText.GetComponent<TextMeshProUGUI>().text = "Reroll (" + rerollCount + ")";
 
-        GenerateRelic(relicCard1, rctitle1, rcsprite1, rcdesc1);
-        GenerateRelic(relicCard2, rctitle2, rcsprite2, rcdesc2);
-        GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3);
+        GenerateRelicAllRelicCards();
 
         if (!inView)
         {
@@ -100,9 +98,7 @@ public class RelicPanel : MonoBehaviour
     {
         if(rerollCount > 0)
         {
-            GenerateRelic(relicCard1, rctitle1, rcsprite1, rcdesc1);
-            GenerateRelic(relicCard2, rctitle2, rcsprite2, rcdesc2);
-            GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3);
+            GenerateRelicAllRelicCards();
 
             rerollCount--;
             rerollText.GetComponent<TextMeshProUGUI>().text = "Reroll (" + rerollCount + ")";
@@ -112,6 +108,23 @@ public class RelicPanel : MonoBehaviour
     public void Eliminate()
     {
 
+    }
+
+    //Generates all 3 Relics and prevents duplicates
+    public void GenerateRelicAllRelicCards()
+    {
+        GenerateRelic(relicCard1, rctitle1, rcsprite1, rcdesc1);
+        GenerateRelic(relicCard2, rctitle2, rcsprite2, rcdesc2);
+        GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3);
+
+        CheckForMatches();
+    }
+    public void CheckForMatches()
+    {
+        //Improve matching check by removing the matched relic from a reroll
+        if(RCItem1 == RCItem2){ GenerateRelic(relicCard2, rctitle2, rcsprite2, rcdesc2); CheckForMatches();}
+        if(RCItem1 == RCItem3){ GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3); CheckForMatches();}
+        if(RCItem2 == RCItem3){ GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3); CheckForMatches();}
     }
 
     public void GenerateRelic(GameObject rc, TextMeshProUGUI rcTitle, GameObject rcSprite, TextMeshProUGUI rcDesc)
@@ -215,29 +228,66 @@ public class RelicPanel : MonoBehaviour
                 //EtherealStone
                 if(rcRand == 0)
                 {
-                    descValue1 = "<color=#50C878>10%</color>";
+                    float Value1 = 10 * (gameManager.GetComponent<RelicEffects>().eStoneLvl + 1);
+                    descValue1 = "<color=#50C878>" + Value1 + "%</color>";
+
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Ethereal Stone";
                     newSprite = spriteContainer.transform.Find("EtherealStone").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases dash distance by " + descValue1;
+
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().eStoneLvl) - (gameManager.GetComponent<RelicEffects>().eStone-1);
+                    if(gameManager.GetComponent<RelicEffects>().eStone == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases dash distance by " + descValue1;
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 //ShockPendant
                 if (rcRand == 1)
                 {
-                    descValue1 = "<color=#50C878>5</color>";
+                    float Value1 = 5 + ((gameManager.GetComponent<RelicEffects>().esPendantLvl-1) * 2);
+                    if(gameManager.GetComponent<RelicEffects>().esPendantLvl == 0){Value1 = 5;}
+                    descValue1 = "<color=#50C878>" + Value1 + "</color>";
+                    
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Shock Pendant";
                     newSprite = spriteContainer.transform.Find("EtherealShockPendant").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Creates a bolt of lightning that deals " + descValue1 + " damage to a random enemy";
+                
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().esPendantLvl) - (gameManager.GetComponent<RelicEffects>().esPendant-1);
+                    if(gameManager.GetComponent<RelicEffects>().esPendant == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Creates a bolt of lightning that deals " + descValue1 + " damage to a random enemy";
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 //SoulJar
                 if (rcRand == 2)
                 {
-                    descValue1 = "<color=#50C878>1</color>";
+                    float Value1 = 1 + (gameManager.GetComponent<RelicEffects>().sJarLvl);
+                    descValue1 = "<color=#50C878>" + Value1 + "</color>";
+
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Soul Jar";
                     newSprite = spriteContainer.transform.Find("SoulJar").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases maxHP by " + descValue1 + " for every 5 enemies defeated";
+                
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().sJarLvl) - (gameManager.GetComponent<RelicEffects>().sJar-1);
+                    if(gameManager.GetComponent<RelicEffects>().sJar == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Increases maxHP by " + descValue1 + " for every 5 enemies defeated";
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 break;
             case "Uncommon":

@@ -5,6 +5,8 @@ using UnityEngine;
 public class RelicEffects : MonoBehaviour
 {
     private GameObject player;
+    [HideInInspector]
+    public int oldSJLevel = 0;
 
     [Header("RC Count")]
     public float esPendant;
@@ -23,6 +25,23 @@ public class RelicEffects : MonoBehaviour
     public float cStone;
     public float hEmbrace;
 
+        [Header("RC Levels")]
+    public int esPendantLvl;
+    public int eStoneLvl;
+    public int sJarLvl;
+    public int aTalismanLvl;
+    public int cRingLvl;
+    public int MonocleLvl;
+    public int eCloakLvl;
+    public int gSerumLvl;
+    public int hSandalsLvl;
+    public int moValorLvl;
+    public int soMightLvl;
+    public int vToothLvl;
+    public int aSigilLvl;
+    public int cStoneLvl;
+    public int hEmbraceLvl;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -37,18 +56,22 @@ public class RelicEffects : MonoBehaviour
                 esPendant += 1;
                 player.GetComponent<Player>().EnableSP();
                 //Enables ShockPendant child in Player
+                esPendantLvl = ((int)esPendant-1)/3 + 1;
                 //====================
                 break;
             case "Ethereal Stone":
                 //====================
                 eStone += 1;
-                player.GetComponent<PlayerMovement>().currentDashPower = (player.GetComponent<PlayerMovement>().dashPower * (1.0f + eStone / 10));
+                //Effect plays in PlayerMovement
+                eStoneLvl = ((int)eStone-1)/3 + 1;
                 //====================
                 break;
             case "Soul Jar":
                 //====================
                 sJar += 1;
                 //Effect plays in Enemy
+                oldSJLevel = sJarLvl;
+                sJarLvl = ((int)sJar-1)/3 + 1;
                 //====================
                 break;
             case "Augur's Talisman":
@@ -109,8 +132,7 @@ public class RelicEffects : MonoBehaviour
                 break;
             case "Ancient Sigil":
                 //====================
-                hEmbrace += 1;
-                //Effect plays in RoomData
+                //ADD ABILITY
                 //====================
                 break;
             case "Charge Stone":
