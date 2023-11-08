@@ -6,14 +6,12 @@ public class RoomData : MonoBehaviour
 {
     public int RoomID;
     public bool hasEntered = false;
-
     public string roomTyp;
 
     public GameObject Door, T, B, L, R;
 
     private GameObject gameManager;
     private GameObject player;
-
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
@@ -24,6 +22,7 @@ public class RoomData : MonoBehaviour
         SetID();
         CheckIfLast();
     }
+
     //Sets the room as a parent of "Dungeon Generator"
     void FixParent()
     {
@@ -76,14 +75,14 @@ public class RoomData : MonoBehaviour
     //Called in GridController
     public void PlayerEnter()
     {
-        GameObject dg = GameObject.FindGameObjectWithTag("Rooms");
-        for (int i = 0; i < dg.GetComponent<LevelGeneration>().roomMiniTypes.Count; i++)
+        LevelGeneration dg = GameObject.FindGameObjectWithTag("Rooms").GetComponent<LevelGeneration>();
+        for (int i = 0; i < dg.roomMiniTypes.Count; i++)
         {
-            GameObject rmt = dg.GetComponent<LevelGeneration>().roomMiniTypes[i];
-            if (rmt.GetComponent<RoomMiniData>().RoomIDMini == RoomID)
+            RoomMiniData rmt = dg.roomMiniTypes[i].GetComponent<RoomMiniData>();
+            if (rmt.RoomIDMini == RoomID)
             {
-                rmt.GetComponent<RoomMiniData>().playerInside = true;
-                rmt.GetComponent<RoomMiniData>().EnableMapPiece();
+                rmt.hasEnteredMini = true;
+                rmt.playerInside = true;
             }
         }
 
@@ -97,6 +96,10 @@ public class RoomData : MonoBehaviour
         {
             player.GetComponent<Player>().holyEmbrace = true;
         }
+
+        //==Remove after Fixing===
+        //Destroy(this.gameObject);
+        //========================
     }
     public void PlayerLeave()
     {

@@ -121,7 +121,6 @@ GameObject:
   - component: {fileID: 822498809111728661}
   - component: {fileID: 8485574218516131924}
   - component: {fileID: 2275000305595527400}
-  - component: {fileID: 5217277754258616876}
   - component: {fileID: 3541393701736743290}
   - component: {fileID: 1703103826767813294}
   m_Layer: 0
@@ -183,20 +182,6 @@ MonoBehaviour:
   gridTile: {fileID: 1398264117147146093, guid: 6c60883922184074c888f8116f50f084, type: 3}
   availablePoints: []
   hasSpawned: 0
---- !u!114 &5217277754258616876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3750723044061932372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76e3a1ad461b003419cdb92478a554e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grid: {fileID: 2275000305595527400}
-  spawnerData: []
 --- !u!114 &3541393701736743290
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -151,7 +151,6 @@ GameObject:
   - component: {fileID: 1978574018760536762}
   - component: {fileID: 7340168182652293371}
   - component: {fileID: 1666555040262708266}
-  - component: {fileID: 3745742105234388344}
   - component: {fileID: 3111977961231272160}
   m_Layer: 0
   m_Name: B -Ladder-1
@@ -212,20 +211,6 @@ MonoBehaviour:
   gridTile: {fileID: 1398264117147146093, guid: 6c60883922184074c888f8116f50f084, type: 3}
   availablePoints: []
   hasSpawned: 0
---- !u!114 &3745742105234388344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2599256920920312827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76e3a1ad461b003419cdb92478a554e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grid: {fileID: 1666555040262708266}
-  spawnerData: []
 --- !u!61 &3111977961231272160
 BoxCollider2D:
   m_ObjectHideFlags: 0

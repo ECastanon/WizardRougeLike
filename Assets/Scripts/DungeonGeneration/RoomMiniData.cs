@@ -6,6 +6,7 @@ public class RoomMiniData : MonoBehaviour
 {
     public int RoomIDMini;
     public bool playerInside = false;
+    public bool hasEnteredMini = false;
 
     SpriteRenderer sprite;
 
@@ -15,7 +16,6 @@ public class RoomMiniData : MonoBehaviour
         FixParent();
         AddList();
         SetID();
-        this.GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0f);
     }
     void Update()
     {
@@ -27,11 +27,6 @@ public class RoomMiniData : MonoBehaviour
         GameObject dg = GameObject.FindGameObjectWithTag("MiniMap");
         transform.SetParent(dg.transform);
         transform.position += new Vector3(-6, 3, 0);
-    }
-    public void EnableMapPiece()
-    {
-        //Debug.Log("EnableMapPiece");
-        this.GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
     }
     void AddList()
     {
@@ -47,13 +42,17 @@ public class RoomMiniData : MonoBehaviour
     }
     void Highlight()
     {
-        if(playerInside == true)
+        if(hasEnteredMini == false)
         {
-            sprite.color = new Color(1, 1, 0, 1);
+            sprite.color = Color.white; //Have not visited
         }
-        if (playerInside == false)
+        else if (playerInside == false && hasEnteredMini == true)
         {
-            sprite.color = new Color(1, 1, 1, 1);
+            sprite.color = Color.green; //Have visited
+        }
+        else if(playerInside == true && hasEnteredMini == true)
+        {
+            sprite.color = Color.yellow; //Inside
         }
     }
 }
