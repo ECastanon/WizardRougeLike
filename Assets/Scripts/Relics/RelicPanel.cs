@@ -5,8 +5,7 @@ public class RelicPanel : MonoBehaviour
 {
     private Animator anim;
     private GameObject gameManager;
-    public GameObject gameMaster;
-
+    public GameObject RCFacePanel;
     [Header("RelicCardData")]
     //Used to change border color based on rarity
     public GameObject relicCard1;
@@ -51,6 +50,7 @@ public class RelicPanel : MonoBehaviour
     {
         anim = gameObject.GetComponent<Animator>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        RCFacePanel = GameObject.Find("rcfacePanel");
     }
 
     //Called In EnemyCounter
@@ -63,6 +63,7 @@ public class RelicPanel : MonoBehaviour
         if (!inView)
         {
             anim.Play("RelicPanelSlideIn");
+            RCFacePanel.GetComponent<Animator>().Play("RelicPanelSlideIn");
             inView = true;
             Time.timeScale = 0f;
         }
@@ -72,6 +73,7 @@ public class RelicPanel : MonoBehaviour
         if (inView)
         {
             anim.Play("RelicPanelSlideOut");
+            RCFacePanel.GetComponent<Animator>().Play("RelicPanelSlideOut");
             inView = false;
             Time.timeScale = 1f;
         }
@@ -80,17 +82,17 @@ public class RelicPanel : MonoBehaviour
     public void SelectRC1()
     {
         SlideOutMenu();
-        gameMaster.GetComponent<RelicEffects>().ApplyRC(RCItem1);
+        gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem1);
     }
     public void SelectRC2()
     {
         SlideOutMenu();
-        gameMaster.GetComponent<RelicEffects>().ApplyRC(RCItem2);
+        gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem2);
     }
     public void SelectRC3()
     {
         SlideOutMenu();
-        gameMaster.GetComponent<RelicEffects>().ApplyRC(RCItem3);
+        gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem3);
     }
 
     //Button for rerolling the given relics
@@ -107,7 +109,7 @@ public class RelicPanel : MonoBehaviour
     //Button for deleting a relic for the rest of the run
     public void Eliminate()
     {
-
+        
     }
 
     //Generates all 3 Relics and prevents duplicates

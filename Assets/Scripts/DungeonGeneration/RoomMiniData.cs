@@ -44,11 +44,11 @@ public class RoomMiniData : MonoBehaviour
     {
         if(hasEnteredMini == false)
         {
-            sprite.color = Color.white; //Have not visited
+            sprite.color = Color.clear; //Have not visited
         }
         else if (playerInside == false && hasEnteredMini == true)
         {
-            sprite.color = Color.green; //Have visited
+            sprite.color = Color.white; //Have visited
         }
         else if(playerInside == true && hasEnteredMini == true)
         {

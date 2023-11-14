@@ -611,8 +611,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 210.72, y: -67.05}
-  m_SizeDelta: {x: 362.87, y: 160.68}
+  m_AnchoredPosition: {x: 211.39, y: -62.79}
+  m_SizeDelta: {x: 327.86, y: 143.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &197320794
 MonoBehaviour:
@@ -2822,7 +2822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6c3b4abf9c235498c374ec6e2a6279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameMaster: {fileID: 1334317011}
+  RCFacePanel: {fileID: 0}
   relicCard1: {fileID: 6730200134289473316}
   relicCard2: {fileID: 1598952342}
   relicCard3: {fileID: 1354735316}
@@ -3698,7 +3698,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1334317013}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4360,8 +4360,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.99, y: -66.99}
-  m_SizeDelta: {x: 361.19, y: 160.45}
+  m_AnchoredPosition: {x: -3.46, y: -63.22}
+  m_SizeDelta: {x: 327.29, y: 145.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1076193416
 MonoBehaviour:
@@ -5218,7 +5218,7 @@ GameObject:
   - component: {fileID: 1288917299}
   - component: {fileID: 1288917302}
   - component: {fileID: 1288917301}
-  - component: {fileID: 1288917303}
+  - component: {fileID: 1288917304}
   m_Layer: 5
   m_Name: rcfacePanel
   m_TagString: Untagged
@@ -5299,19 +5299,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288917298}
   m_CullTransparentMesh: 1
---- !u!114 &1288917303
-MonoBehaviour:
+--- !u!95 &1288917304
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288917298}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a61702c35e07134eb79193065e48957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rcMenu: {fileID: 757059956}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6bea51c9b316ac94f821b9f8d4804504, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1305018860
 GameObject:
   m_ObjectHideFlags: 0
@@ -7453,7 +7460,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1334317013}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7840,8 +7847,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -218.44, y: -67.13}
-  m_SizeDelta: {x: 359.28, y: 160.97}
+  m_AnchoredPosition: {x: -218.26, y: -62.8}
+  m_SizeDelta: {x: 327.86, y: 143.65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2138048042
 MonoBehaviour:
