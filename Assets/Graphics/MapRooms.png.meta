@@ -48,7 +48,7 @@ TextureImporter:
       213: 5353916333733526843
     second: MapRooms_14
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -69,6 +69,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -107,6 +108,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -146,6 +148,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -484,6 +498,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      MapRooms_0: 2246283426501997650
+      MapRooms_1: 7288696087623736586
+      MapRooms_10: 3861285966389391256
+      MapRooms_11: 8974102622287839581
+      MapRooms_12: 5849421040692640487
+      MapRooms_13: 5388259925106337954
+      MapRooms_14: 5353916333733526843
+      MapRooms_2: 4438843459514938011
+      MapRooms_3: 4005131746698558029
+      MapRooms_4: 2302986511951597570
+      MapRooms_5: -2555123205745878090
+      MapRooms_6: 3441994447858348693
+      MapRooms_7: -8552547428000156157
+      MapRooms_8: -6885364915509391320
+      MapRooms_9: -3908355696116313514
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
