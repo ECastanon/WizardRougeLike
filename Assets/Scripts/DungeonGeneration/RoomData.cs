@@ -17,17 +17,19 @@ public class RoomData : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         player = GameObject.FindGameObjectWithTag("Player");
 
-        FixParent();
         AddList();
         SetID();
         CheckIfLast();
     }
 
-    //Sets the room as a parent of "Dungeon Generator"
-    void FixParent()
+    //Sets all rooms as a parent of "Dungeon Generator"
+    void FixAllParent()
     {
         GameObject dg = GameObject.FindGameObjectWithTag("Rooms");
-        transform.SetParent(dg.transform);
+        foreach(var room in dg.GetComponent<LevelGeneration>().roomTypes)
+        {
+            room.transform.SetParent(dg.transform);
+        }
     }
     //Adds the created room to a list of other rooms
     void AddList()
@@ -43,6 +45,7 @@ public class RoomData : MonoBehaviour
         if (dg.GetComponent<LevelGeneration>().roomCount >= dg.GetComponent<LevelGeneration>().numberOfRooms)
         {
             dg.GetComponent<LevelGeneration>().SetLadders();
+            FixAllParent();
         }
     }
     //Creates Doors upon player's first entry

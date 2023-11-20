@@ -2110,6 +2110,69 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &632651361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 632651363}
+  - component: {fileID: 632651362}
+  m_Layer: 0
+  m_Name: DungeonGenerator
+  m_TagString: Rooms
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &632651362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632651361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3dec3586002f444948aec2ffd8a468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfRooms: 20
+  roomWhiteObj: {fileID: 7486574924039431482, guid: 9b2886be7e1483a49a86be154e36f17d, type: 3}
+  roomTemplate: {fileID: 593537119249202450, guid: 48d034c41fbd28f469d9eb8a7e728299, type: 3}
+  dungeonGenerator: {fileID: 632651361}
+  roomTypes: []
+  roomCount: 0
+  roomMiniTypes: []
+  roomMiniCount: 0
+  ladderSpawned: 0
+  SpawnRoomExists: 0
+  ladderRoomT: {fileID: 3750723044061932372, guid: c8feec0bc5f8d0942aeea033194d98ba, type: 3}
+  ladderRoomB: {fileID: 2599256920920312827, guid: 465c9a8ced35a504f981b2b4f14c4e82, type: 3}
+  ladderRoomL: {fileID: 7056797493257785484, guid: 90e3c7a9e135d4a48b5128452db52422, type: 3}
+  ladderRoomR: {fileID: 3762100825400248194, guid: 33564163b7939ee40b62d6b425da69ac, type: 3}
+  spawnRoomT: {fileID: 8093752283196560891, guid: e7cea69e207827a4a8aba3af8e139692, type: 3}
+  spawnRoomB: {fileID: 7896740368645665772, guid: 1935cf75de3325e458d09d5602fb3415, type: 3}
+  spawnRoomL: {fileID: 2372360395186206140, guid: 3b7df97b33909e24792119a8216f69ac, type: 3}
+  spawnRoomR: {fileID: 7627082350458588285, guid: a29d54f64f196614991af188a59ba9ff, type: 3}
+  setID: 0
+--- !u!4 &632651363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632651361}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &647783531
 GameObject:
   m_ObjectHideFlags: 0
@@ -4105,7 +4168,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2011947249}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1034134046
 GameObject:
@@ -4615,7 +4678,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2011947249}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1128651705
 GameObject:
@@ -5707,7 +5770,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2011947249}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1334317013
 MonoBehaviour:
@@ -6590,64 +6653,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1658751418
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1658751420}
-  - component: {fileID: 1658751419}
-  m_Layer: 0
-  m_Name: DungeonGenerator
-  m_TagString: Rooms
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1658751419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658751418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e3dec3586002f444948aec2ffd8a468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numberOfRooms: 20
-  roomWhiteObj: {fileID: 7486574924039431482, guid: 9b2886be7e1483a49a86be154e36f17d, type: 3}
-  roomTemplate: {fileID: 593537119249202450, guid: 48d034c41fbd28f469d9eb8a7e728299, type: 3}
-  dungeonGenerator: {fileID: 1658751418}
-  roomTypes: []
-  roomCount: 0
-  roomMiniTypes: []
-  roomMiniCount: 0
-  ladderSpawned: 0
-  ladderRoomT: {fileID: 3750723044061932372, guid: c8feec0bc5f8d0942aeea033194d98ba, type: 3}
-  ladderRoomB: {fileID: 2599256920920312827, guid: 465c9a8ced35a504f981b2b4f14c4e82, type: 3}
-  ladderRoomL: {fileID: 7056797493257785484, guid: 90e3c7a9e135d4a48b5128452db52422, type: 3}
-  ladderRoomR: {fileID: 3762100825400248194, guid: 33564163b7939ee40b62d6b425da69ac, type: 3}
-  setID: 0
---- !u!4 &1658751420
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658751418}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2011947249}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1672834337
 GameObject:
   m_ObjectHideFlags: 0
@@ -6990,7 +6995,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2011947249}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1756957318
 MonoBehaviour:
@@ -7127,7 +7132,7 @@ Transform:
   - {fileID: 556546956}
   - {fileID: 1013490974}
   m_Father: {fileID: 2011947249}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1869694919
 GameObject:
@@ -7625,7 +7630,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1658751420}
   - {fileID: 1027779993}
   - {fileID: 1126001199}
   - {fileID: 1756957317}

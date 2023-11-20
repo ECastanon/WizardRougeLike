@@ -19,9 +19,11 @@ public class LevelGeneration : MonoBehaviour
     public List<GameObject> roomMiniTypes = new List<GameObject>();
     public int roomMiniCount;
     public bool ladderSpawned = false;
+    public bool SpawnRoomExists = false;
 
     [HideInInspector]
     public GameObject ladderRoomT, ladderRoomB, ladderRoomL, ladderRoomR;
+    public GameObject spawnRoomT, spawnRoomB, spawnRoomL, spawnRoomR;
     [HideInInspector]
     public int setID;
 
@@ -265,6 +267,7 @@ public class LevelGeneration : MonoBehaviour
         }
     }
     //Called by RoomData
+    //Also sets the spawn room
     public void SetLadders()
     {
         List<GameObject> PotentialLadderRooms = new List<GameObject>();
@@ -278,45 +281,99 @@ public class LevelGeneration : MonoBehaviour
                 PotentialLadderRooms.Add(roomTypes[i]);
             }
         }
+
         int randomRoom = Random.Range(0, PotentialLadderRooms.Count);
         if (PotentialLadderRooms[randomRoom].gameObject.tag == "EndRoom")
         {
             if (ladderSpawned == false)
             {
-                Instantiate(ladderRoomT, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
+                GameObject ladder = Instantiate(ladderRoomT, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
                 PotentialLadderRooms[randomRoom].gameObject.SetActive(false);
                 ladderSpawned = true;
+                roomTypes.Add(ladder);
             }
         }
         if (PotentialLadderRooms[randomRoom].gameObject.tag == "EndRoomB")
         {
             if (ladderSpawned == false)
             {
-                Instantiate(ladderRoomB, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
+                GameObject ladder = Instantiate(ladderRoomB, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
                 PotentialLadderRooms[randomRoom].gameObject.SetActive(false);
                 ladderSpawned = true;
-
+                roomTypes.Add(ladder);
             }
         }
         if (PotentialLadderRooms[randomRoom].gameObject.tag == "EndRoomL")
         {
             if (ladderSpawned == false)
             {
-                Instantiate(ladderRoomL, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
+                GameObject ladder = Instantiate(ladderRoomL, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
                 PotentialLadderRooms[randomRoom].gameObject.SetActive(false);
                 ladderSpawned = true;
-
+                roomTypes.Add(ladder);
             }
         }
         if (PotentialLadderRooms[randomRoom].gameObject.tag == "EndRoomR")
         {
             if (ladderSpawned == false)
             {
-                Instantiate(ladderRoomR, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
+                GameObject ladder = Instantiate(ladderRoomR, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
                 PotentialLadderRooms[randomRoom].gameObject.SetActive(false);
                 ladderSpawned = true;
+                roomTypes.Add(ladder);
+            }
+        }
+        GetSpawnRoom(randomRoom, PotentialLadderRooms);
+    }
+    private void GetSpawnRoom(int randomRoom, List<GameObject> PotentialLadderRooms)
+    {
+        GameObject player = GameObject.Find("Player");
+        int spawnedRoom = Random.Range(0, PotentialLadderRooms.Count);
+        while(spawnedRoom == randomRoom)
+        {
+            spawnedRoom = Random.Range(0, PotentialLadderRooms.Count);
+        }
+        if(SpawnRoomExists == false)
+        {
+            float X = PotentialLadderRooms[spawnedRoom].transform.position.x;
+            float Y = PotentialLadderRooms[spawnedRoom].transform.position.y;
+            if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoom")
+            {
+                Instantiate(spawnRoomT, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
+                player.transform.position = transform.TransformPoint(X, Y, 0);
+                Debug.Log(player.transform.position);
+                Debug.Log(transform.TransformPoint(X, Y, 0));
+                SpawnRoomExists = true;
 
             }
+            if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoomB")
+            {
+                Instantiate(spawnRoomB, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
+                player.transform.position = transform.TransformPoint(X, Y, 0);
+                Debug.Log(player.transform.position);
+                Debug.Log(transform.TransformPoint(X, Y, 0));
+                SpawnRoomExists = true;
+            }
+            if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoomL")
+            {
+                Instantiate(spawnRoomL, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
+                player.transform.position = transform.TransformPoint(X, Y, 0);
+                Debug.Log(player.transform.position);
+                Debug.Log(transform.TransformPoint(X, Y, 0));
+                SpawnRoomExists = true;
+            }
+            if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoomR")
+            {
+                Instantiate(spawnRoomR, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
+                player.transform.position = transform.TransformPoint(X, Y, 0);
+                Debug.Log(player.transform.position);
+                Debug.Log(transform.TransformPoint(X, Y, 0));
+                SpawnRoomExists = true;
+            }  
         }
     }
 }
