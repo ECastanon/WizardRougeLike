@@ -5,34 +5,32 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject PauseUI;
+    public GameObject OptionsUI;
     public static bool paused = false;
-    public static float playerSetVolume = 1f;
-    private LoadRelicIcons icons;
+    private RelicIcons icons;
+    private bool showIcons = false;
 
     void Start()
     {
         PauseUI.SetActive(false);
+        OptionsUI.SetActive(false);
+        icons = GameObject.Find("RelicPanel").GetComponent<RelicIcons>();
+
     }
     void Update()
     {
         if (Input.GetButtonDown("Pause"))
         {
-            paused = !paused;
+            Resume();
         }
         if (paused)
         {
             PauseUI.SetActive(true);
-            icons = GameObject.Find("IconPanel").GetComponent<LoadRelicIcons>();
-            icons.enabled = true;
+            if(showIcons == true){icons.LoadRelicIcons(); showIcons = false;}
             Time.timeScale = 0;
-        }
-        if (!paused)
+        } else if (!paused)
         {
-            if(icons != null)
-            {
-                icons = GameObject.Find("IconPanel").GetComponent<LoadRelicIcons>();
-                icons.enabled = false;
-            }
+            if(showIcons == true){icons.UnLoadIcons(); showIcons = false;}
             PauseUI.SetActive(false);
             Time.timeScale = 1;
         }
@@ -41,21 +39,39 @@ public class PauseMenu : MonoBehaviour
     //Closes the pause menu
     public void Resume()
     {
+        OptionsUI.SetActive(false);
         paused = !paused;
+        showIcons = !showIcons;
+        showIcons = true;
     }
     //Exits the Game
     public void Title()
     {
+        OptionsUI.SetActive(false);
         SceneManager.LoadScene(0);
     }
     //Reloads the Current Level
     public void Restart()
     {
+        OptionsUI.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    //Option Settings
+    public void Options()
+    {
+        if(OptionsUI.active == false)
+        {
+            Debug.Log("test");
+            OptionsUI.SetActive(true);
+        } else 
+        {
+            OptionsUI.SetActive(false);
+        }
     }
     //Loads the Menu
     public void MainMenu()
     {
+        OptionsUI.SetActive(false);
         SceneManager.LoadScene(1);
     }
     public void Quit()

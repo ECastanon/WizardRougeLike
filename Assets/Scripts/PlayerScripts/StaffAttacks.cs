@@ -30,7 +30,6 @@ public class StaffAttacks : MonoBehaviour
 
     void Start()
     {
-
         player = GetComponent<Player>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         strongBar = GameObject.Find("strongBar").GetComponent<Image>();

@@ -5,8 +5,8 @@ using UnityEngine;
 public class RelicEffects : MonoBehaviour
 {
     private GameObject player;
-    [HideInInspector]
-    public int oldSJLevel = 0;
+    private RelicIcons icons;
+    [HideInInspector] public int oldSJLevel = 0;
 
     [Header("RC Count")]
     public float esPendant;
@@ -25,7 +25,7 @@ public class RelicEffects : MonoBehaviour
     public float cStone;
     public float hEmbrace;
 
-        [Header("RC Levels")]
+    [Header("RC Levels")]
     public int esPendantLvl;
     public int eStoneLvl;
     public int sJarLvl;
@@ -44,7 +44,7 @@ public class RelicEffects : MonoBehaviour
 
     void Start()
     {
-        //player = GameObject.FindGameObjectWithTag("Player");
+        icons = GameObject.Find("RelicPanel").GetComponent<RelicIcons>();
     }
 
     public void ApplyRC(string rcName)
@@ -56,6 +56,7 @@ public class RelicEffects : MonoBehaviour
                 //====================
                 esPendant += 1;
                 esPendantLvl = ((int)esPendant-1)/3 + 1;
+                for(int i = 0; i < icons.relicStringList.Count; i++){if(icons.relicStringList[i] == "Shock Pendant"){icons.relicLevel[i] = esPendantLvl;}}
                 player.GetComponent<Player>().EnableSP();
                 //Enables ShockPendant child in Player
                 //====================
@@ -64,6 +65,7 @@ public class RelicEffects : MonoBehaviour
                 //====================
                 eStone += 1;
                 eStoneLvl = ((int)eStone-1)/3 + 1;
+                for(int i = 0; i < icons.relicStringList.Count; i++){if(icons.relicStringList[i] == ("Ethereal Stone")){icons.relicLevel[i] = eStoneLvl;}}
                 //Effect plays in PlayerMovement
                 //====================
                 break;
@@ -72,6 +74,7 @@ public class RelicEffects : MonoBehaviour
                 sJar += 1;
                 oldSJLevel = sJarLvl;
                 sJarLvl = ((int)sJar-1)/3 + 1;
+                for(int i = 0; i < icons.relicStringList.Count; i++){if(icons.relicStringList[i] == ("Soul Jar")){icons.relicLevel[i] = sJarLvl;}}
                 //Effect plays in Enemy
                 //====================
                 break;
@@ -84,6 +87,7 @@ public class RelicEffects : MonoBehaviour
                 //====================
                 cRing += 1;
                 cRingLvl = ((int)cRing-1)/3 + 1;
+                for(int i = 0; i < icons.relicStringList.Count; i++){if(icons.relicStringList[i] == ("Cosmo Ring")){icons.relicLevel[i] = cRingLvl;}}
                 if(cRingLvl < 20)
                 {
                     player.GetComponent<StaffAttacks>().cooldownStrongCur = player.GetComponent<StaffAttacks>().cooldownStrong * (1 - (cRingLvl * .1f));
@@ -94,6 +98,7 @@ public class RelicEffects : MonoBehaviour
                 //====================
                 Monocle += 1;
                 MonocleLvl = ((int)Monocle-1)/3 + 1;
+                for(int i = 0; i < icons.relicStringList.Count; i++){if(icons.relicStringList[i] == ("Monocle")){icons.relicLevel[i] = MonocleLvl;}}
                 //Effect plays in Enemy
                 //====================
                 break;
@@ -101,6 +106,7 @@ public class RelicEffects : MonoBehaviour
                 //====================
                 eCloak += 1;
                 eCloakLvl = ((int)eCloak-1)/3 + 1;
+                for(int i = 0; i < icons.relicStringList.Count; i++){if(icons.relicStringList[i] == ("Ethereal Cloak")){icons.relicLevel[i] = eCloakLvl;}}
                 player.GetComponent<PlayerMovement>().currentDashCD = (player.GetComponent<PlayerMovement>().dashCD * (1 - (eCloakLvl * .15f)));
                 //====================
                 break;
@@ -108,6 +114,7 @@ public class RelicEffects : MonoBehaviour
                 //====================
                 gSerum += 1;
                 gSerumLvl = ((int)gSerum-1)/3 + 1;
+                for(int i = 0; i < icons.relicStringList.Count; i++){if(icons.relicStringList[i] == ("Growth Serum")){icons.relicLevel[i] = gSerumLvl;}}
                 player.GetComponent<Player>().GrowthSerum += 1;
                 //====================
                 break;
@@ -115,6 +122,7 @@ public class RelicEffects : MonoBehaviour
                 //====================
                 hSandals += 1;
                 hSandalsLvl = ((int)hSandals-1)/3 + 1;
+                for(int i = 0; i < icons.relicStringList.Count; i++){if(icons.relicStringList[i] == ("Hermes Sandals")){icons.relicLevel[i] = hSandalsLvl;}}
                 player.GetComponent<PlayerMovement>().currentMoveSpeed = (player.GetComponent<PlayerMovement>().moveSpeed * (1.0f + hSandals * .15f));
                 //====================
                 break;
@@ -122,6 +130,7 @@ public class RelicEffects : MonoBehaviour
                 //====================
                 moValor += 1;
                 moValorLvl = ((int)moValor-1)/3 + 1;
+                for(int i = 0; i < icons.relicStringList.Count; i++){if(icons.relicStringList[i] == ("Medal of Valor")){icons.relicLevel[i] = moValorLvl;}}
                 //Effect plays in EnemyCounter
                 //====================
                 break;
@@ -129,6 +138,7 @@ public class RelicEffects : MonoBehaviour
                 //====================
                 soMight += 1;
                 soMightLvl = ((int)soMight-1)/3 + 1;
+                for(int i = 0; i < icons.relicStringList.Count; i++){if(icons.relicStringList[i] == ("Scroll of Might")){icons.relicLevel[i] = soMightLvl;}}
                 player.GetComponent<Player>().soMightDamage = soMightLvl;
                 //====================
                 break;
@@ -136,6 +146,7 @@ public class RelicEffects : MonoBehaviour
                 //====================
                 vTooth += 1;
                 vToothLvl = ((int)vTooth-1)/3 + 1;
+                for(int i = 0; i < icons.relicStringList.Count; i++){if(icons.relicStringList[i] == ("Vampire Tooth")){icons.relicLevel[i] = vToothLvl;}}
                 //Effect plays in Enemy
                 //====================
                 break;

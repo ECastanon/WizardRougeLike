@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         FindBounds();
     }
 

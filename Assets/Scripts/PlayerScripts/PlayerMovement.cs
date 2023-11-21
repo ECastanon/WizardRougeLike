@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float currentMoveSpeed;
+    public bool canMove = true;
     public Rigidbody2D rb;
 
     Vector2 movement;
@@ -48,21 +49,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        moveDirection = new Vector2(movement.x, movement.y).normalized;
-
-        if(dashTime < dashCD)
+        if(canMove == true)
         {
-            dashTime += Time.deltaTime;
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
 
-            dashBar.fillAmount = dashTime / dashCD;
-        }
+            moveDirection = new Vector2(movement.x, movement.y).normalized;
+            if(dashTime < dashCD)
+            {
+                dashTime += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDash && dashTime >= dashCD)
-        {
-            StartCoroutine(Dash());
+                dashBar.fillAmount = dashTime / dashCD;
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && canDash && dashTime >= dashCD)
+            {
+                StartCoroutine(Dash());
+            }
         }
     }
 

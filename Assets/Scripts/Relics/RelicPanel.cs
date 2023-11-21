@@ -59,6 +59,7 @@ public class RelicPanel : MonoBehaviour
     //Called In EnemyCounter
     public void SlideInMenu()
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<StaffAttacks>().enabled = false;
         rerollText.GetComponent<TextMeshProUGUI>().text = "Reroll (" + rerollCount + ")";
 
         GenerateRelicAllRelicCards();
@@ -75,6 +76,7 @@ public class RelicPanel : MonoBehaviour
     {
         if (inView)
         {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<StaffAttacks>().enabled = true;
             anim.Play("RelicPanelSlideOut");
             RCFacePanel.GetComponent<Animator>().Play("RelicPanelSlideOut");
             inView = false;
@@ -257,7 +259,7 @@ public class RelicPanel : MonoBehaviour
                     descValue1 = "<color=#50C878>" + Value1 + "</color>";
                     
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Shock Pendant";
-                    newSprite = spriteContainer.transform.Find("Ethereal Shock Pendant").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Shock Pendant").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
                 
                     float remainingRC;
