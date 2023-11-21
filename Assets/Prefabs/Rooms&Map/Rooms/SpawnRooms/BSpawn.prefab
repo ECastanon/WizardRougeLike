@@ -3487,6 +3487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 6819711085508830269}
+  totalSpawnsInRoom: 4
   spawnerData: []
 --- !u!61 &7109854042095497463
 BoxCollider2D:
@@ -3527,6 +3528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomID: 0
+  idOverride: 0
   hasEntered: 0
   roomTyp: 
   Door: {fileID: 8256679440996128414, guid: 8711af9738d769440b8a84d10e6307ae, type: 3}

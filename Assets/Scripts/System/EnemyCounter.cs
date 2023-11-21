@@ -10,18 +10,25 @@ public class EnemyCounter : MonoBehaviour
     public List<GameObject> Enemies = new List<GameObject>();
 
     private GameObject gameManager;
+    private GameObject objectPooler;
     private GameObject player;
 
     public void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
-        player = GameObject.FindGameObjectWithTag("Player");
+        objectPooler = GameObject.Find("ObjectPooler");
     }
 
     public void OpenDoors()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         if(Enemies.Count <= 0)
         {
+            //Disable all Projectiles
+            foreach(Transform item in objectPooler.transform)
+            {
+                item.gameObject.SetActive(false);
+            }
             //Get Doors
             for (int i = 0; i < Doors.Count; i++)
             {

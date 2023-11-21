@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class RelicPanel : MonoBehaviour
 {
     private Animator anim;
     private GameObject gameManager;
     public GameObject RCFacePanel;
+    private RelicIcons relicIcons;
     [Header("RelicCardData")]
     //Used to change border color based on rarity
     public GameObject relicCard1;
@@ -51,6 +53,7 @@ public class RelicPanel : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         RCFacePanel = GameObject.Find("rcfacePanel");
+        relicIcons = GetComponent<RelicIcons>();
     }
 
     //Called In EnemyCounter
@@ -83,16 +86,19 @@ public class RelicPanel : MonoBehaviour
     {
         SlideOutMenu();
         gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem1);
+        relicIcons.UpdateIconMenu(RCItem1);
     }
     public void SelectRC2()
     {
         SlideOutMenu();
         gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem2);
+        relicIcons.UpdateIconMenu(RCItem2);
     }
     public void SelectRC3()
     {
         SlideOutMenu();
         gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem3);
+        relicIcons.UpdateIconMenu(RCItem3);
     }
 
     //Button for rerolling the given relics
@@ -127,6 +133,7 @@ public class RelicPanel : MonoBehaviour
         if(RCItem1 == RCItem2){ GenerateRelic(relicCard2, rctitle2, rcsprite2, rcdesc2); CheckForMatches();}
         if(RCItem1 == RCItem3){ GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3); CheckForMatches();}
         if(RCItem2 == RCItem3){ GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3); CheckForMatches();}
+        RCNum = 1;
     }
 
     public void GenerateRelic(GameObject rc, TextMeshProUGUI rcTitle, GameObject rcSprite, TextMeshProUGUI rcDesc)
@@ -173,41 +180,35 @@ public class RelicPanel : MonoBehaviour
         {
             //Change Border Color to Gray
             case "Common":
-                border = rc.transform.GetChild(1).gameObject;
-                //border.GetComponent<SpriteRenderer>().color = new Color(183, 183, 183);
-                border.GetComponent<SpriteRenderer>().color = new Color(.717f, .717f, .717f);
+                border = rc.transform.GetChild(0).gameObject;
+                border.GetComponent<Image>().color = new Color(.717f, .717f, .717f);
                 break;
             //Change Border Color to Green
             case "Uncommon":
-                border = rc.transform.GetChild(1).gameObject;
-                //border.GetComponent<SpriteRenderer>().color = new Color(78, 241, 60);
-                border.GetComponent<SpriteRenderer>().color = new Color(.305f, .945f, .235f);
+                border = rc.transform.GetChild(0).gameObject;
+                border.GetComponent<Image>().color = new Color(.305f, .945f, .235f);
                 break;
             //Change Border Color to Blue
             case "Rare":
-                border = rc.transform.GetChild(1).gameObject;
-                //border.GetComponent<SpriteRenderer>().color = new Color(15, 131, 255);
-                border.GetComponent<SpriteRenderer>().color = new Color(.058f, .521f, 1);
+                border = rc.transform.GetChild(0).gameObject;
+                border.GetComponent<Image>().color = new Color(.058f, .521f, 1);
                 break;
             //Change Border Color to Red
             case "Super":
-                border = rc.transform.GetChild(1).gameObject;
-                //border.GetComponent<SpriteRenderer>().color = new Color(233, 25, 0);
-                border.GetComponent<SpriteRenderer>().color = new Color(.913f, .098f, 0);
+                border = rc.transform.GetChild(0).gameObject;
+                border.GetComponent<Image>().color = new Color(.913f, .098f, 0);
 
                 break;
             //Change Border Color to Purple
             case "Ultra":
-                border = rc.transform.GetChild(1).gameObject;
-                //border.GetComponent<SpriteRenderer>().color = new Color(160, 0, 231);
-                border.GetComponent<SpriteRenderer>().color = new Color(.627f, 0, .905f);
+                border = rc.transform.GetChild(0).gameObject;
+                border.GetComponent<Image>().color = new Color(.627f, 0, .905f);
 
                 break;
             //Change Border Color to Yellow
             case "Sacred":
-                border = rc.transform.GetChild(1).gameObject;
-                //border.GetComponent<SpriteRenderer>().color = new Color(255, 213, 51);
-                border.GetComponent<SpriteRenderer>().color = new Color(1, .835f, .2f);
+                border = rc.transform.GetChild(0).gameObject;
+                border.GetComponent<Image>().color = new Color(1, .835f, .2f);
                 break;
             default:
                 Debug.Log("Improper rarity!");
@@ -234,7 +235,7 @@ public class RelicPanel : MonoBehaviour
                     descValue1 = "<color=#50C878>" + Value1 + "%</color>";
 
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Ethereal Stone";
-                    newSprite = spriteContainer.transform.Find("EtherealStone").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Ethereal Stone").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
 
                     float remainingRC;
@@ -256,7 +257,7 @@ public class RelicPanel : MonoBehaviour
                     descValue1 = "<color=#50C878>" + Value1 + "</color>";
                     
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Shock Pendant";
-                    newSprite = spriteContainer.transform.Find("EtherealShockPendant").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Ethereal Shock Pendant").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
                 
                     float remainingRC;
@@ -277,7 +278,7 @@ public class RelicPanel : MonoBehaviour
                     descValue1 = "<color=#50C878>" + Value1 + "</color>";
 
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Soul Jar";
-                    newSprite = spriteContainer.transform.Find("SoulJar").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Soul Jar").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
                 
                     float remainingRC;
@@ -302,7 +303,7 @@ public class RelicPanel : MonoBehaviour
                     //===========================
                     descValue1 = "<color=#50C878>15%</color>";
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Augur's Talisman";
-                    newSprite = spriteContainer.transform.Find("Augur'sTalisman").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Augur's Talisman").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
                     rcDesc.GetComponent<TextMeshProUGUI>().text = "Shortens negative status effects by " + descValue1;
                 }
@@ -313,7 +314,7 @@ public class RelicPanel : MonoBehaviour
                     descValue1 = "<color=#50C878>" + Value1 + "%</color>";
 
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Cosmo Ring";
-                    newSprite = spriteContainer.transform.Find("CosmoRing").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Cosmo Ring").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
 
                     float remainingRC;
@@ -358,7 +359,7 @@ public class RelicPanel : MonoBehaviour
                     descValue1 = "<color=#50C878>" + Value1 + "%</color>";
 
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Growth Serum";
-                    newSprite = spriteContainer.transform.Find("GrowthSerum").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Growth Serum").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
 
                     float remainingRC;
@@ -379,7 +380,7 @@ public class RelicPanel : MonoBehaviour
                     descValue1 = "<color=#50C878>" + Value1 + "%</color>";
 
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Hermes Sandals";
-                    newSprite = spriteContainer.transform.Find("HermesSandals").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Hermes Sandals").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
 
                     float remainingRC;
@@ -400,7 +401,7 @@ public class RelicPanel : MonoBehaviour
                     descValue1 = "<color=#50C878>" + Value1 + "%</color>";
 
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Ethereal Cloak";
-                    newSprite = spriteContainer.transform.Find("EtherealCloak").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Ethereal Cloak").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
 
                     float remainingRC;
@@ -421,10 +422,10 @@ public class RelicPanel : MonoBehaviour
                 if (rcRand == 0)
                 {
                     float Value1 = 1 * (gameManager.GetComponent<RelicEffects>().vToothLvl + 1);
-                    descValue1 = "<color=#50C878>" + Value1 + "%</color>";
+                    descValue1 = "<color=#50C878>" + Value1 + "</color>";
 
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Vampire Tooth";
-                    newSprite = spriteContainer.transform.Find("VampireTooth").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Vampire Tooth").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
 
                     float remainingRC;
@@ -442,10 +443,10 @@ public class RelicPanel : MonoBehaviour
                 if (rcRand == 1)
                 {
                     float Value1 = 2 * (gameManager.GetComponent<RelicEffects>().moValorLvl + 1);
-                    descValue1 = "<color=#50C878>" + Value1 + "%</color>";
+                    descValue1 = "<color=#50C878>" + Value1 + "</color>";
 
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Medal of Valor";
-                    newSprite = spriteContainer.transform.Find("MedalofValor").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Medal of Valor").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
 
                     float remainingRC;
@@ -463,10 +464,10 @@ public class RelicPanel : MonoBehaviour
                 if (rcRand == 2)
                 {
                     float Value1 = 1 * (gameManager.GetComponent<RelicEffects>().moValorLvl + 1);
-                    descValue1 = "<color=#50C878>+" + Value1 + "%</color>";
+                    descValue1 = "<color=#50C878>+" + Value1 + "</color>";
 
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Scroll of Might";
-                    newSprite = spriteContainer.transform.Find("ScrollofMight").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Scroll of Might").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
 
                     float remainingRC;
@@ -491,7 +492,7 @@ public class RelicPanel : MonoBehaviour
                     //===========================
                     descValue1 = "<color=#50C878>30%</color>";
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Ancient Sigil";
-                    newSprite = spriteContainer.transform.Find("AncientSigil").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Ancient Sigil").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
                     rcDesc.GetComponent<TextMeshProUGUI>().text = "Reduces all weapon cooldowns by ";
                 }
@@ -503,7 +504,7 @@ public class RelicPanel : MonoBehaviour
                     //===========================
                     descValue1 = "<color=#50C878>2</color>";
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Charge Stone";
-                    newSprite = spriteContainer.transform.Find("ChargeStone").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Charge Stone").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
                     rcDesc.GetComponent<TextMeshProUGUI>().text = "After casting an attack, immediately cast it again";
                 }
@@ -515,7 +516,7 @@ public class RelicPanel : MonoBehaviour
                     //===========================
                     descValue1 = "<color=#50C878>+1</color>";
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Holy Embrace";
-                    newSprite = spriteContainer.transform.Find("HolyEmbrace").gameObject.GetComponent<SpriteRenderer>();
+                    newSprite = spriteContainer.transform.Find("Holy Embrace").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
                     rcDesc.GetComponent<TextMeshProUGUI>().text = "Negates damage the first time you enter a room";
                 }

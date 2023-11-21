@@ -44,11 +44,12 @@ public class RelicEffects : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void ApplyRC(string rcName)
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         switch (rcName)
         {
             case "Shock Pendant":

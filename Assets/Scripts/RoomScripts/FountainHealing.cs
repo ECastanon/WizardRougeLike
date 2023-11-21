@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class FountainHealing : MonoBehaviour
 {
-    private bool used = false;
-    private bool playerIn = false;
-
+    private bool used = false, playerIn = false;
     private GameObject player;
-
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
 
     void Update()
     {
@@ -29,10 +22,16 @@ public class FountainHealing : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            player = col.gameObject;
             Debug.Log("[E] to Heal");
             playerIn = true;
         }
-    }    void OnTriggerExit2D(Collider2D col)    {        if (col.CompareTag("Player"))        {
-            //gm.InputText.text = (" ");
-            playerIn = false;        }    }
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            playerIn = false;
+        }
+    }
 }

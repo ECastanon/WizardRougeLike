@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    private GameObject player;
-
-    public Vector2 highScreenBounds;
-    public Vector2 lowScreenBounds;
-
+    [HideInInspector] public GameObject player;
+    public Vector2 highScreenBounds, lowScreenBounds;
     private int direction;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         FindBounds();
     }
 

@@ -33,6 +33,8 @@ public class StaffAttacks : MonoBehaviour
 
         player = GetComponent<Player>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        strongBar = GameObject.Find("strongBar").GetComponent<Image>();
+        chargeBar = GameObject.Find("chargeBar").GetComponent<Image>();
         objectPooler = ObjectPooler.Instance;
         currentStaff = player.weaponType;
         SetCooldowns();

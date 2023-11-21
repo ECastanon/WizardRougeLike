@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour
     private IEnumerator hitstate;
 
     public Image healthbar;
-    public Text hpcount;
+    public TextMeshProUGUI hpcount;
 
     //Player Immunities
     public bool dodging;
@@ -50,9 +51,14 @@ public class Player : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        healthbar = GameObject.Find("Health").GetComponent<Image>();
+        hpcount = GameObject.Find("HPCount").GetComponent<TextMeshProUGUI>();
+        manacircle = GameObject.Find("ManaCircle");
+        DamageSFX = GameObject.Find("PlayerDamaged").GetComponent<AudioSource>();
 
         currentMaxHP = MaxHp;
         hp = MaxHp;
+
         hpcount.text = hp.ToString() + "/" + MaxHp.ToString();
         GetWeaponType();
     }
@@ -139,6 +145,7 @@ public class Player : MonoBehaviour
 
     public void EnableManaCircle()
     {
+        manacircle.GetComponent<ManaCircle>().player = this.gameObject;
         manacircle.GetComponent<ManaCircle>().Enable();
         manacircle.transform.position = transform.position;
     }

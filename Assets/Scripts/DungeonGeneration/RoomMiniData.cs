@@ -13,6 +13,7 @@ public class RoomMiniData : MonoBehaviour
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        hasEnteredMini = true;
         FixParent();
         AddList();
         SetID();

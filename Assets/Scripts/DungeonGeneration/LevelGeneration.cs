@@ -20,6 +20,7 @@ public class LevelGeneration : MonoBehaviour
     public int roomMiniCount;
     public bool ladderSpawned = false;
     public bool SpawnRoomExists = false;
+    public GameObject player;
 
     [HideInInspector]
     public GameObject ladderRoomT, ladderRoomB, ladderRoomL, ladderRoomR;
@@ -256,8 +257,11 @@ public class LevelGeneration : MonoBehaviour
                 continue;
             }
             Vector2 drawPos = room.gridPos;
-            drawPos.x *= .8f; //.8f
-            drawPos.y *= .6f; //.6f
+            drawPos.x *= .55f; //.55f
+            drawPos.y *= .4f; //.4f
+            drawPos.x -= 1;
+            drawPos.y += 1;
+            
             MapPrefabSelector miniMapper = Object.Instantiate(roomTemplate, drawPos, Quaternion.identity).GetComponent<MapPrefabSelector>();
             miniMapper.isMini = true;
             miniMapper.up = room.doorTop;
@@ -288,6 +292,8 @@ public class LevelGeneration : MonoBehaviour
             if (ladderSpawned == false)
             {
                 GameObject ladder = Instantiate(ladderRoomT, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
+                ladder.GetComponent<RoomData>().idOverride = true;
+                ladder.GetComponent<RoomData>().RoomID = PotentialLadderRooms[randomRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[randomRoom].gameObject.SetActive(false);
                 ladderSpawned = true;
                 roomTypes.Add(ladder);
@@ -298,6 +304,8 @@ public class LevelGeneration : MonoBehaviour
             if (ladderSpawned == false)
             {
                 GameObject ladder = Instantiate(ladderRoomB, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
+                ladder.GetComponent<RoomData>().idOverride = true;
+                ladder.GetComponent<RoomData>().RoomID = PotentialLadderRooms[randomRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[randomRoom].gameObject.SetActive(false);
                 ladderSpawned = true;
                 roomTypes.Add(ladder);
@@ -308,6 +316,8 @@ public class LevelGeneration : MonoBehaviour
             if (ladderSpawned == false)
             {
                 GameObject ladder = Instantiate(ladderRoomL, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
+                ladder.GetComponent<RoomData>().idOverride = true;
+                ladder.GetComponent<RoomData>().RoomID = PotentialLadderRooms[randomRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[randomRoom].gameObject.SetActive(false);
                 ladderSpawned = true;
                 roomTypes.Add(ladder);
@@ -318,6 +328,8 @@ public class LevelGeneration : MonoBehaviour
             if (ladderSpawned == false)
             {
                 GameObject ladder = Instantiate(ladderRoomR, PotentialLadderRooms[randomRoom].transform.position, Quaternion.identity);
+                ladder.GetComponent<RoomData>().idOverride = true;
+                ladder.GetComponent<RoomData>().RoomID = PotentialLadderRooms[randomRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[randomRoom].gameObject.SetActive(false);
                 ladderSpawned = true;
                 roomTypes.Add(ladder);
@@ -327,51 +339,59 @@ public class LevelGeneration : MonoBehaviour
     }
     private void GetSpawnRoom(int randomRoom, List<GameObject> PotentialLadderRooms)
     {
-        GameObject player = GameObject.Find("Player");
         int spawnedRoom = Random.Range(0, PotentialLadderRooms.Count);
+        CameraFollow cam = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
+        GameObject roomToSpawn;
+        GameObject playerToSpawn;
         while(spawnedRoom == randomRoom)
         {
             spawnedRoom = Random.Range(0, PotentialLadderRooms.Count);
         }
         if(SpawnRoomExists == false)
         {
-            float X = PotentialLadderRooms[spawnedRoom].transform.position.x;
-            float Y = PotentialLadderRooms[spawnedRoom].transform.position.y;
             if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoom")
             {
-                Instantiate(spawnRoomT, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                roomToSpawn = Instantiate(spawnRoomT, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                playerToSpawn = Instantiate(player, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                cam.player = playerToSpawn;
+                cam.transform.position = new Vector3(playerToSpawn.transform.position.x, playerToSpawn.transform.position.y, -100);
+                roomToSpawn.GetComponent<RoomData>().idOverride = true;
+                roomToSpawn.GetComponent<RoomData>().RoomID = PotentialLadderRooms[spawnedRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
-                player.transform.position = transform.TransformPoint(X, Y, 0);
-                Debug.Log(player.transform.position);
-                Debug.Log(transform.TransformPoint(X, Y, 0));
                 SpawnRoomExists = true;
 
             }
             if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoomB")
             {
-                Instantiate(spawnRoomB, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                roomToSpawn = Instantiate(spawnRoomB, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                playerToSpawn = Instantiate(player, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                cam.player = playerToSpawn;
+                cam.transform.position = new Vector3(playerToSpawn.transform.position.x, playerToSpawn.transform.position.y, -100);
+                roomToSpawn.GetComponent<RoomData>().idOverride = true;
+                roomToSpawn.GetComponent<RoomData>().RoomID = PotentialLadderRooms[spawnedRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
-                player.transform.position = transform.TransformPoint(X, Y, 0);
-                Debug.Log(player.transform.position);
-                Debug.Log(transform.TransformPoint(X, Y, 0));
                 SpawnRoomExists = true;
             }
             if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoomL")
             {
-                Instantiate(spawnRoomL, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                roomToSpawn = Instantiate(spawnRoomL, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                playerToSpawn = Instantiate(player, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                cam.player = playerToSpawn;
+                cam.transform.position = new Vector3(playerToSpawn.transform.position.x, playerToSpawn.transform.position.y, -100);
+                roomToSpawn.GetComponent<RoomData>().idOverride = true;
+                roomToSpawn.GetComponent<RoomData>().RoomID = PotentialLadderRooms[spawnedRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
-                player.transform.position = transform.TransformPoint(X, Y, 0);
-                Debug.Log(player.transform.position);
-                Debug.Log(transform.TransformPoint(X, Y, 0));
                 SpawnRoomExists = true;
             }
             if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoomR")
             {
-                Instantiate(spawnRoomR, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                roomToSpawn = Instantiate(spawnRoomR, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                playerToSpawn = Instantiate(player, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+                cam.player = playerToSpawn;
+                cam.transform.position = new Vector3(playerToSpawn.transform.position.x, playerToSpawn.transform.position.y, -100);
+                roomToSpawn.GetComponent<RoomData>().idOverride = true;
+                roomToSpawn.GetComponent<RoomData>().RoomID = PotentialLadderRooms[spawnedRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
-                player.transform.position = transform.TransformPoint(X, Y, 0);
-                Debug.Log(player.transform.position);
-                Debug.Log(transform.TransformPoint(X, Y, 0));
                 SpawnRoomExists = true;
             }  
         }

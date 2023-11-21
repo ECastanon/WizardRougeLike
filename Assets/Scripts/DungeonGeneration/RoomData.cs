@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoomData : MonoBehaviour
 {
     public int RoomID;
+    public bool idOverride = false;
     public bool hasEntered = false;
     public string roomTyp;
 
@@ -119,10 +120,13 @@ public class RoomData : MonoBehaviour
     //Sets the room's ID
     void SetID()
     {
-        GameObject dg = GameObject.FindGameObjectWithTag("Rooms");
-        RoomID = dg.GetComponent<LevelGeneration>().setID;
-        RoomID = RoomID - dg.GetComponent<LevelGeneration>().numberOfRooms;
-        dg.GetComponent<LevelGeneration>().setID++;
+        if(idOverride == false) //Does not set ID for rooms spawned over the original
+        {
+            GameObject dg = GameObject.FindGameObjectWithTag("Rooms");
+            RoomID = dg.GetComponent<LevelGeneration>().setID;
+            RoomID = RoomID - dg.GetComponent<LevelGeneration>().numberOfRooms;
+            dg.GetComponent<LevelGeneration>().setID++;
+        }
     }
     //Gets the room type
     void GetRoomType()

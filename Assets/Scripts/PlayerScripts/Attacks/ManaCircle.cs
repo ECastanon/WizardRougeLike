@@ -6,12 +6,11 @@ public class ManaCircle : MonoBehaviour
 {
     public bool enabled = false;
     public float opacity = 0f;
-    private GameObject player;
+    [HideInInspector] public GameObject player;
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -24,6 +23,7 @@ public class ManaCircle : MonoBehaviour
         } else
         {
             enabled = false;
+            if(player != null){player.GetComponent<StaffAttacks>().ManaCircle = false;}
         }
     }
 
@@ -35,14 +35,14 @@ public class ManaCircle : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player" && enabled)
+        if (player != null && col.gameObject.tag == "Player" && enabled)
         {
             player.GetComponent<StaffAttacks>().ManaCircle = true;
         }
     }
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if (player != null && col.gameObject.tag == "Player")
         {
             player.GetComponent<StaffAttacks>().ManaCircle = false;
         }

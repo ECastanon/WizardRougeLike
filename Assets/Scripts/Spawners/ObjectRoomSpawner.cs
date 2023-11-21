@@ -12,6 +12,8 @@ public class ObjectRoomSpawner : MonoBehaviour
     }
 
     public GridController grid;
+    public int totalSpawnsInRoom = 4;
+    private int spawns;
     public RandomSpawner[] spawnerData;
 
     public void InitializeObjectSpawning()
@@ -28,10 +30,13 @@ public class ObjectRoomSpawner : MonoBehaviour
 
         for (int i = 0; i < randomIteration; i++)
         {
-            int randomPos = Random.Range(0, grid.availablePoints.Count);
-            GameObject go = Instantiate(data.spawnerData.objectToSpawn, grid.availablePoints[randomPos], Quaternion.identity, transform) as GameObject;
-            grid.availablePoints.RemoveAt(randomPos);
-            //Debug.Log("Object Spawned");
+            if(spawns < totalSpawnsInRoom)
+            {
+                int randomPos = Random.Range(0, grid.availablePoints.Count);
+                GameObject go = Instantiate(data.spawnerData.objectToSpawn, grid.availablePoints[randomPos], Quaternion.identity, transform) as GameObject;
+                grid.availablePoints.RemoveAt(randomPos);
+                spawns++;
+            }
         }
     }
 }

@@ -155,6 +155,8 @@ GameObject:
   - component: {fileID: 8501182783259712642}
   - component: {fileID: 3451242068009546075}
   - component: {fileID: 4531941487810522380}
+  - component: {fileID: 5395662196771019047}
+  - component: {fileID: 362694662226548950}
   m_Layer: 0
   m_Name: R-Ladder-1
   m_TagString: LadderRoomR
@@ -241,6 +243,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 18, y: 10}
   m_EdgeRadius: 0
+--- !u!114 &5395662196771019047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762100825400248194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e3a1ad461b003419cdb92478a554e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 3451242068009546075}
+  totalSpawnsInRoom: 4
+  spawnerData: []
+--- !u!114 &362694662226548950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762100825400248194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160125cf8cc85794b9c39382a3758ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomID: 0
+  idOverride: 0
+  hasEntered: 0
+  roomTyp: 
+  Door: {fileID: 8256679440996128414, guid: 8711af9738d769440b8a84d10e6307ae, type: 3}
+  T: {fileID: 0}
+  B: {fileID: 0}
+  L: {fileID: 0}
+  R: {fileID: 681191959841148125, guid: a29d54f64f196614991af188a59ba9ff, type: 3}
 --- !u!1 &4484082780159356891
 GameObject:
   m_ObjectHideFlags: 0

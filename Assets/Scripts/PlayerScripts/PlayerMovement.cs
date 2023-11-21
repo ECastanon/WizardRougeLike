@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        dashBar = GameObject.Find("dashBar").GetComponent<Image>();
 
         trailRenderer.emitting = false;
         dashTime = dashCD;
