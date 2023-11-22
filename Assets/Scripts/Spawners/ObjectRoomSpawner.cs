@@ -12,7 +12,7 @@ public class ObjectRoomSpawner : MonoBehaviour
     }
 
     public GridController grid;
-    public int totalSpawnsInRoom = 4;
+    public int totalSpawnsInRoom = 4; //Max Spawn Count
     private int spawns;
     public RandomSpawner[] spawnerData;
 
@@ -34,6 +34,7 @@ public class ObjectRoomSpawner : MonoBehaviour
             {
                 int randomPos = Random.Range(0, grid.availablePoints.Count);
                 GameObject go = Instantiate(data.spawnerData.objectToSpawn, grid.availablePoints[randomPos], Quaternion.identity, transform) as GameObject;
+
                 grid.availablePoints.RemoveAt(randomPos);
                 spawns++;
             }
