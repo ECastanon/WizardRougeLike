@@ -25,7 +25,7 @@ public class LevelGeneration : MonoBehaviour
     [HideInInspector]
     public GameObject ladderRoomT, ladderRoomB, ladderRoomL, ladderRoomR;
     public GameObject spawnRoomT, spawnRoomB, spawnRoomL, spawnRoomR;
-    [HideInInspector]
+    //[HideInInspector]
     public int setID;
 
     void Start()
@@ -242,6 +242,7 @@ public class LevelGeneration : MonoBehaviour
             drawPos.x *= 20;
             drawPos.y *= 12;
             MapPrefabSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapPrefabSelector>();
+            setID++;
             mapper.up = room.doorTop;
             mapper.down = room.doorBot;
             mapper.left = room.doorLeft;

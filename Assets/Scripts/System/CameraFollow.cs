@@ -10,31 +10,33 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         FindBounds();
     }
 
     void LateUpdate()
     {
-        if(player.transform.position.y > highScreenBounds.y) //Move up
+        if(player != null)
         {
-            //Debug.Log("MoveCamera");
-            ScrollCamera(1);
-        }
-        if (player.transform.position.y < lowScreenBounds.y) //Move down
-        {
-            //Debug.Log("MoveCamera");
-            ScrollCamera(2);
-        }
-        if (player.transform.position.x > highScreenBounds.x) //Move left
-        {
-            //Debug.Log("MoveCamera");
-            ScrollCamera(3);
-        }
-        if (player.transform.position.x < lowScreenBounds.x) //Move right
-        {
-            //Debug.Log("MoveCamera");
-            ScrollCamera(4);
+            if(player.transform.position.y > highScreenBounds.y) //Move up
+            {
+                //Debug.Log("MoveCamera");
+                ScrollCamera(1);
+            }
+            if (player.transform.position.y < lowScreenBounds.y) //Move down
+            {
+                //Debug.Log("MoveCamera");
+                ScrollCamera(2);
+            }
+            if (player.transform.position.x > highScreenBounds.x) //Move left
+            {
+                //Debug.Log("MoveCamera");
+                ScrollCamera(3);
+            }
+            if (player.transform.position.x < lowScreenBounds.x) //Move right
+            {
+                //Debug.Log("MoveCamera");
+                ScrollCamera(4);
+            }
         }
     }
     void FindBounds()

@@ -19,7 +19,12 @@ public class MapPrefabSelector : MonoBehaviour
 
     void Create(GameObject roomType)
     {
-        Instantiate(roomType, transform.position, Quaternion.identity);
+        GameObject map = Instantiate(roomType, transform.position, Quaternion.identity);
+        if(this.gameObject.name == "MiniMapPrefab")
+        {
+            map.GetComponent<RoomMiniData>().playerInside = false;
+            map.GetComponent<RoomMiniData>().hasEnteredMini = false;
+        }
     }
 
     //Decides on the type of room to be created based on doors

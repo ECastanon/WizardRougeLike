@@ -16,7 +16,6 @@ public class RoomData : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
-        player = GameObject.FindGameObjectWithTag("Player");
 
         AddList();
         SetID();
@@ -79,6 +78,7 @@ public class RoomData : MonoBehaviour
     //Called in GridController
     public void PlayerEnter()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         LevelGeneration dg = GameObject.FindGameObjectWithTag("Rooms").GetComponent<LevelGeneration>();
         for (int i = 0; i < dg.roomMiniTypes.Count; i++)
         {
@@ -124,8 +124,6 @@ public class RoomData : MonoBehaviour
         {
             GameObject dg = GameObject.FindGameObjectWithTag("Rooms");
             RoomID = dg.GetComponent<LevelGeneration>().setID;
-            RoomID = RoomID - dg.GetComponent<LevelGeneration>().numberOfRooms;
-            dg.GetComponent<LevelGeneration>().setID++;
         }
     }
     //Gets the room type

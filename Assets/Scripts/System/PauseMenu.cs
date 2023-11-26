@@ -54,6 +54,7 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         OptionsUI.SetActive(false);
+        GameObject.Find("Main Camera").GetComponent<CameraFollow>().player = null;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     //Option Settings
