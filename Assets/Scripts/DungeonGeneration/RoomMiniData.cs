@@ -38,7 +38,7 @@ public class RoomMiniData : MonoBehaviour
     void SetID()
     {
         GameObject dg = GameObject.FindGameObjectWithTag("Rooms");
-        RoomIDMini = dg.GetComponent<LevelGeneration>().setID;
+        //RoomIDMini = dg.GetComponent<LevelGeneration>().setID;
     }
     void Highlight()
     {

@@ -27,6 +27,7 @@ public class LevelGeneration : MonoBehaviour
     public GameObject spawnRoomT, spawnRoomB, spawnRoomL, spawnRoomR;
     //[HideInInspector]
     public int setID;
+    public int setMiniID;
 
     void Start()
     {
@@ -242,6 +243,7 @@ public class LevelGeneration : MonoBehaviour
             drawPos.x *= 20;
             drawPos.y *= 12;
             MapPrefabSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapPrefabSelector>();
+            mapper.idToPass = setID;
             setID++;
             mapper.up = room.doorTop;
             mapper.down = room.doorBot;
@@ -265,6 +267,8 @@ public class LevelGeneration : MonoBehaviour
             
             MapPrefabSelector miniMapper = Object.Instantiate(roomTemplate, drawPos, Quaternion.identity).GetComponent<MapPrefabSelector>();
             miniMapper.isMini = true;
+            miniMapper.idToPass = setMiniID;
+            setMiniID++;
             miniMapper.up = room.doorTop;
             miniMapper.down = room.doorBot;
             miniMapper.left = room.doorLeft;

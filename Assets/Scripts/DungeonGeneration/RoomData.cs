@@ -18,7 +18,6 @@ public class RoomData : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
         AddList();
-        SetID();
         CheckIfLast();
     }
 
@@ -78,7 +77,6 @@ public class RoomData : MonoBehaviour
     //Called in GridController
     public void PlayerEnter()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         LevelGeneration dg = GameObject.FindGameObjectWithTag("Rooms").GetComponent<LevelGeneration>();
         for (int i = 0; i < dg.roomMiniTypes.Count; i++)
         {
@@ -115,15 +113,6 @@ public class RoomData : MonoBehaviour
             {
                 rmt.GetComponent<RoomMiniData>().playerInside = false;
             }
-        }
-    }
-    //Sets the room's ID
-    void SetID()
-    {
-        if(idOverride == false) //Does not set ID for rooms spawned over the original
-        {
-            GameObject dg = GameObject.FindGameObjectWithTag("Rooms");
-            RoomID = dg.GetComponent<LevelGeneration>().setID;
         }
     }
     //Gets the room type

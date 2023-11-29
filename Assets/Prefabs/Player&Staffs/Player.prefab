@@ -191,6 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   currentMoveSpeed: 0
+  canMove: 1
   rb: {fileID: 272548465994311115}
   flip: 0
   dashBar: {fileID: 0}
@@ -215,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d54385df2f0cfa44a6914cebff229db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 10
+  MaxHp: 20
   currentMaxHP: 0
   hp: 0
   hit: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private GameObject gameManager;
+    private GameObject gameManager, gameOverPanel;
 
     //Player data
     public float MaxHp;
@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
         hpcount = GameObject.Find("HPCount").GetComponent<TextMeshProUGUI>();
         manacircle = GameObject.Find("ManaCircle");
         DamageSFX = GameObject.Find("PlayerDamaged").GetComponent<AudioSource>();
+        gameOverPanel = GameObject.Find("GameOverPanel");
 
         currentMaxHP = MaxHp;
         hp = MaxHp;
@@ -108,7 +109,13 @@ public class Player : MonoBehaviour
                 UpdateHPBar();
                 if (hp <= 0)
                 {
-                    //Debug.Log("You Lose");
+                    gameOverPanel.GetComponent<Animator>().Play("GameOverSlideIn");
+                    GameObject[] ea = GameObject.FindGameObjectsWithTag("Enemy");
+                    foreach (GameObject enemy in ea)
+                    {
+                        enemy.GetComponent<EnemyActivator>().Deactivate();
+                    }
+                    Time.timeScale = 0;
                 }
             } else
             {

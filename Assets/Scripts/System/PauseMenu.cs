@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -55,6 +56,7 @@ public class PauseMenu : MonoBehaviour
     {
         OptionsUI.SetActive(false);
         GameObject.Find("Main Camera").GetComponent<CameraFollow>().player = null;
+        paused = !paused;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     //Option Settings
@@ -62,8 +64,8 @@ public class PauseMenu : MonoBehaviour
     {
         if(OptionsUI.active == false)
         {
-            Debug.Log("test");
             OptionsUI.SetActive(true);
+            GameObject.Find("VolumeSlider").GetComponent<Slider>().value = GameObject.Find("BGM").GetComponent<AudioSource>().volume;
         } else 
         {
             OptionsUI.SetActive(false);

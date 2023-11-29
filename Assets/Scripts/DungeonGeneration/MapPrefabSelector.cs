@@ -12,6 +12,7 @@ public class MapPrefabSelector : MonoBehaviour
 
     public bool up, down, left, right;
     public bool isMini = false;
+    public int idToPass;
 
     //Rate at which a ruined room will appear
     private float ruinRate = 0.5f;
@@ -20,10 +21,15 @@ public class MapPrefabSelector : MonoBehaviour
     void Create(GameObject roomType)
     {
         GameObject map = Instantiate(roomType, transform.position, Quaternion.identity);
-        if(this.gameObject.name == "MiniMapPrefab")
+        if(map.GetComponent<RoomData>() != null)
         {
-            map.GetComponent<RoomMiniData>().playerInside = false;
-            map.GetComponent<RoomMiniData>().hasEnteredMini = false;
+            map.GetComponent<RoomData>().RoomID = idToPass;
+            Destroy(this.gameObject);
+        }
+        if(map.GetComponent<RoomMiniData>() != null)
+        {
+            map.GetComponent<RoomMiniData>().RoomIDMini = idToPass;
+            Destroy(this.gameObject);
         }
     }
 
@@ -126,6 +132,5 @@ public class MapPrefabSelector : MonoBehaviour
     {
         healRate = 1f;
         PickRoom();
-        Destroy(this.gameObject);
     }
 }

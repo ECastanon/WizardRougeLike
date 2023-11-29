@@ -55,6 +55,15 @@ public class EnemyMovement : MonoBehaviour
             animator.SetBool("isWalking", false);
             inRange = true;
         }
+        //For Goblin aiming bug (Aiming and Range were conflicting in some situations)
+        if(gameObject.name == "Goblin(Clone)")
+        {
+            if(distanceToPlayer > range && isAiming == true)
+            {
+                isAiming = false;
+            }
+        }
+
     }
     public void FacePlayer()
     {

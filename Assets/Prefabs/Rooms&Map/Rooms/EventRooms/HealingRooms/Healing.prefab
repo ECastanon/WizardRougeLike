@@ -4252,7 +4252,7 @@ GameObject:
   - component: {fileID: 397164004142851258}
   - component: {fileID: -3693052917461711204}
   m_Layer: 0
-  m_Name: B-Healing
+  m_Name: Healing
   m_TagString: EndRoomB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

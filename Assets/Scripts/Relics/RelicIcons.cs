@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class RelicIcons : MonoBehaviour
@@ -26,7 +27,7 @@ public class RelicIcons : MonoBehaviour
         {
             GameObject objToSpawn = Instantiate(relicPrefab, transform.position, Quaternion.identity);
             objToSpawn.transform.SetParent(ip);
-            objToSpawn.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = GameObject.Find(loadIn).GetComponent<SpriteRenderer>().sprite;
+            objToSpawn.transform.GetChild(0).GetComponent<Image>().sprite = GameObject.Find(loadIn).GetComponent<SpriteRenderer>().sprite;
             objToSpawn.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Lv " + relicLevel[i].ToString();
             relicsToLoad.Add(objToSpawn);
             i++;
