@@ -5,9 +5,11 @@ using TMPro;
 
 public class Ladder : MonoBehaviour
 {
-    private bool playerIn = false, used = false;
-    private GameObject player;
-    private GameObject victoryPanel, infoPanel;
+    public bool playerIn = false;
+    public bool useded = false;
+    public GameObject player;
+    public GameObject victoryPanel, infoPanel;
+    public float distance;
 
     void Start()
     {
@@ -16,11 +18,13 @@ public class Ladder : MonoBehaviour
     }
     void Update()
     {
-        if (playerIn = true && Input.GetKeyDown("e"))
+        player = GameObject.FindGameObjectWithTag("Player");
+        distance = Vector3.Distance(transform.position, player.transform.position);
+        if (playerIn = true && Input.GetKeyDown("e") && distance < 3) //Without Distance this for some reason is being called by FountainHealing???
         {
-            infoPanel.GetComponent<Animator>().Play("InfoSlideOut");
+            infoPanel.GetComponent<Animator>().Play("InfoPanelSlideOut", 0, 0);
             victoryPanel.GetComponent<Animator>().Play("GameOverSlideIn");
-            used = true;
+            useded = true;
         }
     }
 
@@ -28,7 +32,7 @@ public class Ladder : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            if(used == false){infoPanel.GetComponent<Animator>().Play("InfoSlideIn");}
+            if(useded == false){infoPanel.GetComponent<Animator>().Play("InfoSlideIn", 0, 0);}
             infoPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Press [E] to Escape!";
             playerIn = true;
         }
@@ -37,7 +41,7 @@ public class Ladder : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            infoPanel.GetComponent<Animator>().Play("InfoSlideOut");
+            infoPanel.GetComponent<Animator>().Play("InfoPanelSlideOut", 0, 0);
             playerIn = false;
         }
     }

@@ -57,6 +57,7 @@ public class PauseMenu : MonoBehaviour
         OptionsUI.SetActive(false);
         GameObject.Find("Main Camera").GetComponent<CameraFollow>().player = null;
         paused = !paused;
+        if(paused == true){paused = false;}
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     //Option Settings

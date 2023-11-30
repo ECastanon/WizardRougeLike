@@ -5,10 +5,11 @@ using TMPro;
 
 public class FountainHealing : MonoBehaviour
 {
-    private bool used = false, playerIn = false;
-    private GameObject player;
-    private GameObject infoPanel;
-    private bool infoIn = false;
+    public bool used = false;
+    public bool playerIn = false;
+    public GameObject player;
+    public GameObject infoPanel;
+    public bool infoIn = false;
 
     void Start()
     {
@@ -18,10 +19,11 @@ public class FountainHealing : MonoBehaviour
     {
         if (playerIn = true && Input.GetKeyDown("e") && used == false)
         {
+            player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<Player>().hp = player.GetComponent<Player>().currentMaxHP;
             Debug.Log("Im healed!");
             player.GetComponent<Player>().UpdateHPBar();
-            infoPanel.GetComponent<Animator>().Play("InfoSlideOut");
+            infoPanel.GetComponent<Animator>().Play("InfoPanelSlideOut", 0, 0);
             infoIn = false;
             used = true;
         }
@@ -34,7 +36,7 @@ public class FountainHealing : MonoBehaviour
             player = col.gameObject;
             Debug.Log("[E] to Heal");
             playerIn = true;
-            infoPanel.GetComponent<Animator>().Play("InfoSlideIn");
+            infoPanel.GetComponent<Animator>().Play("InfoSlideIn", 0, 0);
             infoPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Press [E] to Heal!";
             infoIn = true;
         }
@@ -46,7 +48,7 @@ public class FountainHealing : MonoBehaviour
             playerIn = false;
             if(infoIn == true)
             {
-                infoPanel.GetComponent<Animator>().Play("InfoSlideOut");
+                infoPanel.GetComponent<Animator>().Play("InfoPanelSlideOut", 0, 0);
                 infoIn = false;
             }
         }
