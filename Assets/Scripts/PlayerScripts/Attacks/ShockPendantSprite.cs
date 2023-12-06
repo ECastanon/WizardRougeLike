@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class ShockPendantSprite : MonoBehaviour
 {
-    [HideInInspector]
     public int damage;
-    [HideInInspector]
     public int damageMod = 0;
 
     public void Damage(Collider2D col)

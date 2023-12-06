@@ -21,8 +21,8 @@ public class StaffAttacks : MonoBehaviour
     public float timerStrong = 0;
     public float timerCharge = 0;
 
-    public Image strongBar;
-    public Image chargeBar;
+    private Image strongBar;
+    private Image chargeBar;
 
     private float chargeStoneDelay = .25f;
 

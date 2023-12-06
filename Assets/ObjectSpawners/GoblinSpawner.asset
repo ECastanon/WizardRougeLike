@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb91a7d16a692cc4e8738b368753c283, type: 3}
   m_Name: GoblinSpawner
   m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 2794048014238389974, guid: 6026285fbd056f243bd541e50e8b4126, type: 3}
+  objectToSpawn: {fileID: 1432987612941103159, guid: 64df2b08e7185274bad354999e57f88c, type: 3}
   minSpawn: 0
   maxSpawn: 1

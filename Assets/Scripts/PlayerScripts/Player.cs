@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
         //2 - EarthStaff
         //3 - WaterStaff
         //4 - WindStaff
+    public GameObject staffChild;
     public Sprite manaStaff;
     public Sprite fireStaff;
     public Sprite earthStaff;
@@ -90,11 +91,14 @@ public class Player : MonoBehaviour
 
     void GetWeaponType()
     {
-        if (weaponType == 0) { this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = manaStaff; }
-        if (weaponType == 1) { this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = fireStaff; }
-        if (weaponType == 2) { this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = earthStaff; }
-        if (weaponType == 3) { this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = waterStaff; }
-        if (weaponType == 4) { this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = windStaff; }
+        if(staffChild != null)
+        {
+            if (weaponType == 0) { staffChild.GetComponent<SpriteRenderer>().sprite = manaStaff; }
+            if (weaponType == 1) { staffChild.GetComponent<SpriteRenderer>().sprite = fireStaff; }
+            if (weaponType == 2) { staffChild.GetComponent<SpriteRenderer>().sprite = earthStaff; }
+            if (weaponType == 3) { staffChild.GetComponent<SpriteRenderer>().sprite = waterStaff; }
+            if (weaponType == 4) { staffChild.GetComponent<SpriteRenderer>().sprite = windStaff; }
+        }
     }
 
     public void TakeDamage(int amount)
@@ -138,15 +142,16 @@ public class Player : MonoBehaviour
 
     public void EnableSP()
     {
-        if(!gameObject.transform.GetChild(2).GetChild(0).gameObject.activeSelf)
+        GameObject sp = transform.GetChild(1).gameObject;
+        if(!sp.activeSelf)
         {
-            gameObject.transform.GetChild(2).GetChild(0).gameObject.SetActive(true);
+            sp.SetActive(true);
         }
 
-        gameObject.transform.GetChild(2).GetChild(0).gameObject.GetComponent<ShockPendant>().damage = 5 + ((gameManager.GetComponent<RelicEffects>().esPendantLvl-1) * 2);
+        sp.GetComponent<ShockPendant>().damage = 5 + ((gameManager.GetComponent<RelicEffects>().esPendantLvl-1) * 2);
         if(gameManager.GetComponent<RelicEffects>().esPendantLvl == 0)
         {
-            gameObject.transform.GetChild(2).GetChild(0).gameObject.GetComponent<ShockPendant>().damage = 5;
+            sp.GetComponent<ShockPendant>().damage = 5;
         }
     }
 

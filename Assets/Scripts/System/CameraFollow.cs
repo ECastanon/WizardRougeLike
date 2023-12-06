@@ -41,8 +41,8 @@ public class CameraFollow : MonoBehaviour
     }
     void FindBounds()
     {
-        highScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        lowScreenBounds = highScreenBounds - new Vector2(20, 10);
+        highScreenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        lowScreenBounds = highScreenBounds - new Vector2(20,11);
 
     }
     void ScrollCamera(int direction)

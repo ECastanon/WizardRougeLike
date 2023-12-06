@@ -12,12 +12,10 @@ public class EnemyMovement : MonoBehaviour
     private float distanceToPlayer;
 
     Vector3 movement;
-    public float enemyScale = 1;
+    public float enemyScale = 2;
     private bool flip = false;
 
     private GameObject player;
-
-    [HideInInspector]
     public Animator animator;
 
     // Use this for initialization
@@ -43,16 +41,16 @@ public class EnemyMovement : MonoBehaviour
 
     public void ApproachPlayer()
     {
-        animator.SetBool("isWalking", true);
+        animator.SetBool("Run", true);
         if (distanceToPlayer > range && isAiming == false)
         {
             transform.position = Vector2.MoveTowards(transform.position, movement, curspeed * Time.deltaTime);
             inRange = false;
-            animator.SetBool("isAiming", false);
+            animator.SetBool("Attack", false);
         }
         if (distanceToPlayer < range)
         {
-            animator.SetBool("isWalking", false);
+            animator.SetBool("Run", false);
             inRange = true;
         }
         //For Goblin aiming bug (Aiming and Range were conflicting in some situations)
@@ -67,15 +65,15 @@ public class EnemyMovement : MonoBehaviour
     }
     public void FacePlayer()
     {
-        if (movement.x < transform.position.x && flip == false)
-        {
-            transform.localScale = new Vector2(-enemyScale, enemyScale);
-            flip = true;
-        }
-        if (movement.x >= transform.position.x && flip == true)
+        if (movement.x < transform.position.x && flip == true)
         {
             transform.localScale = new Vector2(enemyScale, enemyScale);
             flip = false;
+        }
+        if (movement.x >= transform.position.x && flip == false)
+        {
+            transform.localScale = new Vector2(-enemyScale, enemyScale);
+            flip = true;
         }
     }
 }

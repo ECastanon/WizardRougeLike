@@ -12,8 +12,9 @@ public class EnemyAttacks : MonoBehaviour
     public GameObject attackPoint;
 
     [Header("Attacks")]
-    public bool isProjectile;
-    public GameObject attackType1;
+    public bool isMelee;
+    public bool isRanged;
+    public bool isMagic;
     public string ProjectileName;
 
     void Start()
@@ -30,7 +31,9 @@ public class EnemyAttacks : MonoBehaviour
             {
                 timer1 = 0;
                 //Debug.Log("Attack Type 1");
-                animator.SetBool("isAiming", true);
+                if(isMelee){animator.SetBool("Attack", true);}
+                if(isRanged){animator.SetBool("RangedAttack", true);}
+                if(isMagic){animator.SetBool("MagicAttack", true);}
                 enemyMove.isAiming = true;
             }
         }
@@ -41,12 +44,14 @@ public class EnemyAttacks : MonoBehaviour
     }
     public void disableAim()
     {
-        animator.SetBool("isAiming", false);
+        animator.SetBool("Attack", false);
+        animator.SetBool("RangedAttack", false);
+        animator.SetBool("MagicAttack", false);
         enemyMove.isAiming = false;
     }
     public void AttackType1()
     {
-        if (isProjectile == true)
+        if (isRanged == true || isMagic == true)
         {
             switch (ProjectileName)
             {
@@ -60,11 +65,6 @@ public class EnemyAttacks : MonoBehaviour
                     Debug.Log("Invalid Enemy Projectile Name");
                     break;
             }
-            if (isProjectile == false)
-            {
-
-            }
         }
-
     }
 }

@@ -41,7 +41,8 @@ public class GridController : MonoBehaviour
                 go.transform.localPosition = new Vector2(x - (grid.columns - grid.horizontalOffset), y - (grid.rows - grid.verticalOffset));
                 go.name = "X: " + x + ", Y: " + y;
                 availablePoints.Add(go.transform.position);
-                go.SetActive(false);
+                Destroy(go);
+                //go.SetActive(false);
             }
         }
         //Activate Entities On Player Entry

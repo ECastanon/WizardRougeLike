@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyActivator : MonoBehaviour
 {
-    private SpriteRenderer sr;
+    public List<SpriteRenderer> sr = new List<SpriteRenderer>();
+    public List<Color> oldColor = new List<Color>();
     private Enemy enemy;
     private EnemyMovement em;
     private Animator anim;
@@ -12,22 +13,38 @@ public class EnemyActivator : MonoBehaviour
     private bool isActive;
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
+        AddDescendantsWithSprite(transform, sr);
+        opacity = 0;
+
         enemy = GetComponent<Enemy>();
         em = GetComponent<EnemyMovement>();
         anim = GetComponent<Animator>();
 
-        sr.color = new Color(1,1,1,0);
         enemy.enabled = false;
         em.enabled = false;
+    }
+    private void AddDescendantsWithSprite(Transform parent, List<SpriteRenderer> list)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.gameObject.GetComponent<SpriteRenderer>() != null)
+            {
+                list.Add(child.gameObject.GetComponent<SpriteRenderer>());
+                oldColor.Add(child.gameObject.GetComponent<SpriteRenderer>().color);
+            }
+            AddDescendantsWithSprite(child, list);
+        }
     }
     void Update()
     {
         if(opacity <= 1)
         {
             opacity += Time.deltaTime;
-            Color alpha = new Color(1,1,1,opacity);
-            sr.color = alpha;
+            for (int i = 0; i < sr.Count; i++)
+            {
+                Color alpha = new Color(oldColor[i].r, oldColor[i].g, oldColor[i].b, opacity);
+                sr[i].color = alpha;
+            }
         } else 
         {
             if(isActive == false)
@@ -35,6 +52,7 @@ public class EnemyActivator : MonoBehaviour
                 enemy.enabled = true;
                 em.enabled = true;
                 isActive = true;
+                enemy.OnActive();
             }
         }
     }

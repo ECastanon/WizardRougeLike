@@ -3362,7 +3362,7 @@ MonoBehaviour:
   roomMiniCount: 0
   ladderSpawned: 0
   SpawnRoomExists: 0
-  player: {fileID: 2582410235697049128, guid: f740eb7f8b52c14459455a0a83e9c385, type: 3}
+  player: {fileID: 3570405299903362730, guid: eb4e29cbeed40aa489d2de5e91d4e6f8, type: 3}
   ladderRoomT: {fileID: 3750723044061932372, guid: c8feec0bc5f8d0942aeea033194d98ba, type: 3}
   ladderRoomB: {fileID: 2599256920920312827, guid: 465c9a8ced35a504f981b2b4f14c4e82, type: 3}
   ladderRoomL: {fileID: 7056797493257785484, guid: 90e3c7a9e135d4a48b5128452db52422, type: 3}

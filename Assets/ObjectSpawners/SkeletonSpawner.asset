@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb91a7d16a692cc4e8738b368753c283, type: 3}
   m_Name: SkeletonSpawner
   m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 5798200069524871031, guid: 10c95fec952f5194a9043360fd473bef, type: 3}
+  objectToSpawn: {fileID: 3808618580018841790, guid: e9ef4afb0617a6a408be81c6393a2513, type: 3}
   minSpawn: 2
   maxSpawn: 4

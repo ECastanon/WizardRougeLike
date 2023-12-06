@@ -5,23 +5,19 @@ using UnityEngine;
 public class ShockPendant : MonoBehaviour
 {
     private GameObject enemyManager;
-
+    public GameObject sprite;
     public GameObject enemyTarget;
-
     public GameObject player;
-
     public int rechargeTime;
     public float timer;
-
     public float range;
-
     public int damage;
     public int damageMod = 0;
 
     void Start()
     {
         enemyManager = GameObject.FindGameObjectWithTag("EnemyManager");
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        sprite.SetActive(false);
     }
 
     void Update()
@@ -65,10 +61,10 @@ public class ShockPendant : MonoBehaviour
     public void FaceEnemy()
     {
         //Enables the lightning immediately before finding a new target
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        sprite.SetActive(true);
         //Set Damage Values
-        gameObject.transform.GetChild(0).gameObject.GetComponent<ShockPendantSprite>().damage = damage;
-        gameObject.transform.GetChild(0).gameObject.GetComponent<ShockPendantSprite>().damageMod = damageMod;
+        sprite.GetComponent<ShockPendantSprite>().damage = damage;
+        sprite.GetComponent<ShockPendantSprite>().damageMod = damageMod;
 
         //If player is facing right
         if (player.GetComponent<PlayerMovement>().flip == false)
@@ -93,6 +89,6 @@ public class ShockPendant : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
         enemyTarget = null;
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        sprite.SetActive(false);
     }
 }

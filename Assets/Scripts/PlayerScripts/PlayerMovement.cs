@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float currentMoveSpeed;
     public bool canMove = true;
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
+    private Animator animator;
 
     Vector2 movement;
     Vector2 moveDirection;
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject gameManager;
 
     [Header("DashData")]
-    [SerializeField] private TrailRenderer trailRenderer;
+    private TrailRenderer trailRenderer;
     public bool canDash = true;
     public bool isDashing;
     //How much force is applied
@@ -37,7 +38,10 @@ public class PlayerMovement : MonoBehaviour
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         dashBar = GameObject.Find("dashBar").GetComponent<Image>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
 
+        trailRenderer = gameObject.GetComponent<TrailRenderer>();
         trailRenderer.emitting = false;
         dashTime = dashCD;
 
@@ -53,6 +57,12 @@ public class PlayerMovement : MonoBehaviour
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKey("up") || Input.GetKey("down") || Input.GetKey("left") || Input.GetKey("right") || Input.GetKey("w") ||
+            Input.GetKey("s") || Input.GetKey("a") || Input.GetKey("d"))
+        {
+            animator.SetBool("isRunning", true);
+        } else {animator.SetBool("isRunning", false);}
 
             moveDirection = new Vector2(movement.x, movement.y).normalized;
             if(dashTime < dashCD)
@@ -88,12 +98,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (mousePos.x < transform.position.x && flip == false)
         {
-            transform.localScale = new Vector2(-1, 1);
+            transform.localScale = new Vector2(2, 2);
             flip = true;
         }
         if (mousePos.x >= transform.position.x && flip == true)
         {
-            transform.localScale = new Vector2(1, 1);
+            transform.localScale = new Vector2(-2, 2);
             flip = false;
         }
 

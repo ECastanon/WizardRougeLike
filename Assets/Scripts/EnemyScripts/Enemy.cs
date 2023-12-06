@@ -6,12 +6,13 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour
 {
     private float hpFromSoulJars = 0;
+    public List<SpriteRenderer> sr = new List<SpriteRenderer>();
+    public List<Color> oldColor = new List<Color>();
 
     [Header("Enemy Data")]
     public float startHealth;
     public float health;
     public int experience;
-    private Color oldColor;
 
     public GameObject enemyDeathEffect;
 
@@ -30,8 +31,23 @@ public class Enemy : MonoBehaviour
 
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         player = GameObject.FindGameObjectWithTag("Player");
-
-        oldColor = gameObject.GetComponent<Renderer>().material.color;
+    }
+    public void OnActive()
+    {
+        AddDescendantsWithSprite(transform, sr);
+        oldColor.RemoveAt(0); oldColor.RemoveAt(0); oldColor.RemoveAt(0); oldColor.RemoveAt(0);
+    }
+    private void AddDescendantsWithSprite(Transform parent, List<SpriteRenderer> list)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.gameObject.GetComponent<SpriteRenderer>() != null && child.gameObject.name != "Shadow")
+            {
+                list.Add(child.gameObject.GetComponent<SpriteRenderer>());
+                oldColor.Add(child.gameObject.GetComponent<SpriteRenderer>().color);
+            }
+            AddDescendantsWithSprite(child, list);
+        }
     }
 
     public void TakeDamage(float amount)
@@ -52,13 +68,22 @@ public class Enemy : MonoBehaviour
         float flashLength = .02f;
         while(flashspeed <= flashLength)
         {
-            gameObject.GetComponent<Renderer>().material.color = oldColor;
+            for (int i = 0; i < sr.Count; i++)
+            {
+                sr[i].color = new Color(oldColor[i].r, oldColor[i].g, oldColor[i].b);
+            }
             yield return new WaitForSeconds(flashLength - flashspeed);
-            gameObject.GetComponent<Renderer>().material.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            for (int i = 0; i < sr.Count; i++)
+            {
+                sr[i].color = new Color(0.5f, 0.5f, 0.5f);
+            }
             yield return new WaitForSeconds(flashLength - flashspeed);
             flashspeed += Time.deltaTime;
         }
-        gameObject.GetComponent<Renderer>().material.color = oldColor;
+        for (int i = 0; i < sr.Count; i++)
+        {
+            sr[i].color = new Color(oldColor[i].r, oldColor[i].g, oldColor[i].b);
+        }
     }
 
     void RewardEXP()
@@ -109,7 +134,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        gameObject.GetComponent<Renderer>().material.color = oldColor;
+        //foreach (SpriteRenderer sprite in sr){sprite.gameObject.GetComponent<Renderer>().material.color = oldColor[sprite];}
         enemyManager.GetComponent<EnemyCounter>().Enemies.Remove(this.gameObject);
         enemyManager.GetComponent<EnemyCounter>().OpenDoors();
 

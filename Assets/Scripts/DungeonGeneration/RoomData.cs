@@ -8,9 +8,6 @@ public class RoomData : MonoBehaviour
     public bool idOverride = false;
     public bool hasEntered = false;
     public string roomTyp;
-
-    public GameObject Door, T, B, L, R;
-
     private GameObject gameManager;
     private GameObject player;
     void Start()
@@ -52,23 +49,24 @@ public class RoomData : MonoBehaviour
     //Called in GridController
     public void SetDoors()
     {
+        string doorString = gameObject.name;
         if (hasEntered == false)
         {
-            if (T != null)
+            if (doorString.Contains("T"))
             {
-                ObjectPooler.Instance.SpawnFromPool("Door", new Vector2(T.transform.position.x, T.transform.position.y - 1), Quaternion.Euler(0, 0, 0));
+                ObjectPooler.Instance.SpawnFromPool("Door", new Vector2(transform.position.x, transform.position.y + 4.5f), Quaternion.Euler(0, 0, 0));
             }
-            if (B != null)
+            if (doorString.Contains("B"))
             {
-                ObjectPooler.Instance.SpawnFromPool("Door", new Vector2(B.transform.position.x, B.transform.position.y + 1), Quaternion.Euler(0, 0, 0));
+                ObjectPooler.Instance.SpawnFromPool("Door", new Vector2(transform.position.x, transform.position.y - 4.5f), Quaternion.Euler(0, 0, 0));
             }
-            if (L != null)
+            if (doorString.Contains("L"))
             {
-                ObjectPooler.Instance.SpawnFromPool("Door", new Vector2(L.transform.position.x + 0.5f, L.transform.position.y), Quaternion.Euler(0, 0, 90));
+                ObjectPooler.Instance.SpawnFromPool("Door", new Vector2(transform.position.x - 9, transform.position.y), Quaternion.Euler(0, 0, 90));
             }
-            if (R != null)
+            if (doorString.Contains("R"))
             {
-                ObjectPooler.Instance.SpawnFromPool("Door", new Vector2(R.transform.position.x - 0.5f, R.transform.position.y), Quaternion.Euler(0, 0, 90));
+                ObjectPooler.Instance.SpawnFromPool("Door", new Vector2(transform.position.x + 9, transform.position.y), Quaternion.Euler(0, 0, 90));
             }
             hasEntered = true;
         }
