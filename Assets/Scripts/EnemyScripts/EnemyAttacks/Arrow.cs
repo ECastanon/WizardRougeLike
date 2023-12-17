@@ -39,7 +39,10 @@ public class Arrow : MonoBehaviour, IPooledObject
     public void Timer()
     {
         timer += Time.deltaTime;
-        if (timer >= timeAlive) gameObject.SetActive(false); //Disables objects to be reused
+        if (timer >= timeAlive)
+        {
+            Death();
+        }
     }
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -48,11 +51,20 @@ public class Arrow : MonoBehaviour, IPooledObject
             //Debug.Log("Attack has collided with the Player");
             Player player = col.GetComponent<Player>();
             player.TakeDamage(damage);
-            gameObject.SetActive(false); //Disables objects to be reused
+            Death();
         }
     }
     public void ResetTimer()
     {
         timer = 0;
+    }
+    private void Death()
+    {
+        //If SpawnOnDeath is attached, the object will spawn a new object when destroyed
+        if(gameObject.GetComponent<SpawnOnDeath>())
+        {
+            gameObject.GetComponent<SpawnOnDeath>().DeathSpawn();
+        }
+        gameObject.SetActive(false); //Disables objects to be reused
     }
 }

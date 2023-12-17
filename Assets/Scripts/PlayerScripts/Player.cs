@@ -48,7 +48,6 @@ public class Player : MonoBehaviour
     [Header("SFX")]
     public AudioSource DamageSFX;
 
-    // Use this for initialization
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
@@ -63,6 +62,11 @@ public class Player : MonoBehaviour
 
         hpcount.text = hp.ToString() + "/" + MaxHp.ToString();
         GetWeaponType();
+
+        //Load in Data after Player is Initialized
+        gameManager.GetComponent<GameManager>().LoadData();
+        gameManager.GetComponent<RelicEffects>().LoadRelicData();
+        GameObject.Find("RelicPanel").GetComponent<RelicIcons>().LoadData();
     }
 
     void Update()

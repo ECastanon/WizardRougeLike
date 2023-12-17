@@ -135,4 +135,41 @@ public class PlayerMovement : MonoBehaviour
 
         dashTime = 0f;
     }
+    //Used for temporary movement changes
+    //Reverts to baseSpeed + sandals after the effect
+    public IEnumerator AdjustSpeed(string operation, float newSpeed, float seconds, bool isDebuff)
+    {
+        RelicEffects re = GameObject.Find("GameManager").GetComponent<RelicEffects>();
+        if(operation == "add")
+        {
+            if(isDebuff){newSpeed *= (1- (re.aTalismanLvl*0.15f));} //Reduces the effect by 15% for each aTalismanLvl
+            currentMoveSpeed += newSpeed;
+        }
+        if(operation == "multiply")
+        {
+            if(isDebuff){newSpeed *= (1- (re.aTalismanLvl*0.15f));} //Reduces the effect by 15% for each aTalismanLvl
+            currentMoveSpeed *= newSpeed;
+        } else {
+            Debug.Log("Invalid Operation! Can only Add or Multiply!");
+        }
+        yield return new WaitForSeconds(seconds);
+
+        //Perfrom the reverse operation to return to normal
+        if(operation == "add")
+        {
+            if(isDebuff){newSpeed *= (1- (re.aTalismanLvl*0.15f));}
+            currentMoveSpeed -= newSpeed;
+        }
+        if(operation == "multiply")
+        {
+            if(isDebuff){newSpeed *= (1- (re.aTalismanLvl*0.15f));}
+            currentMoveSpeed = currentMoveSpeed / newSpeed;
+        } else {
+            Debug.Log("Invalid Operation to Reverse!");
+        }
+    }
+    public void ResetSpeed() //Resets speed to be baseSpeed with sandals
+    {
+        currentMoveSpeed = (moveSpeed * (1.0f + gameManager.GetComponent<RelicEffects>().hSandals * .15f));
+    }
 }

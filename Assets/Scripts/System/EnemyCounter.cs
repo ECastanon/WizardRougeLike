@@ -36,6 +36,9 @@ public class EnemyCounter : MonoBehaviour
             }
             //Open Doors
 
+            //Resets speed to fix all debuffs
+            player.GetComponent<PlayerMovement>().ResetSpeed();
+
             //ONLY USED IF THE MEDAL OF VALOR IS ACTIVE
             if (gameManager.GetComponent<RelicEffects>().moValorLvl > 0)
             {

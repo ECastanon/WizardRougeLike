@@ -8,28 +8,40 @@ public class LevelGeneration : MonoBehaviour
     Room[,] rooms;
     List<Vector2> takenPositions = new List<Vector2>();
     private int gridSizeX, gridSizeY;
-    public int numberOfRooms;
-    public GameObject roomWhiteObj;
-    public GameObject roomTemplate;
-
     public GameObject dungeonGenerator;
 
-    public List<GameObject> roomTypes = new List<GameObject>();
+    [Header("Room Generation Data")]
+    public int numberOfRooms;
     public int roomCount;
-    public List<GameObject> roomMiniTypes = new List<GameObject>();
+    public List<GameObject> roomTypes = new List<GameObject>();
     public int roomMiniCount;
+    public List<GameObject> roomMiniTypes = new List<GameObject>();
     public bool ladderSpawned = false;
     public bool SpawnRoomExists = false;
-    public GameObject player;
+    public bool isFirstFloor = true; //When false, relocates the player to the spawn roon rather than creating a new player
 
-    [HideInInspector]
-    public GameObject ladderRoomT, ladderRoomB, ladderRoomL, ladderRoomR;
-    public GameObject spawnRoomT, spawnRoomB, spawnRoomL, spawnRoomR;
-    //[HideInInspector]
+    [Header("Prefabs")]
+    public GameObject player;
+    public GameObject roomWhiteObj;
+    public GameObject roomTemplate;
+    public GameObject ladderRoomT;
+    public GameObject ladderRoomB;
+    public GameObject ladderRoomL;
+    public GameObject ladderRoomR;
+    public GameObject spawnRoomT;
+    public GameObject spawnRoomB;
+    public GameObject spawnRoomL;
+    public GameObject spawnRoomR;
+
+    [Header("Room IDs")]
     public int setID;
     public int setMiniID;
 
     void Start()
+    {
+        StartDungeonGeneration();
+    }
+    public void StartDungeonGeneration()
     {
         if(numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2))
         {
@@ -47,6 +59,26 @@ public class LevelGeneration : MonoBehaviour
         {
             Debug.Log(child);
         }
+    }
+    public void ClearDungeon()
+    {
+        foreach(Transform room in transform) //Destroys all rooms
+        {
+            Destroy(room.gameObject);
+        }
+        foreach(Transform mini in GameObject.Find("MiniMap").transform) //Destroys all minimaps
+        {
+            Destroy(mini.gameObject);
+        }
+        //Clears dungeon data
+        roomCount = 0;
+        roomTypes.Clear();
+        roomMiniCount = 0;
+        roomMiniTypes.Clear();
+        ladderSpawned = false;
+        SpawnRoomExists = false;
+        setID = 0;
+        setMiniID = 0;
     }
 
     void CreateRooms()
@@ -262,7 +294,7 @@ public class LevelGeneration : MonoBehaviour
             Vector2 drawPos = room.gridPos;
             drawPos.x *= .55f; //.55f
             drawPos.y *= .4f; //.4f
-            drawPos.x -= 1;
+            drawPos.x += 13.5f;
             drawPos.y += 1;
             
             MapPrefabSelector miniMapper = Object.Instantiate(roomTemplate, drawPos, Quaternion.identity).GetComponent<MapPrefabSelector>();
@@ -345,9 +377,7 @@ public class LevelGeneration : MonoBehaviour
     private void GetSpawnRoom(int randomRoom, List<GameObject> PotentialLadderRooms)
     {
         int spawnedRoom = Random.Range(0, PotentialLadderRooms.Count);
-        CameraFollow cam = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
         GameObject roomToSpawn;
-        GameObject playerToSpawn;
         while(spawnedRoom == randomRoom)
         {
             spawnedRoom = Random.Range(0, PotentialLadderRooms.Count);
@@ -357,9 +387,7 @@ public class LevelGeneration : MonoBehaviour
             if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoom")
             {
                 roomToSpawn = Instantiate(spawnRoomT, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
-                playerToSpawn = Instantiate(player, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
-                cam.player = playerToSpawn;
-                cam.transform.position = new Vector3(playerToSpawn.transform.position.x, playerToSpawn.transform.position.y, -100);
+                SetPlayer(spawnedRoom, PotentialLadderRooms);
                 roomToSpawn.GetComponent<RoomData>().idOverride = true;
                 roomToSpawn.GetComponent<RoomData>().RoomID = PotentialLadderRooms[spawnedRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
@@ -369,9 +397,7 @@ public class LevelGeneration : MonoBehaviour
             if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoomB")
             {
                 roomToSpawn = Instantiate(spawnRoomB, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
-                playerToSpawn = Instantiate(player, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
-                cam.player = playerToSpawn;
-                cam.transform.position = new Vector3(playerToSpawn.transform.position.x, playerToSpawn.transform.position.y, -100);
+                SetPlayer(spawnedRoom, PotentialLadderRooms);
                 roomToSpawn.GetComponent<RoomData>().idOverride = true;
                 roomToSpawn.GetComponent<RoomData>().RoomID = PotentialLadderRooms[spawnedRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
@@ -380,9 +406,7 @@ public class LevelGeneration : MonoBehaviour
             if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoomL")
             {
                 roomToSpawn = Instantiate(spawnRoomL, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
-                playerToSpawn = Instantiate(player, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
-                cam.player = playerToSpawn;
-                cam.transform.position = new Vector3(playerToSpawn.transform.position.x, playerToSpawn.transform.position.y, -100);
+                SetPlayer(spawnedRoom, PotentialLadderRooms);
                 roomToSpawn.GetComponent<RoomData>().idOverride = true;
                 roomToSpawn.GetComponent<RoomData>().RoomID = PotentialLadderRooms[spawnedRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
@@ -391,14 +415,28 @@ public class LevelGeneration : MonoBehaviour
             if (PotentialLadderRooms[spawnedRoom].gameObject.tag == "EndRoomR")
             {
                 roomToSpawn = Instantiate(spawnRoomR, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
-                playerToSpawn = Instantiate(player, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
-                cam.player = playerToSpawn;
-                cam.transform.position = new Vector3(playerToSpawn.transform.position.x, playerToSpawn.transform.position.y, -100);
+                SetPlayer(spawnedRoom, PotentialLadderRooms);
                 roomToSpawn.GetComponent<RoomData>().idOverride = true;
                 roomToSpawn.GetComponent<RoomData>().RoomID = PotentialLadderRooms[spawnedRoom].GetComponent<RoomData>().RoomID;
                 PotentialLadderRooms[spawnedRoom].gameObject.SetActive(false);
                 SpawnRoomExists = true;
             }  
         }
+    }
+    private void SetPlayer(int spawnedRoom, List<GameObject> PotentialLadderRooms)
+    {
+        GameObject playerToSpawn;
+        CameraFollow cam = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
+        if(isFirstFloor == true)
+        {
+            playerToSpawn = Instantiate(player, PotentialLadderRooms[spawnedRoom].transform.position, Quaternion.identity);
+            cam.player = playerToSpawn;
+            cam.transform.position = new Vector3(playerToSpawn.transform.position.x, playerToSpawn.transform.position.y, -100);
+            isFirstFloor = false;
+        } else {
+            playerToSpawn = GameObject.FindGameObjectWithTag("Player");
+            playerToSpawn.transform.position = PotentialLadderRooms[spawnedRoom].transform.position;
+        }
+
     }
 }

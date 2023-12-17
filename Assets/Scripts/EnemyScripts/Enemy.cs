@@ -49,7 +49,6 @@ public class Enemy : MonoBehaviour
             AddDescendantsWithSprite(child, list);
         }
     }
-
     public void TakeDamage(float amount)
     {
         health -= amount;
@@ -61,7 +60,6 @@ public class Enemy : MonoBehaviour
             StartCoroutine(FlashOnHit());
         }
     }
-    
     private IEnumerator FlashOnHit()
     {
         float flashspeed = 0f;
@@ -85,7 +83,6 @@ public class Enemy : MonoBehaviour
             sr[i].color = new Color(oldColor[i].r, oldColor[i].g, oldColor[i].b);
         }
     }
-
     void RewardEXP()
     {
         //ADDS 5% ADDITIONAL EXP FOR EACH MONOCLE LEVEL
@@ -131,7 +128,6 @@ public class Enemy : MonoBehaviour
         hpFromSoulJars = player.GetComponent<Player>().currentMaxHP - player.GetComponent<Player>().MaxHp;
         gameManager.GetComponent<GameManager>().soulJarStacks = 0;
     }
-
     void Die()
     {
         //foreach (SpriteRenderer sprite in sr){sprite.gameObject.GetComponent<Renderer>().material.color = oldColor[sprite];}

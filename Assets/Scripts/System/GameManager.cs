@@ -12,9 +12,6 @@ public class GameManager : MonoBehaviour
     [Header("Medal of Valor Data")]
     public int healBy = 2;
 
-    [Header("Vampire Tooth")]
-    public int toothHeal = 1;
-
     [Header("EXP Data")]
     public TextMeshProUGUI expText;
     //Total player EXP
@@ -24,10 +21,22 @@ public class GameManager : MonoBehaviour
     public int earnedEXP;
     private int combinedEXP;
 
-
     void Update()
     {
         combinedEXP = earnedEXP + totalEXP;
         expText.GetComponent<TextMeshProUGUI>().text = "EXP: " + combinedEXP;
+    }
+
+    public void StoreData() //Sends current information to StaticData
+    {
+        StaticData.earnedEXP = earnedEXP;
+        StaticData.EnemyKillsforSoulJar = EnemyKillsforSoulJar;
+        StaticData.soulJarStacks = soulJarStacks;
+    }
+    public void LoadData() //Applies information from StaticData
+    {
+        earnedEXP = StaticData.earnedEXP;
+        EnemyKillsforSoulJar = StaticData.EnemyKillsforSoulJar;
+        soulJarStacks = StaticData.soulJarStacks;
     }
 }

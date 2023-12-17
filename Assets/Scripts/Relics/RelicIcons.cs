@@ -12,8 +12,17 @@ public class RelicIcons : MonoBehaviour
     public List<GameObject> relicsToLoad;
     public void UpdateIconMenu(string relicToUpdate)
     {
+        Debug.Log("TEST-1 : " + relicToUpdate);
+        if(relicStringList.Count == 0)
+        {
+            Debug.Log("TEST-3");
+            relicStringList.Add(relicToUpdate);
+            relicLevel.Add(1);
+        }
+
         if(!relicStringList.Contains(relicToUpdate)) //If player got a new relic
         {
+            Debug.Log("TEST-2");
             relicStringList.Add(relicToUpdate);
             relicLevel.Add(1);
         }
@@ -40,5 +49,15 @@ public class RelicIcons : MonoBehaviour
             Destroy(loudOut);
         }
         relicsToLoad.Clear();
+    }
+    public void StoreData() //Sends current information to StaticData
+    {
+        StaticData.relicLevel_ = relicLevel;
+        StaticData.relicStringList_ = relicStringList;
+    }
+    public void LoadData() //Applies information from StaticData
+    {
+        relicLevel = StaticData.relicLevel_;
+        relicStringList = StaticData.relicStringList_;
     }
 }

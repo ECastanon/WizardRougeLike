@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject OptionsUI;
     public static bool paused = false;
     private RelicIcons icons;
+    private RelicPanel panel;
     private bool showIcons = false;
 
     void Start()
@@ -16,6 +17,7 @@ public class PauseMenu : MonoBehaviour
         PauseUI.SetActive(false);
         OptionsUI.SetActive(false);
         icons = GameObject.Find("RelicPanel").GetComponent<RelicIcons>();
+        panel = GameObject.Find("RelicPanel").GetComponent<RelicPanel>();
 
     }
     void Update()
@@ -28,10 +30,18 @@ public class PauseMenu : MonoBehaviour
         {
             PauseUI.SetActive(true);
             if(showIcons == true){icons.LoadRelicIcons(); showIcons = false;}
+            foreach (GameObject button in panel.rcButtonList) //Disables RCButtons when paused
+            {
+                button.GetComponent<Button>().interactable = false;
+            }
             Time.timeScale = 0;
         } else if (!paused)
         {
             if(showIcons == true){icons.UnLoadIcons(); showIcons = false;}
+            foreach (GameObject button in panel.rcButtonList) //Enables RCButtons when paused
+            {
+                button.GetComponent<Button>().interactable = true;
+            }
             PauseUI.SetActive(false);
             Time.timeScale = 1;
         }

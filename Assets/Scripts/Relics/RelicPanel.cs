@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class RelicPanel : MonoBehaviour
 {
@@ -26,6 +28,8 @@ public class RelicPanel : MonoBehaviour
     public TextMeshProUGUI rcdesc1;
     public TextMeshProUGUI rcdesc2;
     public TextMeshProUGUI rcdesc3;
+    //Buttons
+    public List<GameObject> rcButtonList = new List<GameObject>();
 
     private bool inView = false;
 
@@ -54,6 +58,7 @@ public class RelicPanel : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         RCFacePanel = GameObject.Find("rcfacePanel");
         relicIcons = GetComponent<RelicIcons>();
+        rcButtonList.Add(GameObject.Find("RCButton1"));rcButtonList.Add(GameObject.Find("RCButton2"));rcButtonList.Add(GameObject.Find("RCButton3"));
     }
 
     //Called In EnemyCounter
@@ -86,21 +91,24 @@ public class RelicPanel : MonoBehaviour
 
     public void SelectRC1()
     {
+        Debug.Log("Player got " + RCItem1);
         SlideOutMenu();
-        gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem1);
         relicIcons.UpdateIconMenu(RCItem1);
+        gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem1);
     }
     public void SelectRC2()
     {
+        Debug.Log("Player got " + RCItem2);
         SlideOutMenu();
-        gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem2);
         relicIcons.UpdateIconMenu(RCItem2);
+        gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem2);
     }
     public void SelectRC3()
     {
+        Debug.Log("Player got " + RCItem3);
         SlideOutMenu();
-        gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem3);
         relicIcons.UpdateIconMenu(RCItem3);
+        gameManager.GetComponent<RelicEffects>().ApplyRC(RCItem3);
     }
 
     //Button for rerolling the given relics
@@ -132,9 +140,9 @@ public class RelicPanel : MonoBehaviour
     public void CheckForMatches()
     {
         //Improve matching check by removing the matched relic from a reroll
-        if(RCItem1 == RCItem2){ GenerateRelic(relicCard2, rctitle2, rcsprite2, rcdesc2); CheckForMatches();}
-        if(RCItem1 == RCItem3){ GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3); CheckForMatches();}
-        if(RCItem2 == RCItem3){ GenerateRelic(relicCard3, rctitle3, rcsprite3, rcdesc3); CheckForMatches();}
+        if(RCItem1 == RCItem2){ GenerateRelic(relicCard1, rctitle1, rcsprite1, rcdesc1); CheckForMatches();}
+        if(RCItem1 == RCItem3){ GenerateRelic(relicCard1, rctitle1, rcsprite1, rcdesc1); CheckForMatches();}
+        if(RCItem2 == RCItem3){ GenerateRelic(relicCard2, rctitle2, rcsprite2, rcdesc2); CheckForMatches();}
         RCNum = 1;
     }
 
@@ -300,14 +308,23 @@ public class RelicPanel : MonoBehaviour
                 //Augur'sTalisman
                 if (rcRand == 0)
                 {
-                    //===========================
-                    //Update When Effect is added
-                    //===========================
-                    descValue1 = "<color=#50C878>15%</color>";
+                    float Value1 = 15 * (gameManager.GetComponent<RelicEffects>().aTalismanLvl + 1);
+                    descValue1 = "<color=#50C878>" + Value1 + "%</color>";
+
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Augur's Talisman";
                     newSprite = spriteContainer.transform.Find("Augur's Talisman").gameObject.GetComponent<SpriteRenderer>();
                     rcSprite.GetComponent<SpriteRenderer>().sprite = newSprite.sprite;
-                    rcDesc.GetComponent<TextMeshProUGUI>().text = "Shortens negative status effects by " + descValue1;
+                    
+                    float remainingRC;
+                    string remainingString;
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().aTalismanLvl) - (gameManager.GetComponent<RelicEffects>().aTalisman-1);
+                    if(gameManager.GetComponent<RelicEffects>().aTalisman == 0 || remainingRC == 1)
+                    {
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Shortens negative status effects by " + descValue1;
+                    } else {
+                        remainingString = ("<color=#50C878>" + remainingRC + "</color>").ToString();
+                        rcDesc.GetComponent<TextMeshProUGUI>().text = "Collect <color=#50C878>" + remainingRC + "</color> more to level up!";
+                    }
                 }
                 //CosmoRing
                 if (rcRand == 1)
@@ -465,7 +482,7 @@ public class RelicPanel : MonoBehaviour
                 //ScrollofMight
                 if (rcRand == 2)
                 {
-                    float Value1 = 1 * (gameManager.GetComponent<RelicEffects>().moValorLvl + 1);
+                    float Value1 = 1 * (gameManager.GetComponent<RelicEffects>().soMightLvl + 1);
                     descValue1 = "<color=#50C878>+" + Value1 + "</color>";
 
                     rcTitle.GetComponent<TextMeshProUGUI>().text = "Scroll of Might";
@@ -474,7 +491,7 @@ public class RelicPanel : MonoBehaviour
 
                     float remainingRC;
                     string remainingString;
-                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().moValorLvl) - (gameManager.GetComponent<RelicEffects>().moValor-1);
+                    remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().soMightLvl) - (gameManager.GetComponent<RelicEffects>().soMight-1);
                     if(gameManager.GetComponent<RelicEffects>().moValor == 0 || remainingRC == 1)
                     {
                         rcDesc.GetComponent<TextMeshProUGUI>().text = "Increase all weapon damage by " + descValue1;
