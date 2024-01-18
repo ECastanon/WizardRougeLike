@@ -2,15 +2,17 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject PauseUI;
     public GameObject OptionsUI;
     public static bool paused = false;
-    private RelicIcons icons;
-    private RelicPanel panel;
-    private bool showIcons = false;
+    public RelicIcons icons;
+    public RelicPanel panel;
+    public bool showIcons = false;
+    private Scene curScene;
 
     void Start()
     {
@@ -29,6 +31,10 @@ public class PauseMenu : MonoBehaviour
         if (paused)
         {
             PauseUI.SetActive(true);
+
+            curScene = SceneManager.GetActiveScene();
+            GameObject.Find("LevelText").GetComponent<TextMeshProUGUI>().text = curScene.name;
+
             if(showIcons == true){icons.LoadRelicIcons(); showIcons = false;}
             foreach (GameObject button in panel.rcButtonList) //Disables RCButtons when paused
             {
@@ -47,7 +53,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    //Closes the pause menu
+    //Toggles the pause menu
     public void Resume()
     {
         OptionsUI.SetActive(false);

@@ -118,6 +118,6 @@ public class RoomData : MonoBehaviour
     {
         Transform roomCenter = this.transform.Find("RoomCenter");
         roomTyp = roomCenter.tag.ToString();
-        Debug.Log("RoomType: " + roomTyp);
+        //Debug.Log("RoomType: " + roomTyp);
     }
 }

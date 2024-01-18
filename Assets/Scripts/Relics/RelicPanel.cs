@@ -176,7 +176,7 @@ public class RelicPanel : MonoBehaviour
                 rarity = "Common";
             }
         }
-        Debug.Log("RC" + (RCNum-1) + " = " + rand + " AND my rarity is: " + rarity);
+        //Debug.Log("RC" + (RCNum-1) + " = " + rand + " AND my rarity is: " + rarity);
 
         //Creation of the Relic
         ChangeRCBorderColor(rc);
