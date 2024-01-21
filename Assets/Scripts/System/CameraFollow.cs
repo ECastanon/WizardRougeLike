@@ -7,6 +7,7 @@ public class CameraFollow : MonoBehaviour
     [HideInInspector] public GameObject player;
     public Vector2 highScreenBounds, lowScreenBounds;
     private int direction;
+    public bool isFreeCam = false;
 
     void Start()
     {
@@ -15,7 +16,7 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        if(player != null)
+        if(player != null && !isFreeCam)
         {
             if(player.transform.position.y > highScreenBounds.y) //Move up
             {
@@ -37,6 +38,10 @@ public class CameraFollow : MonoBehaviour
                 //Debug.Log("MoveCamera");
                 ScrollCamera(4);
             }
+        }
+        if(isFreeCam)
+        {
+            transform.position = player.transform.position + new Vector3(0, 0, -100);
         }
     }
     void FindBounds()

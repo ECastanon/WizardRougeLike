@@ -1,0 +1,420 @@
+fileFormatVersion: 2
+guid: 36cbcbcbbf3389f4482425478c078384
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 12
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Necromancer_creativekind-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 783
+        width: 45
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43c5ec74dae0ba84db40e0b8bd607406
+      internalID: -2063458189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_creativekind-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 784
+        width: 45
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99e01e1b144ba344fb02d6e0c9880f0e
+      internalID: -1796064237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_creativekind-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 783
+        width: 45
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 143d7525342e1224d84e54bf09dcf5f8
+      internalID: -406581393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_creativekind-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 780
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2ba6a64ac85c78439a461b4c14ff1ed
+      internalID: 987494550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_creativekind-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 780
+        width: 45
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98a9715f9c55d9d4c9fae13717e1143e
+      internalID: -1660618847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_creativekind-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 784
+        width: 45
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6043233bf962fec4cac04f06271f1a3c
+      internalID: 1259475983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_creativekind-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 780
+        width: 45
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa3d65578b3a5614da18545e4b61ef91
+      internalID: -598988738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_creativekind-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 780
+        width: 45
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62aa48c41a8f31d4f8864b46723a06a2
+      internalID: -1434475589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Necromancer_creativekind-Sheet_0: -2063458189
+      Necromancer_creativekind-Sheet_1: -1796064237
+      Necromancer_creativekind-Sheet_10: 1418515603
+      Necromancer_creativekind-Sheet_100: -275675048
+      Necromancer_creativekind-Sheet_101: -259144557
+      Necromancer_creativekind-Sheet_102: -1132576856
+      Necromancer_creativekind-Sheet_103: 191580902
+      Necromancer_creativekind-Sheet_104: -1706386726
+      Necromancer_creativekind-Sheet_105: -392214283
+      Necromancer_creativekind-Sheet_106: -1228695128
+      Necromancer_creativekind-Sheet_107: 280168128
+      Necromancer_creativekind-Sheet_108: 1727364105
+      Necromancer_creativekind-Sheet_109: 468259761
+      Necromancer_creativekind-Sheet_11: -1864691437
+      Necromancer_creativekind-Sheet_110: -1831280043
+      Necromancer_creativekind-Sheet_111: 111667248
+      Necromancer_creativekind-Sheet_112: -1607638369
+      Necromancer_creativekind-Sheet_113: -1740897436
+      Necromancer_creativekind-Sheet_114: -173683116
+      Necromancer_creativekind-Sheet_115: -782076167
+      Necromancer_creativekind-Sheet_116: 56482050
+      Necromancer_creativekind-Sheet_117: -866407509
+      Necromancer_creativekind-Sheet_118: 1228558060
+      Necromancer_creativekind-Sheet_119: -443710791
+      Necromancer_creativekind-Sheet_12: 851351078
+      Necromancer_creativekind-Sheet_120: 1493452706
+      Necromancer_creativekind-Sheet_121: -480135567
+      Necromancer_creativekind-Sheet_122: -480302962
+      Necromancer_creativekind-Sheet_123: 1087548827
+      Necromancer_creativekind-Sheet_124: 105275494
+      Necromancer_creativekind-Sheet_13: 1971047325
+      Necromancer_creativekind-Sheet_14: 1668008169
+      Necromancer_creativekind-Sheet_15: -1697376014
+      Necromancer_creativekind-Sheet_16: 262821128
+      Necromancer_creativekind-Sheet_17: -619564619
+      Necromancer_creativekind-Sheet_18: 514137475
+      Necromancer_creativekind-Sheet_19: 1816285335
+      Necromancer_creativekind-Sheet_2: 1520039579
+      Necromancer_creativekind-Sheet_20: -1298055764
+      Necromancer_creativekind-Sheet_21: 32474029
+      Necromancer_creativekind-Sheet_22: -1315262714
+      Necromancer_creativekind-Sheet_23: -40000925
+      Necromancer_creativekind-Sheet_24: -783829555
+      Necromancer_creativekind-Sheet_25: -173190887
+      Necromancer_creativekind-Sheet_26: -1823613396
+      Necromancer_creativekind-Sheet_27: -1099123877
+      Necromancer_creativekind-Sheet_28: -1714268432
+      Necromancer_creativekind-Sheet_29: 1351040631
+      Necromancer_creativekind-Sheet_3: -406581393
+      Necromancer_creativekind-Sheet_30: 1004899268
+      Necromancer_creativekind-Sheet_31: -283140800
+      Necromancer_creativekind-Sheet_32: -1688808076
+      Necromancer_creativekind-Sheet_33: 1330504577
+      Necromancer_creativekind-Sheet_34: -1470159981
+      Necromancer_creativekind-Sheet_35: 1258883903
+      Necromancer_creativekind-Sheet_36: 1863216507
+      Necromancer_creativekind-Sheet_37: -2043414070
+      Necromancer_creativekind-Sheet_38: -238753852
+      Necromancer_creativekind-Sheet_39: 426208259
+      Necromancer_creativekind-Sheet_4: 987494550
+      Necromancer_creativekind-Sheet_40: 971576656
+      Necromancer_creativekind-Sheet_41: -614421078
+      Necromancer_creativekind-Sheet_42: -1210298702
+      Necromancer_creativekind-Sheet_43: -1517687949
+      Necromancer_creativekind-Sheet_44: 644523688
+      Necromancer_creativekind-Sheet_45: 1444664488
+      Necromancer_creativekind-Sheet_46: 1080082704
+      Necromancer_creativekind-Sheet_47: 1586966368
+      Necromancer_creativekind-Sheet_48: -267370466
+      Necromancer_creativekind-Sheet_49: 1536841261
+      Necromancer_creativekind-Sheet_5: -1660618847
+      Necromancer_creativekind-Sheet_50: -1248048976
+      Necromancer_creativekind-Sheet_51: -1608802833
+      Necromancer_creativekind-Sheet_52: 1761239803
+      Necromancer_creativekind-Sheet_53: -409801333
+      Necromancer_creativekind-Sheet_54: 819427449
+      Necromancer_creativekind-Sheet_55: -701720205
+      Necromancer_creativekind-Sheet_56: -236586511
+      Necromancer_creativekind-Sheet_57: -1644765918
+      Necromancer_creativekind-Sheet_58: 1392326062
+      Necromancer_creativekind-Sheet_59: -306918416
+      Necromancer_creativekind-Sheet_6: 1259475983
+      Necromancer_creativekind-Sheet_60: -2064272587
+      Necromancer_creativekind-Sheet_61: 1355296501
+      Necromancer_creativekind-Sheet_62: 353111578
+      Necromancer_creativekind-Sheet_63: 1667717966
+      Necromancer_creativekind-Sheet_64: -1515232720
+      Necromancer_creativekind-Sheet_65: 116360389
+      Necromancer_creativekind-Sheet_66: 347483488
+      Necromancer_creativekind-Sheet_67: -205871880
+      Necromancer_creativekind-Sheet_68: 1430778220
+      Necromancer_creativekind-Sheet_69: -441809581
+      Necromancer_creativekind-Sheet_7: -598988738
+      Necromancer_creativekind-Sheet_70: -1365972166
+      Necromancer_creativekind-Sheet_71: -103178468
+      Necromancer_creativekind-Sheet_72: 2081660814
+      Necromancer_creativekind-Sheet_73: 404079205
+      Necromancer_creativekind-Sheet_74: 9692182
+      Necromancer_creativekind-Sheet_75: -208372252
+      Necromancer_creativekind-Sheet_76: -1023186609
+      Necromancer_creativekind-Sheet_77: 106803293
+      Necromancer_creativekind-Sheet_78: -1194009094
+      Necromancer_creativekind-Sheet_79: -340833684
+      Necromancer_creativekind-Sheet_8: -1434475589
+      Necromancer_creativekind-Sheet_80: -2005902376
+      Necromancer_creativekind-Sheet_81: -600663370
+      Necromancer_creativekind-Sheet_82: 1619055476
+      Necromancer_creativekind-Sheet_83: -75516609
+      Necromancer_creativekind-Sheet_84: -1822879671
+      Necromancer_creativekind-Sheet_85: 210271560
+      Necromancer_creativekind-Sheet_86: 918269040
+      Necromancer_creativekind-Sheet_87: -1240285310
+      Necromancer_creativekind-Sheet_88: 689992796
+      Necromancer_creativekind-Sheet_89: -1659420016
+      Necromancer_creativekind-Sheet_9: 1188495089
+      Necromancer_creativekind-Sheet_90: -1434990395
+      Necromancer_creativekind-Sheet_91: 1609664049
+      Necromancer_creativekind-Sheet_92: 1851018452
+      Necromancer_creativekind-Sheet_93: 298538674
+      Necromancer_creativekind-Sheet_94: -1156446184
+      Necromancer_creativekind-Sheet_95: -920055763
+      Necromancer_creativekind-Sheet_96: 234393886
+      Necromancer_creativekind-Sheet_97: 867768889
+      Necromancer_creativekind-Sheet_98: 469017521
+      Necromancer_creativekind-Sheet_99: 1135468667
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

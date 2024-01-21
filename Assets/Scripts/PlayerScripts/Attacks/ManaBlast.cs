@@ -75,5 +75,19 @@ public class ManaBlast : MonoBehaviour, IPooledObject
                 enemy.TakeDamage(newDamage);
             }
         }
+        if (col.gameObject.tag == "Boss")
+        {
+            BossData boss = col.GetComponent<BossData>();
+
+            int newDamage = (damage + damageMod + soMightDamage);
+            if (player.GetComponent<StaffAttacks>().ManaCircle)
+            {
+                boss.TakeDamage(player.GetComponent<Player>().mcBoost * newDamage);
+            }
+            else
+            {
+                boss.TakeDamage(newDamage);
+            }
+        }
     }
 }

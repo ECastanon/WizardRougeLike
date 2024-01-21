@@ -9,6 +9,7 @@ public class LevelGeneration : MonoBehaviour
     List<Vector2> takenPositions = new List<Vector2>();
     private int gridSizeX, gridSizeY;
     public GameObject dungeonGenerator;
+    public bool isBossRoom = false;
 
     [Header("Room Generation Data")]
     public int numberOfRooms;
@@ -39,7 +40,15 @@ public class LevelGeneration : MonoBehaviour
 
     void Start()
     {
-        StartDungeonGeneration();
+        if(!isBossRoom){StartDungeonGeneration();}
+        else {
+            GameObject playerToSpawn;
+            CameraFollow cam = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
+            playerToSpawn = Instantiate(player, transform.position, Quaternion.identity);
+            cam.player = playerToSpawn;
+            cam.transform.position = new Vector3(playerToSpawn.transform.position.x, playerToSpawn.transform.position.y, -100);
+            GameObject.FindGameObjectWithTag("Boss").GetComponent<NecromancerMovement>().player = playerToSpawn;
+        }
     }
     public void StartDungeonGeneration()
     {

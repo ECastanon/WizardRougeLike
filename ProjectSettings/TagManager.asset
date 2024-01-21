@@ -26,6 +26,8 @@ TagManager:
   - RelicMenu
   - HealingRoom
   - GameManager
+  - BossRoom
+  - Boss
   layers:
   - Default
   - TransparentFX

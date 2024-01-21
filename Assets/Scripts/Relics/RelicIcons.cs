@@ -10,9 +10,10 @@ public class RelicIcons : MonoBehaviour
     public List<int> relicLevel = new List<int>();
     public List<string> relicStringList = new List<string>();
     public List<GameObject> relicsToLoad = new List<GameObject>();
+
     public void UpdateIconMenu(string relicToUpdate)
     {
-        if(relicStringList.Count == 0)
+        if(relicStringList.Count < 1)
         {
             Debug.Log("TEST-3");
             relicStringList.Add(relicToUpdate);
@@ -44,7 +45,7 @@ public class RelicIcons : MonoBehaviour
             {
                 GameObject objToSpawn = Instantiate(relicPrefab, transform.position, Quaternion.identity);
                 objToSpawn.transform.SetParent(ip);
-                objToSpawn.transform.GetChild(0).GetComponent<Image>().sprite = GameObject.Find(loadIn).GetComponent<SpriteRenderer>().sprite;
+                objToSpawn.transform.GetChild(3).GetComponent<Image>().sprite = GameObject.Find(loadIn).GetComponent<SpriteRenderer>().sprite;
                 objToSpawn.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Lv " + relicLevel[i].ToString();
                 relicsToLoad.Add(objToSpawn);
                 i++;
