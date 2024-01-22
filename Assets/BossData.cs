@@ -33,6 +33,7 @@ public class BossData : MonoBehaviour
 
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         player = GameObject.FindGameObjectWithTag("Player");
+        UpdateHPBar();
     }
     public void OnActive()
     {
@@ -59,6 +60,7 @@ public class BossData : MonoBehaviour
         {
             Die();
         } else {
+            if(health <= startHealth/2){GetComponent<NecromancerAttacks>().isPhaseTwo = true;}
             StartCoroutine(FlashOnHit());
         }
     }
@@ -138,7 +140,7 @@ public class BossData : MonoBehaviour
     void Die()
     {
         //foreach (SpriteRenderer sprite in sr){sprite.gameObject.GetComponent<Renderer>().material.color = oldColor[sprite];}
-        enemyManager.GetComponent<EnemyCounter>().Enemies.Remove(this.gameObject);
+        GetComponent<NecromancerAttacks>().DeathAnim();
 
         //ONLY USED IF THE VAMPIRE TOOTH IS ACTIVE
         VampireTooth();
@@ -146,7 +148,6 @@ public class BossData : MonoBehaviour
         SoulJar();
 
         RewardEXP();
-
-        gameObject.SetActive(false);
     }
+    public void Destroy(){gameObject.SetActive(false);}
 }

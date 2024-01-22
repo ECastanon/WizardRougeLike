@@ -27,6 +27,7 @@ public class StaffAttacks : MonoBehaviour
     private float chargeStoneDelay = .25f;
 
     ObjectPooler objectPooler;
+    private AudioSource BasicAttack, StrongAttack, ChargeAttack;
 
     void Start()
     {
@@ -67,6 +68,10 @@ public class StaffAttacks : MonoBehaviour
             timerBasic = cooldownBasic;
             timerStrong = cooldownStrongCur;
             timerCharge = cooldownChargeCur;
+
+            BasicAttack = GameObject.Find("MagicMissileSFX").GetComponent<AudioSource>();
+            StrongAttack = GameObject.Find("ManaBlastSFX").GetComponent<AudioSource>();
+            ChargeAttack = GameObject.Find("MagicCircleSFX").GetComponent<AudioSource>();
         }
     }
 
@@ -92,6 +97,7 @@ public class StaffAttacks : MonoBehaviour
                 timerBasic = 0;
                 objectPooler.SpawnFromPool(objToSpawn, staffTip.transform.position, transform.rotation);
                 StartCoroutine(ChargeStoneAttack(objToSpawn));
+                BasicAttack.Play();
             }
         }
         if (Input.GetMouseButton(1))
@@ -102,6 +108,7 @@ public class StaffAttacks : MonoBehaviour
                 timerStrong = 0;
                 objectPooler.SpawnFromPool(objToSpawn, staffTip.transform.position, transform.rotation);
                 StartCoroutine(ChargeStoneAttack(objToSpawn));
+                StrongAttack.Play();
             }
 
         }
@@ -112,6 +119,7 @@ public class StaffAttacks : MonoBehaviour
             {
                 timerCharge = 0;
                 player.EnableManaCircle();
+                ChargeAttack.Play();
             }
         }
     }

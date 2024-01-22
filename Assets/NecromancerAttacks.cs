@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class NecromancerAttacks : MonoBehaviour
 {
-    //Phase-1
-    //Periodically fires homing attacks
-    //Summons small (1-3) groups of skeletons nearby
-    //Casts posoinous blasts towards the player that permanently stay on the ground and harm the player
-
-    //Phase-2 <=50%
     //Move speed increases and may start to circle in reverse
     //Homing attacks increase speed
     //Summons larger (3-5) groups of skeletons
@@ -17,10 +11,13 @@ public class NecromancerAttacks : MonoBehaviour
     public GameObject player;
     [Header("Boss Data")]
     public bool isPhaseTwo = false;
+    public Transform SpawnParent;
     private NecromancerMovement nm;
     private Animator anim;
+    private bool isAnimState = false;
     private List<GameObject> pointList = new List<GameObject>();
     private Transform attackPoint;
+    private AudioSource SummonSFX, ShockWaveSFX, PoisonBlastSFX, DeathSFX;
 
     [Header("Attack Objects")]
     public GameObject homing;
@@ -33,13 +30,17 @@ public class NecromancerAttacks : MonoBehaviour
     public float summonTime;
     public float poisonTime;
     public float shockwaveTime;
-    public float timerhoming, timersummon, timerpoison, timershockwave;
+    private float timerhoming, timersummon, timerpoison, timershockwave;
 
     void Start()
     {
         nm = GetComponent<NecromancerMovement>();
         anim = GetComponent<Animator>();
         attackPoint = transform.GetChild(1);
+        SummonSFX = GameObject.Find("Summon").GetComponent<AudioSource>();
+        ShockWaveSFX = GameObject.Find("ShockwaveSFX").GetComponent<AudioSource>();
+        PoisonBlastSFX = GameObject.Find("PoisonBlastSFX").GetComponent<AudioSource>();
+        DeathSFX = GameObject.Find("DeathSFX").GetComponent<AudioSource>();
         ResetPointList();
     }
 
@@ -48,17 +49,16 @@ public class NecromancerAttacks : MonoBehaviour
         //Timer Updates
         timerhoming += Time.deltaTime; timersummon += Time.deltaTime;
         if(!isPhaseTwo){timerpoison += Time.deltaTime;} else {timershockwave += Time.deltaTime;}
-
+        //Some attacks can only be conducted is the boss is not in an animation
         if(timerhoming >= homingTime)
         {
             timerhoming = 0;
-            HomingAttack();
+            HomingStrike();
         }
-        if(timersummon >= summonTime)
+        if(timersummon >= summonTime && !isAnimState)
         {
             timersummon = 0;
-            nm.travelSpeed = 0;
-            nm.RotateSpeed = 0;
+            ZeroSpeed();
             anim.Play("Necromancer_Summon");
         }
         if(timerpoison >= poisonTime && !isPhaseTwo)
@@ -67,17 +67,18 @@ public class NecromancerAttacks : MonoBehaviour
             LaunchPoison();
             //
         }
-        if(timershockwave >= shockwaveTime && isPhaseTwo)
+        if(timershockwave >= shockwaveTime && isPhaseTwo && !isAnimState)
         {
             timershockwave = 0;
-            nm.travelSpeed = 0;
-            nm.RotateSpeed = 0;
-            //
+            ZeroSpeed();
+            anim.Play("Necromancer_Shockwave");
         }
     }
-    public void HomingAttack()
+    public void HomingStrike()
     {
-        Instantiate(homing, attackPoint.position, Quaternion.identity);
+        GameObject attack = Instantiate(homing, attackPoint.position, Quaternion.identity);
+        attack.transform.SetParent(SpawnParent);
+        if(isPhaseTwo){attack.GetComponent<HomingAttack>().spd = 5;}
     }
     public void SummonSkeletons()
     {
@@ -90,20 +91,40 @@ public class NecromancerAttacks : MonoBehaviour
         for (int i = 0; i < numberToSpawn; i++)
         {
             int spot = Random.Range(0, pointList.Count);
-            Instantiate(skeleton, pointList[spot].transform.position, Quaternion.identity);
+            GameObject skele = Instantiate(skeleton, pointList[spot].transform.position, Quaternion.identity);
+            skele.transform.SetParent(SpawnParent);
+            skele.GetComponent<EnemyMovement>().range = 15;
             pointList.RemoveAt(spot);
         }
+        SummonSFX.Play();
         ResetPointList();
     }
     public void LaunchPoison()
     {
+        PoisonBlastSFX.Play();
         GameObject pBlast = Instantiate(poison, attackPoint.position, Quaternion.identity);
+        pBlast.transform.SetParent(SpawnParent);
     }
     public void ShockWave()
     {
-
+        ShockWaveSFX.Play();
+        GameObject s1 = Instantiate(shockwave, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+        GameObject s2 = Instantiate(shockwave, transform.position, Quaternion.Euler(new Vector3(0, 0, 90)));
+        GameObject s3 = Instantiate(shockwave, transform.position, Quaternion.Euler(new Vector3(0, 0, 180)));
+        GameObject s4 = Instantiate(shockwave, transform.position, Quaternion.Euler(new Vector3(0, 0, 270)));
+        GameObject s5 = Instantiate(shockwave, transform.position, Quaternion.Euler(new Vector3(0, 0, 45)));
+        GameObject s6 = Instantiate(shockwave, transform.position, Quaternion.Euler(new Vector3(0, 0, 135)));
+        GameObject s7 = Instantiate(shockwave, transform.position, Quaternion.Euler(new Vector3(0, 0, 225)));
+        GameObject s8 = Instantiate(shockwave, transform.position, Quaternion.Euler(new Vector3(0, 0, 315)));
+        s1.transform.SetParent(SpawnParent);s2.transform.SetParent(SpawnParent);s3.transform.SetParent(SpawnParent);
+        s4.transform.SetParent(SpawnParent);s5.transform.SetParent(SpawnParent);s6.transform.SetParent(SpawnParent);
+        s7.transform.SetParent(SpawnParent);s8.transform.SetParent(SpawnParent);
     }
-
+    public void ZeroSpeed()
+    {
+        nm.travelSpeed = 0;
+        nm.RotateSpeed = 0;
+    }
     public void ResetSpeed()
     {
         nm.RotateSpeed = 20;
@@ -124,5 +145,28 @@ public class NecromancerAttacks : MonoBehaviour
         {
             pointList.Add(point.gameObject);
         }
+    }
+    public void AnimState()
+    {
+        isAnimState = !isAnimState;
+    }
+    public void StartPhaseTwo()
+    {
+        isPhaseTwo = true;
+        nm.travelSpeed = 5;
+        nm.RotateSpeed = 30;
+    }
+    public void DeathAnim()
+    {
+        timerhoming = 0;timerpoison = 0;timersummon = 0;timershockwave = 0;
+        anim.Play("Necromancer_Death");
+        foreach(Transform child in SpawnParent)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+    public void DeathSound()
+    {
+        DeathSFX.Play();
     }
 }

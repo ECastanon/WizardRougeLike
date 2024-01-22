@@ -133,8 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b709035f37e2e3d4ab0aa83aaf21d7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  damageInterval: 1
+  damage: 2
+  damageInterval: 0.25
   timeAlive: 10000
   operation: add
   effectTime: 0

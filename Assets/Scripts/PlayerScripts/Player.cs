@@ -7,6 +7,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private GameObject gameManager, gameOverPanel;
+    public List<SpriteRenderer> sr = new List<SpriteRenderer>();
+    public List<Color> oldColors = new List<Color>();
 
     //Player data
     public float MaxHp;
@@ -67,29 +69,36 @@ public class Player : MonoBehaviour
         gameManager.GetComponent<GameManager>().LoadData();
         gameManager.GetComponent<RelicEffects>().LoadRelicData();
         GameObject.Find("RelicPanel").GetComponent<RelicIcons>().LoadData();
+
+        AddDescendantsWithSprite(transform, sr);
+        oldColors.RemoveAt(0); oldColors.RemoveAt(0); oldColors.RemoveAt(0); oldColors.RemoveAt(0);
     }
 
     void Update()
     {
         dodging = GetComponent<PlayerMovement>().isDashing;
-
-        if (invinTimer > 0)
-        {
-            invinTimer -= Time.deltaTime;
-        }
     }
 
     //Player flashes while invinTimer > 0
     IEnumerator HitState()
     {
-        float flashspeed = 0f;
-        while (invincibility > 0 || invinTimer > 0)
+        while(invinTimer > 0)
         {
-            oldColor = gameObject.GetComponent<Renderer>().material.color;
-            yield return new WaitForSeconds(.03f - flashspeed);
-            gameObject.GetComponent<Renderer>().material.color = new Color(0.0f, 0.0f, 0.0f);
-            yield return new WaitForSeconds(.03f - flashspeed);
-            flashspeed += Time.deltaTime;
+            for (int i = 0; i < sr.Count; i++)
+            {
+                sr[i].color = new Color(oldColors[i].r, oldColors[i].g, oldColors[i].b);
+            }
+            yield return new WaitForSeconds(.02f);
+            for (int i = 0; i < sr.Count; i++)
+            {
+                sr[i].color = new Color(0.5f, 0.0f, 0.0f);
+            }
+            yield return new WaitForSeconds(.02f);
+            invinTimer -= Time.deltaTime;
+        }
+        for (int i = 0; i < sr.Count; i++)
+        {
+            sr[i].color = new Color(oldColors[i].r, oldColors[i].g, oldColors[i].b);
         }
     }
 
@@ -113,6 +122,7 @@ public class Player : MonoBehaviour
             {
                 DamageSFX.Play();
                 invinTimer = invincibility;
+                StartCoroutine(HitState());
                 hp -= amount;
                 UpdateHPBar();
                 if (hp <= 0)
@@ -164,5 +174,17 @@ public class Player : MonoBehaviour
         manacircle.GetComponent<ManaCircle>().player = this.gameObject;
         manacircle.GetComponent<ManaCircle>().Enable();
         manacircle.transform.position = transform.position;
+    }
+    private void AddDescendantsWithSprite(Transform parent, List<SpriteRenderer> list)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.gameObject.GetComponent<SpriteRenderer>() != null && child.gameObject.name != "Shadow")
+            {
+                list.Add(child.gameObject.GetComponent<SpriteRenderer>());
+                oldColors.Add(child.gameObject.GetComponent<SpriteRenderer>().color);
+            }
+            AddDescendantsWithSprite(child, list);
+        }
     }
 }

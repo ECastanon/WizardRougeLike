@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5974017a27c72489d1319dfc8590c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spd: 5
+  spd: 4
   rotation: 0
   player: {fileID: 0}
-  timeAlive: 10
+  timeAlive: 6
   timer: 0
   damage: 5
 --- !u!58 &7231767432975835369
