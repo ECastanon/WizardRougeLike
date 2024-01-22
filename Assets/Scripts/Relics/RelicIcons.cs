@@ -10,15 +10,10 @@ public class RelicIcons : MonoBehaviour
     public List<int> relicLevel = new List<int>();
     public List<string> relicStringList = new List<string>();
     public List<GameObject> relicsToLoad = new List<GameObject>();
-
     public void UpdateIconMenu(string relicToUpdate)
     {
-        if(relicStringList.Count < 1)
-        {
-            Debug.Log("TEST-3");
-            relicStringList.Add(relicToUpdate);
-            relicLevel.Add(1);
-        } else
+        //Debug.Log(relicStringList.Count);
+        Debug.Log("TEST-1 : " + relicToUpdate); //If players picks a first relic
         if(!relicStringList.Contains(relicToUpdate)) //If player got a new relic
         {
             Debug.Log("TEST-2");
@@ -31,11 +26,10 @@ public class RelicIcons : MonoBehaviour
             int index = relicStringList.IndexOf(relicToUpdate);
             relicLevel[index] += 1;
         }
-        Debug.Log(relicStringList.Count);
-        Debug.Log("TEST-1 : " + relicToUpdate); //If players picks a first relic
     }
     public void LoadRelicIcons()
     {
+        Debug.Log(relicStringList.Count);
         if(relicStringList.Count > 0)
         {
             UnLoadIcons();

@@ -2339,6 +2339,7 @@ MonoBehaviour:
   range: 5
   damage: 5
   damageMod: 0
+  ShockSFX: {fileID: 0}
 --- !u!1 &4678671763324378780
 GameObject:
   m_ObjectHideFlags: 0

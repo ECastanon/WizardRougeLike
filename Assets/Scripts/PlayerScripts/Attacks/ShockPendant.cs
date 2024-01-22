@@ -13,10 +13,12 @@ public class ShockPendant : MonoBehaviour
     public float range;
     public int damage;
     public int damageMod = 0;
+    public AudioSource ShockSFX;
 
     void Start()
     {
         enemyManager = GameObject.FindGameObjectWithTag("EnemyManager");
+        ShockSFX = GameObject.FindGameObjectWithTag("ShockSFX").GetComponent<AudioSource>();
         sprite.SetActive(false);
     }
 
@@ -62,6 +64,7 @@ public class ShockPendant : MonoBehaviour
     {
         //Enables the lightning immediately before finding a new target
         sprite.SetActive(true);
+        ShockSFX.Play();
         //Set Damage Values
         sprite.GetComponent<ShockPendantSprite>().damage = damage;
         sprite.GetComponent<ShockPendantSprite>().damageMod = damageMod;
@@ -90,5 +93,6 @@ public class ShockPendant : MonoBehaviour
         yield return new WaitForSeconds(.3f);
         enemyTarget = null;
         sprite.SetActive(false);
+        ShockSFX.Stop();
     }
 }
