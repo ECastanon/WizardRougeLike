@@ -153,6 +153,7 @@ public class BossData : MonoBehaviour
     }
     public void Destroy()
     {
+        GameObject.Find("GameManager").GetComponent<PauseMenu>().WinScreen();
         gameObject.SetActive(false);
     }
 }

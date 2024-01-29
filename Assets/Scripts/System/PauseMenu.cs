@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject PauseUI;
     public GameObject OptionsUI;
     public GameObject InputUI;
+    public GameObject victoryPanel;
     public static bool paused = false;
     public RelicIcons icons;
     public RelicPanel panel;
@@ -22,7 +23,7 @@ public class PauseMenu : MonoBehaviour
         InputUI.SetActive(false);
         icons = GameObject.Find("RelicPanel").GetComponent<RelicIcons>();
         panel = GameObject.Find("RelicPanel").GetComponent<RelicPanel>();
-
+        victoryPanel = GameObject.Find("VictoryPanel");
     }
     void Update()
     {
@@ -79,6 +80,16 @@ public class PauseMenu : MonoBehaviour
         paused = !paused;
         if(paused == true){paused = false;}
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }   
+    //Reloads the start Level
+    public void ToStart()
+    {
+        OptionsUI.SetActive(false);
+        InputUI.SetActive(false);
+        GameObject.Find("Main Camera").GetComponent<CameraFollow>().player = null;
+        paused = !paused;
+        if(paused == true){paused = false;}
+        SceneManager.LoadScene(0);
     }
     //Option Settings
     public void Options()
@@ -112,5 +123,9 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+    public void WinScreen()
+    {
+        victoryPanel.GetComponent<Animator>().Play("GameOverSlideIn");
     }
 }

@@ -142,7 +142,7 @@ public class NecromancerAttacks : MonoBehaviour
             for (int i = 0; i < 4; i++)
             {
                 int spot = Random.Range(0, pointList.Count);
-                GameObject blocker = Instantiate(BoneBlocker, pointList[0].transform.position, Quaternion.identity);
+                GameObject blocker = Instantiate(BoneBlocker, pointList[i].transform.position, Quaternion.identity);
                 blocker.transform.SetParent(BlockerContainer.transform);
                 pointList.RemoveAt(spot);
             }
