@@ -108,6 +108,7 @@ Transform:
   m_Children:
   - {fileID: 8560196366375775148}
   - {fileID: 8683580437199904729}
+  - {fileID: 7075507131598586879}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &687111278301135687
@@ -306,18 +307,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   isPhaseTwo: 0
+  SpawnParent: {fileID: 0}
+  BlockerContainer: {fileID: 4716812070968814312}
   homing: {fileID: 5047389835446609310, guid: e7fa1a84f21927e4e8f78fb5feff581a, type: 3}
   skeleton: {fileID: 3808618580018841790, guid: e9ef4afb0617a6a408be81c6393a2513, type: 3}
   poison: {fileID: 5452948735357974985, guid: c91f0f40bf3fcd04494b06743440e560, type: 3}
   shockwave: {fileID: 6728742275717245186, guid: 02f6c8e46c93944439d6edb47f4ccda0, type: 3}
+  BoneBlocker: {fileID: 5667288984010767643, guid: 1d913b6a087247e4687b2415d28427bd, type: 3}
   homingTime: 5
   summonTime: 10
   poisonTime: 13
   shockwaveTime: 13
-  timerhoming: 0
-  timersummon: 0
-  timerpoison: 0
-  timershockwave: 0
+--- !u!1 &4716812070968814312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7075507131598586879}
+  m_Layer: 0
+  m_Name: Blockers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7075507131598586879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716812070968814312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1504098641470704618}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5168303309537592825
 GameObject:
   m_ObjectHideFlags: 0

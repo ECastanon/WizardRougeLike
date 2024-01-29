@@ -61,6 +61,16 @@ public class MagicMissile : MonoBehaviour, IPooledObject
     }
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (col.gameObject.tag == "Blocker")
+        {
+            Blocker bl = col.GetComponent<Blocker>();
+            bl.shieldHealth--;
+            if(bl.shieldHealth <= 0)
+            {
+                Destroy(col.gameObject);
+            }
+            gameObject.SetActive(false);
+        }
         if (col.gameObject.tag == "Enemy")
         {
             Enemy enemy = col.GetComponent<Enemy>();

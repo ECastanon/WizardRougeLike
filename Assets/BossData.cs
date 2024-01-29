@@ -14,7 +14,6 @@ public class BossData : MonoBehaviour
     public float startHealth;
     public float health;
     public int experience;
-
     public GameObject enemyDeathEffect;
 
     [Header("Enemy Headers")]
@@ -62,6 +61,12 @@ public class BossData : MonoBehaviour
         } else {
             if(health <= startHealth/2){GetComponent<NecromancerAttacks>().isPhaseTwo = true;}
             StartCoroutine(FlashOnHit());
+
+            if(GetComponent<NecromancerAttacks>().isPhaseTwo)
+            {
+                GetComponent<NecromancerAttacks>().hitCounter++;
+                GetComponent<NecromancerAttacks>().CreateBlockers();
+            }
         }
     }
     private IEnumerator FlashOnHit()

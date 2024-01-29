@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
-    private float hpFromSoulJars = 0;
+    public bool noDeathRelics = false;
     public List<SpriteRenderer> sr = new List<SpriteRenderer>();
     public List<Color> oldColor = new List<Color>();
 
@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
     }
     void VampireTooth()
     {
-        if (gameManager.GetComponent<RelicEffects>().vToothLvl > 0)
+        if (gameManager.GetComponent<RelicEffects>().vToothLvl > 0 && !noDeathRelics)
         {
             float rand = Random.Range(0f, 1f);
             if (rand < .30)
@@ -109,7 +109,7 @@ public class Enemy : MonoBehaviour
     void SoulJar()
     {
         //Check if SJ is active
-        if (gameManager.GetComponent<RelicEffects>().sJarLvl > 0)
+        if (gameManager.GetComponent<RelicEffects>().sJarLvl > 0 && !noDeathRelics)
         {
             //Add a kill
             gameManager.GetComponent<GameManager>().EnemyKillsforSoulJar++;

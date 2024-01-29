@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject PauseUI;
     public GameObject OptionsUI;
+    public GameObject InputUI;
     public static bool paused = false;
     public RelicIcons icons;
     public RelicPanel panel;
@@ -18,6 +19,7 @@ public class PauseMenu : MonoBehaviour
     {
         PauseUI.SetActive(false);
         OptionsUI.SetActive(false);
+        InputUI.SetActive(false);
         icons = GameObject.Find("RelicPanel").GetComponent<RelicIcons>();
         panel = GameObject.Find("RelicPanel").GetComponent<RelicPanel>();
 
@@ -57,6 +59,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         OptionsUI.SetActive(false);
+        InputUI.SetActive(false);
         paused = !paused;
         showIcons = true;
     }
@@ -64,12 +67,14 @@ public class PauseMenu : MonoBehaviour
     public void Title()
     {
         OptionsUI.SetActive(false);
+        InputUI.SetActive(false);
         SceneManager.LoadScene(0);
     }
     //Reloads the Current Level
     public void Restart()
     {
         OptionsUI.SetActive(false);
+        InputUI.SetActive(false);
         GameObject.Find("Main Camera").GetComponent<CameraFollow>().player = null;
         paused = !paused;
         if(paused == true){paused = false;}
@@ -85,6 +90,17 @@ public class PauseMenu : MonoBehaviour
         } else 
         {
             OptionsUI.SetActive(false);
+        }
+    }
+    //Input Settings
+    public void Input()
+    {
+        if(InputUI.active == false)
+        {
+            InputUI.SetActive(true);
+        } else 
+        {
+            InputUI.SetActive(false);
         }
     }
     //Loads the Menu

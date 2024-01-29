@@ -28,6 +28,7 @@ TagManager:
   - GameManager
   - BossRoom
   - Boss
+  - Blocker
   layers:
   - Default
   - TransparentFX

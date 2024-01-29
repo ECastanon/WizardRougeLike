@@ -155,4 +155,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   spd: 5
-  timeAlive: 2
+  timeAlive: 3

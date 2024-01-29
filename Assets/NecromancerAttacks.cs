@@ -15,15 +15,18 @@ public class NecromancerAttacks : MonoBehaviour
     private NecromancerMovement nm;
     private Animator anim;
     private bool isAnimState = false;
-    private List<GameObject> pointList = new List<GameObject>();
+    [SerializeField] private List<GameObject> pointList = new List<GameObject>();
     private Transform attackPoint;
     private AudioSource SummonSFX, ShockWaveSFX, PoisonBlastSFX, DeathSFX;
+    [SerializeField] private GameObject BlockerContainer;
+    public int hitCounter = 0;
 
     [Header("Attack Objects")]
     public GameObject homing;
     public GameObject skeleton;
     public GameObject poison;
     public GameObject shockwave;
+    public GameObject BoneBlocker;
 
     [Header("AttackTimers")]
     public float homingTime;
@@ -73,6 +76,8 @@ public class NecromancerAttacks : MonoBehaviour
             ZeroSpeed();
             anim.Play("Necromancer_Shockwave");
         }
+
+        BlockerContainer.transform.localEulerAngles += new Vector3(0,0, 5 * Time.deltaTime);
     }
     public void HomingStrike()
     {
@@ -94,6 +99,8 @@ public class NecromancerAttacks : MonoBehaviour
             GameObject skele = Instantiate(skeleton, pointList[spot].transform.position, Quaternion.identity);
             skele.transform.SetParent(SpawnParent.GetChild(0));
             skele.GetComponent<EnemyMovement>().range = 15;
+            skele.GetComponent<Enemy>().experience = 0;
+            skele.GetComponent<Enemy>().noDeathRelics = true;
             pointList.RemoveAt(spot);
         }
         SummonSFX.Play();
@@ -119,6 +126,28 @@ public class NecromancerAttacks : MonoBehaviour
         s1.transform.SetParent(SpawnParent);s2.transform.SetParent(SpawnParent);s3.transform.SetParent(SpawnParent);
         s4.transform.SetParent(SpawnParent);s5.transform.SetParent(SpawnParent);s6.transform.SetParent(SpawnParent);
         s7.transform.SetParent(SpawnParent);s8.transform.SetParent(SpawnParent);
+    }
+    public void CreateBlockers()
+    {
+        if(hitCounter % 3 == 0)
+        {
+            BlockerContainer.transform.localEulerAngles = new Vector3(0,0,0);
+            foreach(Transform child in BlockerContainer.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            //Loops through the number of blockers to spawn
+            //Removes the previous spawn location to always spawn in a different location
+            for (int i = 0; i < 4; i++)
+            {
+                int spot = Random.Range(0, pointList.Count);
+                GameObject blocker = Instantiate(BoneBlocker, pointList[0].transform.position, Quaternion.identity);
+                blocker.transform.SetParent(BlockerContainer.transform);
+                pointList.RemoveAt(spot);
+            }
+            ResetPointList();
+        }
     }
     public void ZeroSpeed()
     {
