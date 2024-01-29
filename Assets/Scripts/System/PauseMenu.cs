@@ -24,7 +24,7 @@ public class PauseMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButtonDown("Pause"))
+        if (UserInput.instance.PauseGameInput)
         {
             Resume();
         }
@@ -58,7 +58,6 @@ public class PauseMenu : MonoBehaviour
     {
         OptionsUI.SetActive(false);
         paused = !paused;
-        showIcons = !showIcons;
         showIcons = true;
     }
     //Exits the Game

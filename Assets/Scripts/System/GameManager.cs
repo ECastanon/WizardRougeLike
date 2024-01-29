@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Soul Jar Data")]
     public int EnemyKillsforSoulJar;
-    public int soulJarStacks;
+    public int earnedSJHP;
 
     [Header("Medal of Valor Data")]
     public int healBy = 2;
@@ -31,12 +31,12 @@ public class GameManager : MonoBehaviour
     {
         StaticData.earnedEXP = earnedEXP;
         StaticData.EnemyKillsforSoulJar = EnemyKillsforSoulJar;
-        StaticData.soulJarStacks = soulJarStacks;
+        StaticData.earnedSJHP = earnedSJHP;
     }
     public void LoadData() //Applies information from StaticData
     {
         earnedEXP = StaticData.earnedEXP;
         EnemyKillsforSoulJar = StaticData.EnemyKillsforSoulJar;
-        soulJarStacks = StaticData.soulJarStacks;
+        earnedSJHP = StaticData.earnedSJHP;
     }
 }

@@ -55,8 +55,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if(canMove == true)
         {
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
+            movement.x = UserInput.instance.MoveInput.x;
+            movement.y = UserInput.instance.MoveInput.y;
+            //movement.x = Input.GetAxisRaw("Horizontal");
+            //movement.y = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKey("up") || Input.GetKey("down") || Input.GetKey("left") || Input.GetKey("right") || Input.GetKey("w") ||
             Input.GetKey("s") || Input.GetKey("a") || Input.GetKey("d"))
@@ -69,9 +71,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 dashTime += Time.deltaTime;
 
-                dashBar.fillAmount = dashTime / dashCD;
+                dashBar.fillAmount = 1 - (dashTime / dashCD);
             }
-            if (Input.GetKeyDown(KeyCode.Space) && canDash && dashTime >= dashCD)
+            if (UserInput.instance.DashInput && canDash && dashTime >= dashCD)
             {
                 StartCoroutine(Dash());
             }

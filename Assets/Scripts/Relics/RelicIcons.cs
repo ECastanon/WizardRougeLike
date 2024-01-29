@@ -10,26 +10,22 @@ public class RelicIcons : MonoBehaviour
     public List<int> relicLevel = new List<int>();
     public List<string> relicStringList = new List<string>();
     public List<GameObject> relicsToLoad = new List<GameObject>();
+
     public void UpdateIconMenu(string relicToUpdate)
     {
-        //Debug.Log(relicStringList.Count);
-        Debug.Log("TEST-1 : " + relicToUpdate); //If players picks a first relic
         if(!relicStringList.Contains(relicToUpdate)) //If player got a new relic
         {
-            Debug.Log("TEST-2");
             relicStringList.Add(relicToUpdate);
             relicLevel.Add(1);
         } else
         if(relicStringList.Contains(relicToUpdate)) //If player got a duplicate relic
         {
-            Debug.Log("TEST-4");
             int index = relicStringList.IndexOf(relicToUpdate);
             relicLevel[index] += 1;
         }
     }
     public void LoadRelicIcons()
     {
-        Debug.Log(relicStringList.Count);
         if(relicStringList.Count > 0)
         {
             UnLoadIcons();
@@ -59,7 +55,7 @@ public class RelicIcons : MonoBehaviour
         StaticData.relicLevel_ = relicLevel;
         StaticData.relicStringList_ = relicStringList;
     }
-    public void LoadData() //Applies information from StaticData
+    public void LoadData()
     {
         relicLevel = StaticData.relicLevel_;
         relicStringList = StaticData.relicStringList_;

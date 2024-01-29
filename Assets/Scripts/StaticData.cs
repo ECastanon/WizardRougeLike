@@ -9,11 +9,11 @@ public class StaticData : MonoBehaviour
 {
     public static int sceneNumber;
     [Header("RelicIcon Data")]
-    public static List<int> relicLevel_;
-    public static List<string> relicStringList_;
+    public static List<int> relicLevel_ = new List<int>();
+    public static List<string> relicStringList_ = new List<string>();
     [Header("Soul Jar Data")]
     public static int EnemyKillsforSoulJar;
-    public static int soulJarStacks;
+    public static int earnedSJHP;
     [Header("EXP Data")]
     public static int earnedEXP;
     [Header("RC Count")]

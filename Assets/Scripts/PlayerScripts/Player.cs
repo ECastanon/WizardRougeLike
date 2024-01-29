@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
 
         AddDescendantsWithSprite(transform, sr);
         oldColors.RemoveAt(0); oldColors.RemoveAt(0); oldColors.RemoveAt(0); oldColors.RemoveAt(0);
+        ResetPlayerData();
     }
 
     void Update()
@@ -186,5 +187,11 @@ public class Player : MonoBehaviour
             }
             AddDescendantsWithSprite(child, list);
         }
+    }
+    private void ResetPlayerData()
+    {
+        currentMaxHP = MaxHp + gameManager.GetComponent<GameManager>().earnedSJHP;
+        hp = currentMaxHP;
+        UpdateHPBar();
     }
 }

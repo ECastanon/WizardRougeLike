@@ -18,7 +18,7 @@ public class ShockPendant : MonoBehaviour
     void Start()
     {
         enemyManager = GameObject.FindGameObjectWithTag("EnemyManager");
-        ShockSFX = GameObject.FindGameObjectWithTag("ShockSFX").GetComponent<AudioSource>();
+        ShockSFX = GameObject.Find("ShockSFX").GetComponent<AudioSource>();
         sprite.SetActive(false);
     }
 

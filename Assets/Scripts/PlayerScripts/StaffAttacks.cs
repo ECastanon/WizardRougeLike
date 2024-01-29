@@ -21,8 +21,8 @@ public class StaffAttacks : MonoBehaviour
     public float timerStrong = 0;
     public float timerCharge = 0;
 
-    private Image strongBar;
-    private Image chargeBar;
+    private Image strongBar, strongIcon;
+    private Image chargeBar, chargeIcon;
 
     private float chargeStoneDelay = .25f;
 
@@ -34,7 +34,9 @@ public class StaffAttacks : MonoBehaviour
         player = GetComponent<Player>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         strongBar = GameObject.Find("strongBar").GetComponent<Image>();
+        strongIcon = GameObject.Find("strongIcon").GetComponent<Image>();
         chargeBar = GameObject.Find("chargeBar").GetComponent<Image>();
+        chargeIcon = GameObject.Find("chargeIcon").GetComponent<Image>();
         objectPooler = ObjectPooler.Instance;
         currentStaff = player.weaponType;
         SetCooldowns();
@@ -50,8 +52,8 @@ public class StaffAttacks : MonoBehaviour
 
             ManaStaff();
 
-            strongBar.fillAmount = timerStrong / cooldownStrongCur;
-            chargeBar.fillAmount = timerCharge / cooldownChargeCur;
+            strongBar.fillAmount = 1 - (timerStrong / cooldownStrongCur);
+            chargeBar.fillAmount = 1 - (timerCharge / cooldownChargeCur);
         }
     }
 
@@ -89,7 +91,7 @@ public class StaffAttacks : MonoBehaviour
     public void ManaStaff()
     {
         string objToSpawn;
-        if (Input.GetMouseButton(0))
+        if (UserInput.instance.BasicAttackInput)
         {
             objToSpawn = "ManaMissile";
             if(timerBasic >= cooldownBasic)
@@ -100,7 +102,7 @@ public class StaffAttacks : MonoBehaviour
                 BasicAttack.Play();
             }
         }
-        if (Input.GetMouseButton(1))
+        if (UserInput.instance.HeavyAttackInput)
         {
             objToSpawn = "ManaBlast";
             if (timerStrong >= cooldownStrongCur)
@@ -112,7 +114,7 @@ public class StaffAttacks : MonoBehaviour
             }
 
         }
-        if (Input.GetMouseButton(2))
+        if (UserInput.instance.ChargeAttackInput)
         {
             objToSpawn = "CircleOfMana";
             if (timerCharge >= cooldownCharge)

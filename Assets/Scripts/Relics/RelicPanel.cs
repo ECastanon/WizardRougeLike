@@ -492,7 +492,7 @@ public class RelicPanel : MonoBehaviour
                     float remainingRC;
                     string remainingString;
                     remainingRC = 3 * (gameManager.GetComponent<RelicEffects>().soMightLvl) - (gameManager.GetComponent<RelicEffects>().soMight-1);
-                    if(gameManager.GetComponent<RelicEffects>().moValor == 0 || remainingRC == 1)
+                    if(gameManager.GetComponent<RelicEffects>().soMight == 0 || remainingRC == 1)
                     {
                         rcDesc.GetComponent<TextMeshProUGUI>().text = "Increase all weapon damage by " + descValue1;
                     } else {

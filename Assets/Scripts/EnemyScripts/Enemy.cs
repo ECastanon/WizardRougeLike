@@ -108,25 +108,23 @@ public class Enemy : MonoBehaviour
     }
     void SoulJar()
     {
-        if(gameManager.GetComponent<RelicEffects>().oldSJLevel != gameManager.GetComponent<RelicEffects>().sJarLvl){LevelSoulJar();}
-
+        //Check if SJ is active
         if (gameManager.GetComponent<RelicEffects>().sJarLvl > 0)
         {
+            //Add a kill
             gameManager.GetComponent<GameManager>().EnemyKillsforSoulJar++;
+            //Check if kill are divisible by 5
             if (gameManager.GetComponent<GameManager>().EnemyKillsforSoulJar % 5 == 0)
             {
-                gameManager.GetComponent<GameManager>().soulJarStacks++;
-                player.GetComponent<Player>().currentMaxHP = player.GetComponent<Player>().MaxHp + hpFromSoulJars + (gameManager.GetComponent<GameManager>().soulJarStacks * gameManager.GetComponent<RelicEffects>().sJarLvl);
+                //Add to the earned HP by the SJ level
+                gameManager.GetComponent<GameManager>().earnedSJHP += gameManager.GetComponent<RelicEffects>().sJarLvl;
+                //Update current max HP
+                player.GetComponent<Player>().currentMaxHP = player.GetComponent<Player>().MaxHp + gameManager.GetComponent<GameManager>().earnedSJHP;
+                //Adds hp equal to the SJ level
                 player.GetComponent<Player>().hp = player.GetComponent<Player>().hp + gameManager.GetComponent<RelicEffects>().sJarLvl;
                 player.GetComponent<Player>().UpdateHPBar();
             }
         }
-    }
-    void LevelSoulJar()
-    {
-        gameManager.GetComponent<GameManager>().EnemyKillsforSoulJar = gameManager.GetComponent<GameManager>().EnemyKillsforSoulJar % 5;
-        hpFromSoulJars = player.GetComponent<Player>().currentMaxHP - player.GetComponent<Player>().MaxHp;
-        gameManager.GetComponent<GameManager>().soulJarStacks = 0;
     }
     void Die()
     {

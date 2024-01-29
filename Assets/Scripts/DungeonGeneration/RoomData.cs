@@ -107,7 +107,7 @@ public class RoomData : MonoBehaviour
         for (int i = 0; i < dg.GetComponent<LevelGeneration>().roomMiniTypes.Count; i++)
         {
             GameObject rmt = dg.GetComponent<LevelGeneration>().roomMiniTypes[i];
-            if (rmt.GetComponent<RoomMiniData>().RoomIDMini == RoomID)
+            if (rmt != null && rmt.GetComponent<RoomMiniData>().RoomIDMini == RoomID)
             {
                 rmt.GetComponent<RoomMiniData>().playerInside = false;
             }

@@ -92,7 +92,7 @@ public class NecromancerAttacks : MonoBehaviour
         {
             int spot = Random.Range(0, pointList.Count);
             GameObject skele = Instantiate(skeleton, pointList[spot].transform.position, Quaternion.identity);
-            skele.transform.SetParent(SpawnParent);
+            skele.transform.SetParent(SpawnParent.GetChild(0));
             skele.GetComponent<EnemyMovement>().range = 15;
             pointList.RemoveAt(spot);
         }
@@ -164,6 +164,7 @@ public class NecromancerAttacks : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        SpawnParent.GetChild(0).gameObject.GetComponent<EnemyCounter>().Enemies.Clear();
     }
     public void DeathSound()
     {
