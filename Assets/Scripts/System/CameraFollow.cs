@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
         FindBounds();
     }
 
-    void LateUpdate()
+    void Update()
     {
         if(player != null && !isFreeCam)
         {
